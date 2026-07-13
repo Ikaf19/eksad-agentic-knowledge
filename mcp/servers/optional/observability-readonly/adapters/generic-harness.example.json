@@ -1,0 +1,26 @@
+{
+  "server_id": "observability-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/observability-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "OBSERVABILITY_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "Observability base URL."
+    },
+    {
+      "name": "OBSERVABILITY_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only token with log redaction policy."
+    }
+  ],
+  "capabilities": [
+    "logs-metrics-traces-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

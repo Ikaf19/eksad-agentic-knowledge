@@ -85,3 +85,8 @@ GPT Project drafts BRD/FSD
 ## Non-negotiable portability rule
 
 Portable source remains canonical. Adapters must render from or reference portable docs. Do not let GPT Project instructions, Claude Project instructions, Hermes SOUL, or Hermes SKILL.md become separate competing sources of truth.
+
+
+## MCP foundation
+
+Top-level MCP desired-state catalog and setup flow: `mcp/README.md`.

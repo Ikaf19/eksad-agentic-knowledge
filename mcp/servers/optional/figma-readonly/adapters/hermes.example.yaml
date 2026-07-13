@@ -1,0 +1,13 @@
+# Hermes MCP example — Figma Read-only MCP
+# Template only. Do not paste real secrets into Git.
+
+mcp_servers:
+  figma_readonly:
+    command: "/opt/eksad-mcp/bin/figma-readonly"
+    args: []
+    env:
+      FIGMA_READONLY_TOKEN: "${FIGMA_READONLY_TOKEN}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

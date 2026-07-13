@@ -1,0 +1,20 @@
+{
+  "server_id": "figma-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/figma-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "FIGMA_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only design token."
+    }
+  ],
+  "capabilities": [
+    "design-context-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

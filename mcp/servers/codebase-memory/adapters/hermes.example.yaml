@@ -1,0 +1,15 @@
+# Hermes MCP example — Codebase Memory MCP
+# Template only. Do not paste real secrets into Git.
+
+mcp_servers:
+  codebase_memory:
+    command: "/opt/eksad-mcp/bin/codebase-memory-mcp"
+    args: []
+    env:
+      CBM_ALLOWED_ROOT: "/workspace"
+      CBM_WORKERS: "1"
+      CBM_LOG_LEVEL: "warn"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

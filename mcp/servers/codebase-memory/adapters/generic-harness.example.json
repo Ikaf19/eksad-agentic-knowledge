@@ -1,0 +1,34 @@
+{
+  "server_id": "codebase-memory",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/codebase-memory-mcp",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "CBM_ALLOWED_ROOT",
+      "required": true,
+      "secret": false,
+      "description": "Allowed repository root; use /workspace or narrower."
+    },
+    {
+      "name": "CBM_WORKERS",
+      "required": false,
+      "secret": false,
+      "description": "Worker count; use 1 on small VPS."
+    },
+    {
+      "name": "CBM_CACHE_DIR",
+      "required": false,
+      "secret": false,
+      "description": "Local cache directory outside Git."
+    }
+  ],
+  "capabilities": [
+    "code-intelligence",
+    "architecture-query",
+    "code-graph"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

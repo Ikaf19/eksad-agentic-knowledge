@@ -9,3 +9,8 @@ Portable MCP policy and matrix live in:
 - `portable/mcp/capability-catalog.md`
 
 This directory contains only Hermes-specific config shapes and scripts.
+
+
+## MCP foundation
+
+Top-level MCP desired-state catalog and setup flow: `mcp/README.md`.

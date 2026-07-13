@@ -1,0 +1,63 @@
+{
+  "id": "rabbitmq-readonly",
+  "display_name": "RabbitMQ Read-only MCP",
+  "priority": "P2",
+  "status": "optional",
+  "capabilities": [
+    "event-topology-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "high",
+  "roles": {
+    "allowed": [
+      "system-analyst",
+      "developer-backend",
+      "devops-engineer",
+      "technical-leader"
+    ],
+    "optional": [
+      "qa-engineer"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "developer-frontend",
+      "project-manager",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved RabbitMQ MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/rabbitmq-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "RABBITMQ_READONLY_URL",
+      "required": true,
+      "secret": true,
+      "description": "Read-only management endpoint/credential."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "rabbitmq_readonly",
+    "command": "/opt/eksad-mcp/bin/rabbitmq-readonly",
+    "args": [],
+    "env": {
+      "RABBITMQ_READONLY_URL": "${RABBITMQ_READONLY_URL}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "event-topology-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Topology only; no publish/consume/purge by default."
+}

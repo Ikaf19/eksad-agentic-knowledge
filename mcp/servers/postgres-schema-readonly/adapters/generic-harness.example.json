@@ -1,0 +1,21 @@
+{
+  "server_id": "postgres-schema-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/postgres-schema-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "POSTGRES_SCHEMA_READONLY_URL",
+      "required": true,
+      "secret": true,
+      "description": "Read-only/schema-only PostgreSQL connection URL."
+    }
+  ],
+  "capabilities": [
+    "db-schema-read-only",
+    "migration-inspection"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

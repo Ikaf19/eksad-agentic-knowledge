@@ -1,0 +1,21 @@
+{
+  "server_id": "playwright-browser",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/playwright-browser",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "PLAYWRIGHT_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "Scoped test/staging base URL; no prod mutation by default."
+    }
+  ],
+  "capabilities": [
+    "browser-inspection",
+    "ui-test-evidence"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

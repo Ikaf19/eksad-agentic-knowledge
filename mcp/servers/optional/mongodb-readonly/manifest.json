@@ -1,0 +1,63 @@
+{
+  "id": "mongodb-readonly",
+  "display_name": "MongoDB Read-only MCP",
+  "priority": "P2",
+  "status": "optional",
+  "capabilities": [
+    "audit-data-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "high",
+  "roles": {
+    "allowed": [
+      "system-analyst",
+      "qa-engineer",
+      "devops-engineer"
+    ],
+    "optional": [
+      "technical-leader",
+      "developer-backend"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "developer-frontend",
+      "project-manager",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved MongoDB MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/mongodb-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "MONGODB_READONLY_URL",
+      "required": true,
+      "secret": true,
+      "description": "Read-only MongoDB URL with data minimization policy."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "mongodb_readonly",
+    "command": "/opt/eksad-mcp/bin/mongodb-readonly",
+    "args": [],
+    "env": {
+      "MONGODB_READONLY_URL": "${MONGODB_READONLY_URL}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "audit-data-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Avoid sensitive data dumps; prefer metadata/evidence queries."
+}

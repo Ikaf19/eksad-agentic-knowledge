@@ -1,0 +1,71 @@
+{
+  "id": "jenkins-readonly",
+  "display_name": "Jenkins Read-only MCP",
+  "priority": "P1",
+  "status": "planned",
+  "capabilities": [
+    "ci-evidence",
+    "pipeline-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "medium",
+  "roles": {
+    "allowed": [
+      "devops-engineer",
+      "project-manager",
+      "technical-leader",
+      "qa-engineer"
+    ],
+    "optional": [
+      "developer-backend",
+      "developer-frontend"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved Jenkins MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/jenkins-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "JENKINS_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "Jenkins base URL."
+    },
+    {
+      "name": "JENKINS_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only Jenkins token/API key."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "jenkins_readonly",
+    "command": "/opt/eksad-mcp/bin/jenkins-readonly",
+    "args": [],
+    "env": {
+      "JENKINS_BASE_URL": "${JENKINS_BASE_URL}",
+      "JENKINS_READONLY_TOKEN": "${JENKINS_READONLY_TOKEN}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "ci-evidence",
+      "pipeline-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Evidence only; no job trigger/deploy by default."
+}

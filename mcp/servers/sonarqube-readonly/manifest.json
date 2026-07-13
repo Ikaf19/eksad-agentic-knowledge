@@ -1,0 +1,71 @@
+{
+  "id": "sonarqube-readonly",
+  "display_name": "SonarQube Read-only MCP",
+  "priority": "P1",
+  "status": "planned",
+  "capabilities": [
+    "quality-evidence",
+    "static-analysis-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "medium",
+  "roles": {
+    "allowed": [
+      "technical-leader",
+      "devops-engineer",
+      "project-manager"
+    ],
+    "optional": [
+      "developer-backend",
+      "developer-frontend",
+      "qa-engineer"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved SonarQube MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/sonarqube-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "SONARQUBE_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "SonarQube base URL."
+    },
+    {
+      "name": "SONARQUBE_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only token."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "sonarqube_readonly",
+    "command": "/opt/eksad-mcp/bin/sonarqube-readonly",
+    "args": [],
+    "env": {
+      "SONARQUBE_BASE_URL": "${SONARQUBE_BASE_URL}",
+      "SONARQUBE_READONLY_TOKEN": "${SONARQUBE_READONLY_TOKEN}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "quality-evidence",
+      "static-analysis-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Quality gate evidence only."
+}

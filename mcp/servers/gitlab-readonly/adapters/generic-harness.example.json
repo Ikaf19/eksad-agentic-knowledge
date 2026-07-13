@@ -1,0 +1,28 @@
+{
+  "server_id": "gitlab-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/gitlab-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "GITLAB_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only GitLab token."
+    },
+    {
+      "name": "GITLAB_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "GitLab CE/Cloud base URL."
+    }
+  ],
+  "capabilities": [
+    "git-read-only",
+    "merge-requests-read-only",
+    "issues-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

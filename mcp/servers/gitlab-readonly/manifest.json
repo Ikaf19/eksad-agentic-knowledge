@@ -1,0 +1,74 @@
+{
+  "id": "gitlab-readonly",
+  "display_name": "GitLab Read-only MCP",
+  "priority": "P0",
+  "status": "candidate",
+  "capabilities": [
+    "git-read-only",
+    "merge-requests-read-only",
+    "issues-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "medium",
+  "roles": {
+    "allowed": [
+      "technical-leader",
+      "developer-backend",
+      "developer-frontend",
+      "qa-engineer",
+      "project-manager",
+      "devops-engineer"
+    ],
+    "optional": [
+      "system-analyst",
+      "general-coordinator"
+    ],
+    "forbidden": [
+      "business-analyst"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved GitLab MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/gitlab-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "GITLAB_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only GitLab token."
+    },
+    {
+      "name": "GITLAB_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "GitLab CE/Cloud base URL."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "gitlab_readonly",
+    "command": "/opt/eksad-mcp/bin/gitlab-readonly",
+    "args": [],
+    "env": {
+      "GITLAB_READONLY_TOKEN": "${GITLAB_READONLY_TOKEN}",
+      "GITLAB_BASE_URL": "${GITLAB_BASE_URL}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "git-read-only",
+      "merge-requests-read-only",
+      "issues-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Useful if EKSAD source integration uses GitLab CE."
+}

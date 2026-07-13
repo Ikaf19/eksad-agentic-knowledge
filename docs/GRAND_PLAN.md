@@ -332,3 +332,19 @@ docs/USAGE_MODES.md
 
 Rule: GPT/Claude Project mode uses `EKSAD/gpt/` and `portable/` as uploaded knowledge exactly like the prior chatbot workflow, while MCP docs remain governance/reference only unless a platform provides actual tools.
 
+
+
+## MCP Foundation Implementation Update
+
+The next phase adds top-level `mcp/` as a reusable MCP desired-state template for both Hermes and future agentic harnesses.
+
+Scope:
+
+- `mcp/README.md` as canonical MCP entrypoint.
+- `mcp/ROADMAP_P0_TO_PN.md`, `SETUP_FLOW.md`, `SECURITY_MODEL.md`, and `SERVER_MANIFEST_SCHEMA.md`.
+- Machine-readable `manifest.json` per MCP server candidate.
+- Per-server install, security, validation, Hermes adapter, and generic harness adapter files.
+- Per-role MCP profile docs.
+- Read-only scripts: `doctor.sh`, `validate-mcp-catalog.py`, `render-hermes-config.py`.
+
+Runtime apply remains a separate explicit approval gate. No secrets, binaries, caches, or live config are committed.

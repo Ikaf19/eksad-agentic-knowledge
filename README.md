@@ -63,3 +63,8 @@ See:
 3. MCP is capability-governed, role-scoped, and read-only by default.
 4. Hermes-specific files must not become the only source of role/workflow truth.
 5. Portable docs must not depend on Hermes-only paths or commands.
+
+
+## MCP foundation
+
+Top-level MCP desired-state catalog and setup flow: `mcp/README.md`.

@@ -1,0 +1,65 @@
+{
+  "id": "postgres-schema-readonly",
+  "display_name": "PostgreSQL Schema Read-only MCP",
+  "priority": "P1",
+  "status": "planned",
+  "capabilities": [
+    "db-schema-read-only",
+    "migration-inspection"
+  ],
+  "default_enabled": false,
+  "risk": "high",
+  "roles": {
+    "allowed": [
+      "system-analyst",
+      "developer-backend",
+      "qa-engineer",
+      "devops-engineer"
+    ],
+    "optional": [
+      "technical-leader"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "developer-frontend",
+      "project-manager",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved PostgreSQL schema MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/postgres-schema-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "POSTGRES_SCHEMA_READONLY_URL",
+      "required": true,
+      "secret": true,
+      "description": "Read-only/schema-only PostgreSQL connection URL."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "postgres_schema_readonly",
+    "command": "/opt/eksad-mcp/bin/postgres-schema-readonly",
+    "args": [],
+    "env": {
+      "POSTGRES_SCHEMA_READONLY_URL": "${POSTGRES_SCHEMA_READONLY_URL}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "db-schema-read-only",
+      "migration-inspection"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "No data mutation. Prefer schema-only role and masked samples."
+}

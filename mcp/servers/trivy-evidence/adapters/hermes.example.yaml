@@ -1,0 +1,13 @@
+# Hermes MCP example — Trivy Evidence MCP
+# Template only. Do not paste real secrets into Git.
+
+mcp_servers:
+  trivy_evidence:
+    command: "/opt/eksad-mcp/bin/trivy-evidence"
+    args: []
+    env:
+      TRIVY_EVIDENCE_PATH: "${TRIVY_EVIDENCE_PATH}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

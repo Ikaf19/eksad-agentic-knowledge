@@ -1,0 +1,13 @@
+# Hermes MCP example — Playwright Browser MCP
+# Template only. Do not paste real secrets into Git.
+
+mcp_servers:
+  playwright_browser:
+    command: "/opt/eksad-mcp/bin/playwright-browser"
+    args: []
+    env:
+      PLAYWRIGHT_BASE_URL: "${PLAYWRIGHT_BASE_URL}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

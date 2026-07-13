@@ -1,0 +1,13 @@
+# Hermes MCP example — RabbitMQ Read-only MCP
+# Template only. Do not paste real secrets into Git.
+
+mcp_servers:
+  rabbitmq_readonly:
+    command: "/opt/eksad-mcp/bin/rabbitmq-readonly"
+    args: []
+    env:
+      RABBITMQ_READONLY_URL: "${RABBITMQ_READONLY_URL}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

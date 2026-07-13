@@ -1,0 +1,27 @@
+{
+  "server_id": "jenkins-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/jenkins-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "JENKINS_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "Jenkins base URL."
+    },
+    {
+      "name": "JENKINS_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only Jenkins token/API key."
+    }
+  ],
+  "capabilities": [
+    "ci-evidence",
+    "pipeline-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}
