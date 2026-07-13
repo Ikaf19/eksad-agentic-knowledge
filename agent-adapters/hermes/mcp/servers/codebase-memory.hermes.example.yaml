@@ -1,0 +1,22 @@
+# Hermes MCP example — codebase-memory-mcp
+# Copy/render into local ~/.hermes/config.yaml only after approval.
+# Do not commit live runtime config.
+
+mcp_servers:
+  codebase_memory:
+    command: "/opt/eksad-mcp/bin/codebase-memory-mcp"
+    args: []
+    env:
+      CBM_ALLOWED_ROOT: "/workspace"
+      CBM_WORKERS: "1"
+      CBM_LOG_LEVEL: "warn"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false
+
+# Policy:
+# - Pilot only, not global default.
+# - No auto-watch/auto-index.
+# - Prefer persistence=false when invoking index_repository.
+# - Start with small repos and fast mode.

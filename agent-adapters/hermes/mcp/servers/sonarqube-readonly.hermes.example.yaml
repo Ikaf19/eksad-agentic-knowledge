@@ -1,0 +1,14 @@
+# Hermes MCP example — SonarQube read-only
+# Placeholder only. Replace command/url with an approved MCP server implementation.
+# Secrets must come from local env, not Git.
+
+mcp_servers:
+  sonarqube_readonly:
+    command: "/opt/eksad-mcp/bin/sonarqube-readonly"
+    args: []
+    env:
+      SONARQUBE_READONLY_TOKEN: "${SONARQUBE_READONLY_TOKEN}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

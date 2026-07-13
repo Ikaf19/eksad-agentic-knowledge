@@ -1,0 +1,14 @@
+# Hermes MCP example — Jenkins read-only
+# Placeholder only. Replace command/url with an approved MCP server implementation.
+# Secrets must come from local env, not Git.
+
+mcp_servers:
+  jenkins_readonly:
+    command: "/opt/eksad-mcp/bin/jenkins-readonly"
+    args: []
+    env:
+      JENKINS_READONLY_TOKEN: "${JENKINS_READONLY_TOKEN}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

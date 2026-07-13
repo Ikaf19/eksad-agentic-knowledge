@@ -1,0 +1,38 @@
+# Local env/secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.kubeconfig
+kubeconfig*
+
+# Runtime configs / local state
+.hermes-local/
+.hermes-runtime/
+*.local.yaml
+*.local.yml
+*.local.json
+
+# MCP/runtime caches
+.codebase-memory/
+*.db
+*.sqlite
+*.sqlite3
+*.zst
+.cache/
+
+# Python/build/editor noise
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+node_modules/
+dist/
+build/
+.DS_Store
+.idea/
+.vscode/

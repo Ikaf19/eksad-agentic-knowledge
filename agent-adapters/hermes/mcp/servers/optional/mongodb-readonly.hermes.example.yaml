@@ -1,0 +1,12 @@
+# Optional Hermes MCP example — mongodb-readonly
+# Not default-enabled. Add only when real project workflow requires it.
+
+mcp_servers:
+  mongodb_readonly:
+    command: "/opt/eksad-mcp/bin/mongodb-readonly"
+    args: []
+    env: {}
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false
