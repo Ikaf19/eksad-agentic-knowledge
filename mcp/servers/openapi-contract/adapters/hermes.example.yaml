@@ -1,0 +1,13 @@
+# Hermes MCP example — OpenAPI Contract MCP
+# Template only. Do not paste real secrets into Git.
+
+mcp_servers:
+  openapi_contract:
+    command: "/opt/eksad-mcp/bin/openapi-contract"
+    args: []
+    env:
+      OPENAPI_SPEC_ROOT: "${OPENAPI_SPEC_ROOT}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

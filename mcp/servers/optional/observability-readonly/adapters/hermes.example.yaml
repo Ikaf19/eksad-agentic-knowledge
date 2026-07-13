@@ -1,0 +1,14 @@
+# Hermes MCP example — Observability Read-only MCP
+# Template only. Do not paste real secrets into Git.
+
+mcp_servers:
+  observability_readonly:
+    command: "/opt/eksad-mcp/bin/observability-readonly"
+    args: []
+    env:
+      OBSERVABILITY_READONLY_TOKEN: "${OBSERVABILITY_READONLY_TOKEN}"
+      OBSERVABILITY_BASE_URL: "${OBSERVABILITY_BASE_URL}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

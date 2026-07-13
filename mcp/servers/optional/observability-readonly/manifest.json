@@ -1,0 +1,70 @@
+{
+  "id": "observability-readonly",
+  "display_name": "Observability Read-only MCP",
+  "priority": "P2/Pn",
+  "status": "optional",
+  "capabilities": [
+    "logs-metrics-traces-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "high",
+  "roles": {
+    "allowed": [
+      "devops-engineer",
+      "technical-leader"
+    ],
+    "optional": [
+      "qa-engineer",
+      "project-manager"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "system-analyst",
+      "developer-backend",
+      "developer-frontend",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved observability MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/observability-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "OBSERVABILITY_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "Observability base URL."
+    },
+    {
+      "name": "OBSERVABILITY_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only token with log redaction policy."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "observability_readonly",
+    "command": "/opt/eksad-mcp/bin/observability-readonly",
+    "args": [],
+    "env": {
+      "OBSERVABILITY_READONLY_TOKEN": "${OBSERVABILITY_READONLY_TOKEN}",
+      "OBSERVABILITY_BASE_URL": "${OBSERVABILITY_BASE_URL}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "logs-metrics-traces-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "High privacy risk; redaction and scoped queries required."
+}

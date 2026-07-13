@@ -1,0 +1,64 @@
+{
+  "id": "trivy-evidence",
+  "display_name": "Trivy Evidence MCP",
+  "priority": "P1",
+  "status": "planned",
+  "capabilities": [
+    "security-evidence",
+    "vulnerability-report-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "high",
+  "roles": {
+    "allowed": [
+      "devops-engineer",
+      "technical-leader",
+      "project-manager"
+    ],
+    "optional": [
+      "qa-engineer",
+      "developer-backend",
+      "developer-frontend"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved Trivy/evidence MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/trivy-evidence"
+  },
+  "env_contract": [
+    {
+      "name": "TRIVY_EVIDENCE_PATH",
+      "required": false,
+      "secret": false,
+      "description": "Path to CI-produced Trivy report artifacts."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "trivy_evidence",
+    "command": "/opt/eksad-mcp/bin/trivy-evidence",
+    "args": [],
+    "env": {
+      "TRIVY_EVIDENCE_PATH": "${TRIVY_EVIDENCE_PATH}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "security-evidence",
+      "vulnerability-report-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Prefer CI artifacts. Do not scan broad filesystem by default."
+}

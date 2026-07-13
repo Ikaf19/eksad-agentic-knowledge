@@ -1,0 +1,39 @@
+{
+  "pipeline": "eksad-document-delivery",
+  "version": 1,
+  "gates_enabled": true,
+  "stages": [
+    {
+      "id": "UR",
+      "name": "User Requirements",
+      "role": "business-analyst",
+      "skill": "eksad-ba-workflow",
+      "artifact": "docs/ur/UR_{PROJECT}_v1.md",
+      "depends_on": []
+    },
+    {
+      "id": "BRD",
+      "name": "Business Requirements Document",
+      "role": "business-analyst",
+      "skill": "eksad-ba-workflow",
+      "artifact": "docs/brd/BRD_{PROJECT}_v1.md",
+      "depends_on": ["UR"]
+    },
+    {
+      "id": "FSD",
+      "name": "Functional Specification Document",
+      "role": "business-analyst",
+      "skill": "eksad-ba-workflow",
+      "artifact": "docs/fsd/FSD_{PROJECT}_v1.md",
+      "depends_on": ["BRD"]
+    },
+    {
+      "id": "TSD",
+      "name": "Technical Specification Document",
+      "role": "system-analyst",
+      "skill": "eksad-tsd-design",
+      "artifact": "docs/tsd/TSD_{PROJECT}_v1.md",
+      "depends_on": ["FSD"]
+    }
+  ]
+}

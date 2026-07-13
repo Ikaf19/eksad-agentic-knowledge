@@ -1,0 +1,27 @@
+{
+  "server_id": "sonarqube-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/sonarqube-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "SONARQUBE_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "SonarQube base URL."
+    },
+    {
+      "name": "SONARQUBE_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only token."
+    }
+  ],
+  "capabilities": [
+    "quality-evidence",
+    "static-analysis-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

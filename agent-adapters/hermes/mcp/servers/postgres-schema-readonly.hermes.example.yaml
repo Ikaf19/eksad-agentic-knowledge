@@ -1,0 +1,14 @@
+# Hermes MCP example — PostgreSQL schema read-only
+# Placeholder only. Replace command/url with an approved MCP server implementation.
+# Secrets must come from local env, not Git.
+
+mcp_servers:
+  postgres_schema_readonly:
+    command: "/opt/eksad-mcp/bin/postgres-schema-readonly"
+    args: []
+    env:
+      POSTGRES_SCHEMA_READONLY_TOKEN: "${POSTGRES_SCHEMA_READONLY_TOKEN}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

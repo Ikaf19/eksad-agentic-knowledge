@@ -1,0 +1,22 @@
+{
+  "server_id": "github-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/github-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "GITHUB_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Least-privilege read token; no write scopes by default."
+    }
+  ],
+  "capabilities": [
+    "git-read-only",
+    "issues-read-only",
+    "pull-requests-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

@@ -1,0 +1,21 @@
+{
+  "server_id": "trivy-evidence",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/trivy-evidence",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "TRIVY_EVIDENCE_PATH",
+      "required": false,
+      "secret": false,
+      "description": "Path to CI-produced Trivy report artifacts."
+    }
+  ],
+  "capabilities": [
+    "security-evidence",
+    "vulnerability-report-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

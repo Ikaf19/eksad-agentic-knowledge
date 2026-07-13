@@ -1,0 +1,13 @@
+# Hermes MCP example — Kafka Read-only MCP
+# Template only. Do not paste real secrets into Git.
+
+mcp_servers:
+  kafka_readonly:
+    command: "/opt/eksad-mcp/bin/kafka-readonly"
+    args: []
+    env:
+      KAFKA_READONLY_BOOTSTRAP: "${KAFKA_READONLY_BOOTSTRAP}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

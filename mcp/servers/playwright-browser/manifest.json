@@ -1,0 +1,65 @@
+{
+  "id": "playwright-browser",
+  "display_name": "Playwright Browser MCP",
+  "priority": "P1",
+  "status": "planned",
+  "capabilities": [
+    "browser-inspection",
+    "ui-test-evidence"
+  ],
+  "default_enabled": false,
+  "risk": "medium-high",
+  "roles": {
+    "allowed": [
+      "developer-frontend",
+      "qa-engineer"
+    ],
+    "optional": [
+      "technical-leader"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "system-analyst",
+      "developer-backend",
+      "project-manager",
+      "devops-engineer",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved Playwright MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/playwright-browser"
+  },
+  "env_contract": [
+    {
+      "name": "PLAYWRIGHT_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "Scoped test/staging base URL; no prod mutation by default."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "playwright_browser",
+    "command": "/opt/eksad-mcp/bin/playwright-browser",
+    "args": [],
+    "env": {
+      "PLAYWRIGHT_BASE_URL": "${PLAYWRIGHT_BASE_URL}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "browser-inspection",
+      "ui-test-evidence"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Scoped URLs and test accounts only."
+}

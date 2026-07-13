@@ -1,0 +1,20 @@
+{
+  "server_id": "mongodb-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/mongodb-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "MONGODB_READONLY_URL",
+      "required": true,
+      "secret": true,
+      "description": "Read-only MongoDB URL with data minimization policy."
+    }
+  ],
+  "capabilities": [
+    "audit-data-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

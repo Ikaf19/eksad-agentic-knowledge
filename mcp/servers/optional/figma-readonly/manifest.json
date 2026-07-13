@@ -1,0 +1,63 @@
+{
+  "id": "figma-readonly",
+  "display_name": "Figma Read-only MCP",
+  "priority": "P2",
+  "status": "optional",
+  "capabilities": [
+    "design-context-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "medium",
+  "roles": {
+    "allowed": [
+      "business-analyst",
+      "system-analyst",
+      "developer-frontend"
+    ],
+    "optional": [
+      "technical-leader",
+      "qa-engineer"
+    ],
+    "forbidden": [
+      "developer-backend",
+      "project-manager",
+      "devops-engineer",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved Figma MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/figma-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "FIGMA_READONLY_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Read-only design token."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "figma_readonly",
+    "command": "/opt/eksad-mcp/bin/figma-readonly",
+    "args": [],
+    "env": {
+      "FIGMA_READONLY_TOKEN": "${FIGMA_READONLY_TOKEN}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "design-context-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Use only if Figma is source of design truth."
+}

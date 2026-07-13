@@ -1,0 +1,14 @@
+# Hermes MCP example — GitHub read-only
+# Placeholder only. Replace command/url with an approved MCP server implementation.
+# Secrets must come from local env, not Git.
+
+mcp_servers:
+  github_readonly:
+    command: "/opt/eksad-mcp/bin/github-readonly"
+    args: []
+    env:
+      GITHUB_READONLY_TOKEN: "${GITHUB_READONLY_TOKEN}"
+    timeout: 120
+    connect_timeout: 60
+    sampling:
+      enabled: false

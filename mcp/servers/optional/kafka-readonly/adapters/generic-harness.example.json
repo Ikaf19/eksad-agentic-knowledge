@@ -1,0 +1,20 @@
+{
+  "server_id": "kafka-readonly",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/kafka-readonly",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "KAFKA_READONLY_BOOTSTRAP",
+      "required": true,
+      "secret": true,
+      "description": "Read-only bootstrap/credential contract."
+    }
+  ],
+  "capabilities": [
+    "event-topology-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

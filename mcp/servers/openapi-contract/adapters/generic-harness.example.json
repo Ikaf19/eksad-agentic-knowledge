@@ -1,0 +1,21 @@
+{
+  "server_id": "openapi-contract",
+  "transport": "stdio",
+  "command": "/opt/eksad-mcp/bin/openapi-contract",
+  "args": [],
+  "env_contract": [
+    {
+      "name": "OPENAPI_SPEC_ROOT",
+      "required": false,
+      "secret": false,
+      "description": "Local path or exported spec root."
+    }
+  ],
+  "capabilities": [
+    "api-contract",
+    "openapi-validation"
+  ],
+  "default_enabled": false,
+  "requires_explicit_apply": true,
+  "notes": "Generic harnesses should map this desired-state contract into their local tool/MCP config format."
+}

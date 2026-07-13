@@ -1,0 +1,65 @@
+{
+  "id": "openapi-contract",
+  "display_name": "OpenAPI Contract MCP",
+  "priority": "P1",
+  "status": "planned",
+  "capabilities": [
+    "api-contract",
+    "openapi-validation"
+  ],
+  "default_enabled": false,
+  "risk": "medium",
+  "roles": {
+    "allowed": [
+      "system-analyst",
+      "developer-backend",
+      "developer-frontend",
+      "qa-engineer",
+      "technical-leader"
+    ],
+    "optional": [
+      "devops-engineer"
+    ],
+    "forbidden": [
+      "business-analyst",
+      "project-manager",
+      "general-coordinator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved OpenAPI MCP/tooling implementation",
+    "install_location": "/opt/eksad-mcp/bin/openapi-contract"
+  },
+  "env_contract": [
+    {
+      "name": "OPENAPI_SPEC_ROOT",
+      "required": false,
+      "secret": false,
+      "description": "Local path or exported spec root."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "openapi_contract",
+    "command": "/opt/eksad-mcp/bin/openapi-contract",
+    "args": [],
+    "env": {
+      "OPENAPI_SPEC_ROOT": "${OPENAPI_SPEC_ROOT}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "api-contract",
+      "openapi-validation"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Can also run as file-based validator in non-MCP harnesses."
+}
