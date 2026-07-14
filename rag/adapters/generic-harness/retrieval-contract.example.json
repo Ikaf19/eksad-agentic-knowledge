@@ -1,0 +1,32 @@
+{
+  "enabled": false,
+  "corpus_manifest_dir": "rag/corpora",
+  "required_controls": [
+    "role_filter",
+    "source_path_citation",
+    "project_activation_gate"
+  ],
+  "query_request_shape": {
+    "query": "string",
+    "role": "portable-role-id",
+    "allowed_corpora": [
+      "corpus-id"
+    ],
+    "top_k": 8,
+    "require_citations": true
+  },
+  "query_response_shape": {
+    "results": [
+      {
+        "source_path": "string",
+        "heading_path": [
+          "string"
+        ],
+        "corpus_id": "string",
+        "score": "number",
+        "text": "string",
+        "git_commit": "string"
+      }
+    ]
+  }
+}

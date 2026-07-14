@@ -1,0 +1,17 @@
+[
+  {
+    "id": "core-principles-cite-path",
+    "claim": "EKSAD architectural principles are binding for solution design.",
+    "must_cite_any": [
+      "EKSAD/gpt/_base/EKSAD_BASE_PRINCIPLES.md"
+    ]
+  },
+  {
+    "id": "rag-citation-required",
+    "claim": "RAG answers require source path citations.",
+    "must_cite_any": [
+      "rag/CITATION_POLICY.md",
+      "rag/RETRIEVAL_CONTRACT.md"
+    ]
+  }
+]

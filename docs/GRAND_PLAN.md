@@ -348,3 +348,20 @@ Scope:
 - Read-only scripts: `doctor.sh`, `validate-mcp-catalog.py`, `render-hermes-config.py`.
 
 Runtime apply remains a separate explicit approval gate. No secrets, binaries, caches, or live config are committed.
+
+## RAG Foundation Implementation Update
+
+Phase B adds top-level `rag/` as a reusable retrieval desired-state template for Hermes, chatbot projects, and future agentic harnesses.
+
+Scope:
+
+- `rag/README.md` as canonical RAG entrypoint.
+- RAG architecture, corpus schema, indexing policy, chunking profiles, retrieval contract, citation policy, security model, and evaluation plan.
+- Machine-readable corpus manifests under `rag/corpora/*.manifest.json`.
+- Per-role RAG profiles under `rag/profiles/`.
+- Adapter guidance for Hermes, generic harnesses, and chatbot projects under `rag/adapters/`.
+- Portable RAG governance under `portable/rag/` and `portable/policies/rag-policy.md`.
+- Eval fixtures under `eval/rag/` for golden questions, expected citations, abstention, and role-boundary behavior.
+- Read-only scripts: `rag/scripts/validate-rag-corpus.py`, `rag/scripts/render-ingestion-plan.py`, `rag/scripts/build-chatbot-upload-bundle.py`, and `eval/rag/scripts/validate-rag-eval.py`.
+
+Runtime apply remains a separate explicit approval gate. No vector stores, embedding caches, customer dumps, secrets, provider keys, or live RAG config are committed.

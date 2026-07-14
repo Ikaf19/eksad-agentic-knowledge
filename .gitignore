@@ -24,6 +24,18 @@ kubeconfig*
 *.zst
 .cache/
 
+# RAG/vector/embedding runtime artifacts
+.rag-runtime/
+.rag-cache/
+.embeddings/
+embeddings-cache/
+vector-store/
+qdrant-storage/
+chroma/
+*.lancedb/
+*.faiss
+*.ann
+
 # Python/build/editor noise
 __pycache__/
 *.py[cod]

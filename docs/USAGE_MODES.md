@@ -26,6 +26,8 @@ portable/roles/<role>.md
 portable/workflows/<workflow>.md
 portable/policies/
 portable/mcp/role-mcp-matrix.md       # governance reference only; no MCP runtime assumed
+portable/rag/corpus-matrix.md         # retrieval guidance only; platform search is native
+rag/adapters/chatbot-projects/upload-bundle-guidance.md
 ```
 
 Use existing GPT/Claude setup files as before:
@@ -47,6 +49,12 @@ MCP in chatbot mode:
 - Do not assume MCP tools exist.
 - Ask the user to paste/export evidence if needed.
 
+RAG in chatbot mode:
+
+- Treat `rag/` docs as upload/search governance, not as a live vector database.
+- Use corpus manifests to choose which files to upload.
+- Cite uploaded file names/paths when answering from project knowledge.
+
 ## Mode B — Fully Agentic Runtime Mode
 
 Use this when running Hermes, Claude Code, Codex, Cursor, OpenCode, or another tool-using agent.
@@ -67,6 +75,7 @@ git clone eksad-agentic-knowledge
 → run adapter doctor/validator
 → configure local secrets/runtime separately
 → enable MCP only if allowed by role and approved
+→ build RAG indexes only from active corpus manifests and only after approval
 ```
 
 ## Mode C — Hybrid
@@ -90,3 +99,7 @@ Portable source remains canonical. Adapters must render from or reference portab
 ## MCP foundation
 
 Top-level MCP desired-state catalog and setup flow: `mcp/README.md`.
+
+## RAG foundation
+
+Top-level RAG desired-state catalog, corpus manifests, retrieval/citation policy, and eval fixtures: `rag/README.md`.

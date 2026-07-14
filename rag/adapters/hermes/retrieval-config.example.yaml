@@ -1,0 +1,18 @@
+# Example only. Do not copy values blindly into ~/.hermes/config.yaml.
+# RAG runtime setup is a separate explicit approval gate.
+rag:
+  enabled: false
+  corpus_manifest_dir: ./rag/corpora
+  require_citations: true
+  default_allowed_root: /workspace/eksad-agentic-knowledge
+  runtime:
+    type: openai-compatible-retrieval-api
+    base_url: ${EKSAD_RAG_BASE_URL}
+    api_key_env: EKSAD_RAG_API_KEY
+  embedding:
+    model_alias: eksad.embedding
+  reranker:
+    model_alias: eksad.reranker
+  vector_store:
+    provider: runtime-local
+    location: ${EKSAD_RAG_VECTOR_STORE_PATH}

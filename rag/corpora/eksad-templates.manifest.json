@@ -1,0 +1,40 @@
+{
+  "id": "eksad-templates",
+  "version": "1.0.0",
+  "description": "EKSAD document templates and output contracts.",
+  "status": "active",
+  "source_layer": "canonical-pack",
+  "indexable": true,
+  "sensitivity": "internal",
+  "paths": [
+    "EKSAD/gpt/_template/**/*.md"
+  ],
+  "exclude": [
+    "**/archive/**",
+    "**/TIA/**",
+    "**/USED-CAR/**",
+    "**/teams/tia/**"
+  ],
+  "default_chunk_profile": "template-preserve",
+  "allowed_roles": [
+    "general-coordinator",
+    "business-analyst",
+    "system-analyst",
+    "technical-leader",
+    "developer-backend",
+    "developer-frontend",
+    "qa-engineer",
+    "project-manager",
+    "devops-engineer"
+  ],
+  "citation_required": true,
+  "freshness": {
+    "strategy": "rebuild-on-git-change",
+    "tracked_paths": [
+      "EKSAD/gpt/_template/**"
+    ]
+  },
+  "activation": {
+    "default": "enabled-after-runtime-approval"
+  }
+}
