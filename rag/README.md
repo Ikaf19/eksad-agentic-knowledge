@@ -2,7 +2,7 @@
 
 This folder is the canonical **retrieval-augmented generation (RAG) desired-state** entrypoint for the EKSAD Agentic Knowledge repository.
 
-It defines how this Git knowledge source may be indexed, retrieved, cited, evaluated, and adapted into Hermes or other agentic harnesses. It does **not** contain runtime indexes, embeddings, vector databases, API keys, or live service configuration.
+It defines how this Git knowledge source may be indexed, retrieved, cited, evaluated, and adapted into Hermes or other agentic harnesses. Phase C enriches this with a read-only RAG API and MCP tool contract for future Milvus/Ollama/MinIO-backed retrieval. It does **not** contain runtime indexes, embeddings, vector databases, API keys, or live service configuration.
 
 ## Layering
 
@@ -18,6 +18,8 @@ agent-adapters/chatbot-projects/ # upload/search fallback mode
 
 - Corpus manifests that say what may be indexed.
 - Chunking, retrieval, citation, and security contracts.
+- RAG API, tool, auth/RBAC, runtime component, query pipeline, evidence, failure-mode, and observability contracts.
+- Desired-state MCP wrapper contract for `rag-api-readonly`.
 - Role retrieval boundaries.
 - Read-only validation and ingestion-plan scripts.
 - Evaluation fixtures for citations, abstention, and role boundaries.
@@ -40,12 +42,28 @@ agent-adapters/chatbot-projects/ # upload/search fallback mode
 | What can be indexed | `corpora/*.manifest.json` |
 | Chunking profiles | `CHUNKING_PROFILES.md` |
 | Retrieval rules | `RETRIEVAL_CONTRACT.md` |
+| RAG API contract | `RAG_API_CONTRACT.md` and `openapi/rag-api.openapi.yaml` |
+| RAG MCP/tool contract | `RAG_TOOL_CONTRACT.md` and `../mcp/servers/rag-api-readonly/` |
+| Runtime components | `RAG_RUNTIME_COMPONENTS.md` |
+| Auth/RBAC | `RAG_AUTH_AND_RBAC.md` |
 | Citation rules | `CITATION_POLICY.md` |
 | Security model | `SECURITY_MODEL.md` |
 | Evaluation plan | `EVALUATION_PLAN.md` and `../eval/rag/` |
 | Validate corpora | `scripts/validate-rag-corpus.py` |
+| Validate API/tool contracts | `scripts/validate-rag-api-contract.py` |
 | Render ingestion plan | `scripts/render-ingestion-plan.py` |
+| Render RAG MCP summary | `scripts/render-rag-mcp-manifest.py` |
 
 ## Current status
 
-This folder is **setup-ready as desired-state documentation and templates**. Runtime indexing is a separate explicit approval gate.
+This folder is **setup-ready as desired-state documentation and templates**. Runtime indexing and runtime RAG API/MCP activation are separate explicit approval gates.
+
+Recommended future runtime shape:
+
+```text
+Hermes role profile
+  -> EKSAD RAG retrieval skill
+  -> rag-api-readonly MCP server
+  -> RAG API
+  -> Milvus + Ollama embeddings + MinIO artifact metadata
+```

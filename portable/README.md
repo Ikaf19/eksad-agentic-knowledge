@@ -20,7 +20,7 @@ Portable docs may reference EKSAD standards and templates, but must avoid Hermes
 | `deliverables/` | Deliverable contracts and matrix. |
 | `policies/` | Role, approval, security, MCP, and RAG policies. |
 | `mcp/` | MCP capability catalog, server catalog, role matrix, environment/migration contracts. |
-| `rag/` | Runtime-neutral corpus matrix and retrieval policy. |
+| `rag/` | Runtime-neutral corpus matrix, retrieval workflow, and RAG API/MCP policy. |
 
 ## Rule
 

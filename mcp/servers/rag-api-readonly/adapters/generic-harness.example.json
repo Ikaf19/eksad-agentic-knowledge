@@ -1,0 +1,23 @@
+{
+  "server_id": "rag-api-readonly",
+  "transport": "http_mcp_or_stdio_wrapper",
+  "capabilities": [
+    "rag_search",
+    "rag_retrieve",
+    "rag_get_document",
+    "rag_resolve_citation",
+    "rag_get_artifact_metadata",
+    "rag_healthcheck"
+  ],
+  "requires_runtime_binding": true,
+  "secrets": [
+    "RAG_API_TOKEN",
+    "RAG_API_MCP_TOKEN"
+  ],
+  "forbidden_by_default": [
+    "rag_index_corpus",
+    "rag_rebuild_index",
+    "rag_delete_document",
+    "rag_write_annotation"
+  ]
+}

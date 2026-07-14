@@ -1,0 +1,53 @@
+{
+  "name": "eksad-rag-api-client",
+  "version": "0.1.0",
+  "base_url_env": "RAG_API_BASE_URL",
+  "auth": {
+    "type": "bearer_env",
+    "env": "RAG_API_TOKEN"
+  },
+  "required_headers": [
+    "X-EKSAD-Role",
+    "X-EKSAD-Session"
+  ],
+  "optional_headers": [
+    "X-EKSAD-Tenant",
+    "X-EKSAD-User"
+  ],
+  "endpoints": {
+    "healthcheck": {
+      "method": "GET",
+      "path": "/health"
+    },
+    "list_corpora": {
+      "method": "GET",
+      "path": "/v1/corpora"
+    },
+    "search": {
+      "method": "POST",
+      "path": "/v1/search"
+    },
+    "retrieve": {
+      "method": "POST",
+      "path": "/v1/retrieve"
+    },
+    "get_document": {
+      "method": "GET",
+      "path": "/v1/documents/{document_id}"
+    },
+    "get_artifact_metadata": {
+      "method": "GET",
+      "path": "/v1/artifacts/{artifact_id}/metadata"
+    },
+    "resolve_citation": {
+      "method": "POST",
+      "path": "/v1/citations/resolve"
+    }
+  },
+  "forbidden_by_default": [
+    "index_corpus",
+    "rebuild_index",
+    "delete_document",
+    "write_annotation"
+  ]
+}

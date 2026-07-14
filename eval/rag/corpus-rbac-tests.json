@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "ba-core-allowed",
+      "role": "business-analyst",
+      "corpus_id": "eksad-core",
+      "expected": "allowed"
+    },
+    {
+      "id": "qa-core-allowed",
+      "role": "qa-engineer",
+      "corpus_id": "eksad-core",
+      "expected": "allowed"
+    },
+    {
+      "id": "project-specific-disabled",
+      "role": "developer-backend",
+      "corpus_id": "project-specific-example",
+      "expected": "forbidden_until_activated"
+    },
+    {
+      "id": "unknown-role-denied",
+      "role": "unknown-role",
+      "corpus_id": "eksad-core",
+      "expected": "denied"
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: EKSAD RAG API
+  version: 0.1.0
+  description: Read-only retrieval contract for EKSAD role agents.
+servers:
+  - url: https://rag-api.example.internal
+    description: Placeholder runtime URL; do not commit live endpoints with credentials.
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: healthcheck
+      responses:
+        '200':
+          description: Healthy
+  /v1/corpora:
+    get:
+      summary: List corpora visible to the caller role
+      operationId: listCorpora
+      parameters:
+        - name: role
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Corpus list
+  /v1/search:
+    post:
+      summary: Search snippets across allowed corpora
+      operationId: search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search response with citations
+  /v1/retrieve:
+    post:
+      summary: Retrieve expanded context by result IDs
+      operationId: retrieve
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrieveRequest'
+      responses:
+        '200':
+          description: Retrieved context with citations
+  /v1/documents/{document_id}:
+    get:
+      summary: Get safe document metadata and excerpt
+      operationId: getDocument
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: role
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Document metadata
+  /v1/artifacts/{artifact_id}/metadata:
+    get:
+      summary: Get artifact metadata without exposing raw bucket credentials
+      operationId: getArtifactMetadata
+      parameters:
+        - name: artifact_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: role
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Artifact metadata
+  /v1/citations/resolve:
+    post:
+      summary: Resolve citation IDs to source metadata
+      operationId: resolveCitations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CitationResolveRequest'
+      responses:
+        '200':
+          description: Citation metadata
+components:
+  schemas:
+    SearchRequest:
+      type: object
+      required: [query, role, citation_required]
+      properties:
+        query:
+          type: string
+        role:
+          type: string
+        corpus_ids:
+          type: array
+          items:
+            type: string
+        top_k:
+          type: integer
+          default: 5
+        citation_required:
+          type: boolean
+          default: true
+    RetrieveRequest:
+      type: object
+      required: [role, result_ids]
+      properties:
+        role:
+          type: string
+        result_ids:
+          type: array
+          items:
+            type: string
+    CitationResolveRequest:
+      type: object
+      required: [role, citation_ids]
+      properties:
+        role:
+          type: string
+        citation_ids:
+          type: array
+          items:
+            type: string
+    Citation:
+      type: object
+      required: [path]
+      properties:
+        citation_id:
+          type: string
+        path:
+          type: string
+        section:
+          type: string
+        line_start:
+          type: integer
+        line_end:
+          type: integer

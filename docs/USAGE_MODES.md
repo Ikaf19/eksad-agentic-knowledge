@@ -54,6 +54,7 @@ RAG in chatbot mode:
 - Treat `rag/` docs as upload/search governance, not as a live vector database.
 - Use corpus manifests to choose which files to upload.
 - Cite uploaded file names/paths when answering from project knowledge.
+- Do not claim live `rag-api-readonly` MCP/API tools exist in chatbot-only mode.
 
 ## Mode B — Fully Agentic Runtime Mode
 
@@ -75,6 +76,7 @@ git clone eksad-agentic-knowledge
 → run adapter doctor/validator
 → configure local secrets/runtime separately
 → enable MCP only if allowed by role and approved
+→ bind RAG through approved RAG API/MCP tools only after approval
 → build RAG indexes only from active corpus manifests and only after approval
 ```
 
@@ -102,4 +104,10 @@ Top-level MCP desired-state catalog and setup flow: `mcp/README.md`.
 
 ## RAG foundation
 
-Top-level RAG desired-state catalog, corpus manifests, retrieval/citation policy, and eval fixtures: `rag/README.md`.
+Top-level RAG desired-state catalog, corpus manifests, retrieval/citation policy, RAG API/MCP contracts, and eval fixtures: `rag/README.md`.
+
+Preferred agentic RAG path:
+
+```text
+role skill → MCP rag-api-readonly tool → RAG API → Milvus/Ollama/MinIO runtime
+```

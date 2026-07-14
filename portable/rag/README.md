@@ -8,5 +8,6 @@ This layer defines role/corpus boundaries and retrieval behavior without assumin
 |---|---|
 | `corpus-matrix.md` | Role-to-corpus retrieval matrix. |
 | `retrieval-policy.md` | Runtime-neutral retrieval rules. |
+| `../workflows/rag-retrieval-workflow.md` | Runtime-neutral role-agent workflow for retrieval/citation/abstention. |
 
-Top-level `rag/` contains desired-state manifests, adapters, scripts, and evaluation fixtures.
+Top-level `rag/` contains desired-state manifests, RAG API/MCP contracts, adapters, scripts, and evaluation fixtures.

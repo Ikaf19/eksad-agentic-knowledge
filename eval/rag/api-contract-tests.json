@@ -1,0 +1,27 @@
+{
+  "version": "0.1.0",
+  "required_endpoints": [
+    "/health",
+    "/v1/corpora",
+    "/v1/search",
+    "/v1/retrieve",
+    "/v1/documents/{document_id}",
+    "/v1/artifacts/{artifact_id}/metadata",
+    "/v1/citations/resolve"
+  ],
+  "required_response_fields": [
+    "source_path",
+    "citation",
+    "sensitivity",
+    "corpus_id",
+    "score"
+  ],
+  "error_codes": [
+    "INVALID_ROLE",
+    "CORPUS_FORBIDDEN",
+    "PROJECT_SCOPE_REQUIRED",
+    "CITATION_UNAVAILABLE",
+    "LOW_CONFIDENCE_ABSTENTION",
+    "RAG_BACKEND_UNAVAILABLE"
+  ]
+}

@@ -36,5 +36,11 @@ jobs:
       - name: Validate RAG eval fixtures
         run: python3 eval/rag/scripts/validate-rag-eval.py
 
+      - name: Validate RAG API and MCP contracts
+        run: python3 rag/scripts/validate-rag-api-contract.py
+
       - name: Render RAG ingestion plan
         run: python3 rag/scripts/render-ingestion-plan.py
+
+      - name: Render RAG MCP manifest summary
+        run: python3 rag/scripts/render-rag-mcp-manifest.py

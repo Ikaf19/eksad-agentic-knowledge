@@ -1,0 +1,76 @@
+{
+  "version": "0.1.0",
+  "tools": [
+    {
+      "name": "rag_search",
+      "requires": [
+        "role",
+        "query"
+      ],
+      "must_return": [
+        "source_path",
+        "citation",
+        "corpus_id",
+        "score"
+      ]
+    },
+    {
+      "name": "rag_retrieve",
+      "requires": [
+        "role",
+        "result_ids"
+      ],
+      "must_return": [
+        "source_path",
+        "citation",
+        "corpus_id"
+      ]
+    },
+    {
+      "name": "rag_get_document",
+      "requires": [
+        "role",
+        "document_id"
+      ],
+      "must_return": [
+        "source_path",
+        "sensitivity"
+      ]
+    },
+    {
+      "name": "rag_resolve_citation",
+      "requires": [
+        "role",
+        "citation_ids"
+      ],
+      "must_return": [
+        "citation"
+      ]
+    },
+    {
+      "name": "rag_get_artifact_metadata",
+      "requires": [
+        "role",
+        "artifact_id"
+      ],
+      "must_return": [
+        "artifact_id",
+        "sensitivity",
+        "citation"
+      ]
+    },
+    {
+      "name": "rag_healthcheck",
+      "requires": [],
+      "must_return": [
+        "status"
+      ]
+    }
+  ],
+  "forbidden_by_default": [
+    "rag_index_corpus",
+    "rag_rebuild_index",
+    "rag_delete_document",
+    "rag_write_annotation"
+  ]
+}
