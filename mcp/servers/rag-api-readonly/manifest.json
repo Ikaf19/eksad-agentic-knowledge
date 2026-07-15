@@ -1,0 +1,110 @@
+{
+  "id": "rag-api-readonly",
+  "display_name": "RAG API Readonly MCP",
+  "priority": "P0",
+  "status": "planned",
+  "capabilities": [
+    "rag-retrieval",
+    "citation-resolution",
+    "artifact-metadata",
+    "corpus-discovery"
+  ],
+  "default_enabled": false,
+  "risk": "medium-high",
+  "roles": {
+    "allowed": [
+      "business-analyst",
+      "system-analyst",
+      "technical-leader",
+      "developer-backend",
+      "developer-frontend",
+      "qa-engineer",
+      "devops-engineer"
+    ],
+    "optional": [
+      "project-manager",
+      "general-coordinator"
+    ],
+    "forbidden": []
+  },
+  "runtime": {
+    "transport": "http-or-stdio-wrapper",
+    "implementation": "external-rag-api-mcp-wrapper",
+    "source_url": "TBD approved EKSAD RAG API MCP wrapper",
+    "install_location": "/opt/eksad-mcp/bin/rag-api-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "RAG_API_MCP_URL",
+      "required": false,
+      "secret": false,
+      "description": "HTTP MCP endpoint when using remote MCP transport."
+    },
+    {
+      "name": "RAG_API_MCP_TOKEN",
+      "required": false,
+      "secret": true,
+      "description": "Token for remote MCP endpoint, if enabled."
+    },
+    {
+      "name": "RAG_API_BASE_URL",
+      "required": true,
+      "secret": false,
+      "description": "Base URL for the underlying RAG API used by the wrapper."
+    },
+    {
+      "name": "RAG_API_TOKEN",
+      "required": true,
+      "secret": true,
+      "description": "Runtime token used by the wrapper to call RAG API."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "rag_api_readonly",
+    "url": "${RAG_API_MCP_URL}",
+    "headers": {
+      "Authorization": "Bearer ${RAG_API_MCP_TOKEN}"
+    },
+    "timeout": 180,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "rag_search",
+      "rag_retrieve",
+      "rag_get_document",
+      "rag_resolve_citation",
+      "rag_get_artifact_metadata",
+      "rag_healthcheck"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "tool_contract": {
+    "default_tools": [
+      "rag_search",
+      "rag_retrieve",
+      "rag_get_document",
+      "rag_resolve_citation",
+      "rag_get_artifact_metadata",
+      "rag_healthcheck"
+    ],
+    "forbidden_by_default": [
+      "rag_index_corpus",
+      "rag_rebuild_index",
+      "rag_delete_document",
+      "rag_write_annotation"
+    ],
+    "required_result_fields": [
+      "source_path",
+      "citation",
+      "sensitivity",
+      "corpus_id",
+      "score"
+    ]
+  },
+  "notes": "Readonly MCP wrapper over the EKSAD RAG API. Does not expose Milvus, MinIO, or embedding credentials to Hermes."
+}

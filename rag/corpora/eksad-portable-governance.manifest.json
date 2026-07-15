@@ -1,0 +1,44 @@
+{
+  "id": "eksad-portable-governance",
+  "version": "1.0.0",
+  "description": "Runtime-neutral roles, workflows, deliverables, policies, MCP and RAG governance.",
+  "status": "active",
+  "source_layer": "portable",
+  "indexable": true,
+  "sensitivity": "internal",
+  "paths": [
+    "portable/**/*.md",
+    "mcp/**/*.md",
+    "rag/**/*.md"
+  ],
+  "exclude": [
+    "**/archive/**",
+    "**/TIA/**",
+    "**/USED-CAR/**",
+    "**/teams/tia/**"
+  ],
+  "default_chunk_profile": "markdown-headers",
+  "allowed_roles": [
+    "general-coordinator",
+    "business-analyst",
+    "system-analyst",
+    "technical-leader",
+    "developer-backend",
+    "developer-frontend",
+    "qa-engineer",
+    "project-manager",
+    "devops-engineer"
+  ],
+  "citation_required": true,
+  "freshness": {
+    "strategy": "rebuild-on-git-change",
+    "tracked_paths": [
+      "portable/**",
+      "mcp/**",
+      "rag/**"
+    ]
+  },
+  "activation": {
+    "default": "enabled-after-runtime-approval"
+  }
+}

@@ -348,3 +348,38 @@ Scope:
 - Read-only scripts: `doctor.sh`, `validate-mcp-catalog.py`, `render-hermes-config.py`.
 
 Runtime apply remains a separate explicit approval gate. No secrets, binaries, caches, or live config are committed.
+
+## RAG Foundation Implementation Update
+
+Phase B adds top-level `rag/` as a reusable retrieval desired-state template for Hermes, chatbot projects, and future agentic harnesses.
+
+Scope:
+
+- `rag/README.md` as canonical RAG entrypoint.
+- RAG architecture, corpus schema, indexing policy, chunking profiles, retrieval contract, citation policy, security model, and evaluation plan.
+- Machine-readable corpus manifests under `rag/corpora/*.manifest.json`.
+- Per-role RAG profiles under `rag/profiles/`.
+- Adapter guidance for Hermes, generic harnesses, and chatbot projects under `rag/adapters/`.
+- Portable RAG governance under `portable/rag/` and `portable/policies/rag-policy.md`.
+- Eval fixtures under `eval/rag/` for golden questions, expected citations, abstention, and role-boundary behavior.
+- Read-only scripts: `rag/scripts/validate-rag-corpus.py`, `rag/scripts/render-ingestion-plan.py`, `rag/scripts/build-chatbot-upload-bundle.py`, and `eval/rag/scripts/validate-rag-eval.py`.
+
+Runtime apply remains a separate explicit approval gate. No vector stores, embedding caches, customer dumps, secrets, provider keys, or live RAG config are committed.
+
+## Enriched RAG Foundation Implementation Update
+
+Phase C enriches Phase B so the RAG foundation can align with the EKSAD AI Software Factory architecture baseline.
+
+Scope:
+
+- RAG API contract and OpenAPI example under `rag/RAG_API_CONTRACT.md` and `rag/openapi/rag-api.openapi.yaml`.
+- RAG tool contract for `rag_search`, `rag_retrieve`, document lookup, citation resolution, artifact metadata, and healthcheck.
+- Runtime component docs for the target boundary: Hermes role agent → RAG skill → MCP `rag-api-readonly` → RAG API → Milvus/Ollama/MinIO.
+- Auth/RBAC, indexing pipeline, query pipeline, evidence/artifact, failure-mode, and observability contracts.
+- Desired-state MCP server manifest under `mcp/servers/rag-api-readonly/` with Hermes and generic harness examples.
+- Hermes role usage matrix and profile tool policy under `agent-adapters/hermes/rag/`.
+- Portable RAG retrieval workflow plus Hermes skill template for role-agent behavior.
+- Additional eval fixtures for API contract, tool contract, citation contract, corpus RBAC, and artifact evidence.
+- Read-only validator/renderer: `rag/scripts/validate-rag-api-contract.py` and `rag/scripts/render-rag-mcp-manifest.py`.
+
+Runtime apply remains a separate explicit approval gate. No RAG API service, Milvus collection, Ollama model, MinIO bucket credential, Hermes live config, vector index, embedding cache, or secret is committed.

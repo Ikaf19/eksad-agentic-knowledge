@@ -1,0 +1,11 @@
+# Hermes example snippet for a future RAG MCP wrapper.
+# Example only; keep live values in Hermes profile config/.env, not in Git.
+mcp_servers:
+  rag_api_readonly:
+    url: "${RAG_API_MCP_URL}"
+    headers:
+      Authorization: "Bearer ${RAG_API_MCP_TOKEN}"
+    timeout: 180
+    connect_timeout: 60
+    sampling:
+      enabled: false

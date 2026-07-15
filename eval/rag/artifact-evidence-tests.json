@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "artifact-metadata-no-raw-secret",
+      "artifact_id": "artifact_test_report_001",
+      "must_not_return": [
+        "access_key",
+        "secret_key",
+        "bucket_password"
+      ]
+    },
+    {
+      "id": "artifact-citation-required",
+      "artifact_id": "artifact_test_report_002",
+      "must_return": [
+        "artifact_id",
+        "citation",
+        "sensitivity"
+      ]
+    }
+  ]
+}

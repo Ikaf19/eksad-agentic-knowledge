@@ -1,0 +1,46 @@
+name: Validate knowledge repo
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+      - 'fix/**'
+      - 'docs/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate portable layer
+        run: python3 scripts/validate-portable.py
+
+      - name: Validate Hermes MCP adapter
+        run: python3 agent-adapters/hermes/mcp/scripts/eksad-mcp-validate.py
+
+      - name: Validate MCP catalog
+        run: python3 mcp/scripts/validate-mcp-catalog.py
+
+      - name: Validate RAG corpus manifests
+        run: python3 rag/scripts/validate-rag-corpus.py
+
+      - name: Validate RAG eval fixtures
+        run: python3 eval/rag/scripts/validate-rag-eval.py
+
+      - name: Validate RAG API and MCP contracts
+        run: python3 rag/scripts/validate-rag-api-contract.py
+
+      - name: Render RAG ingestion plan
+        run: python3 rag/scripts/render-ingestion-plan.py
+
+      - name: Render RAG MCP manifest summary
+        run: python3 rag/scripts/render-rag-mcp-manifest.py

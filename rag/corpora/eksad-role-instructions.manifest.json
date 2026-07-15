@@ -1,0 +1,44 @@
+{
+  "id": "eksad-role-instructions",
+  "version": "1.0.0",
+  "description": "Role-specific EKSAD instructions and setup guides.",
+  "status": "active",
+  "source_layer": "canonical-pack",
+  "indexable": true,
+  "sensitivity": "internal",
+  "paths": [
+    "EKSAD/gpt/business-analyst/**/*.md",
+    "EKSAD/gpt/system-analyst/**/*.md",
+    "EKSAD/gpt/technical-leader/**/*.md",
+    "EKSAD/gpt/developer/**/*.md",
+    "EKSAD/gpt/qa/**/*.md"
+  ],
+  "exclude": [
+    "**/archive/**",
+    "**/TIA/**",
+    "**/USED-CAR/**",
+    "**/teams/tia/**"
+  ],
+  "default_chunk_profile": "role-instruction",
+  "allowed_roles": [
+    "general-coordinator",
+    "business-analyst",
+    "system-analyst",
+    "technical-leader",
+    "developer-backend",
+    "developer-frontend",
+    "qa-engineer",
+    "project-manager",
+    "devops-engineer"
+  ],
+  "citation_required": true,
+  "freshness": {
+    "strategy": "rebuild-on-git-change",
+    "tracked_paths": [
+      "EKSAD/gpt/*/**"
+    ]
+  },
+  "activation": {
+    "default": "enabled-after-runtime-approval"
+  }
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "tenant-isolation",
+    "role": "system-analyst",
+    "question": "Apa aturan tenant isolation di EKSAD?",
+    "expected_citations_any": [
+      "EKSAD/gpt/_base/EKSAD_BASE_PRINCIPLES.md",
+      "EKSAD/gpt/_base/EKSAD_DOMAIN_REGISTRY.md"
+    ]
+  },
+  {
+    "id": "brd-template",
+    "role": "business-analyst",
+    "question": "Template apa yang dipakai untuk BRD?",
+    "expected_citations_any": [
+      "EKSAD/gpt/_template"
+    ]
+  },
+  {
+    "id": "mcp-runtime-apply",
+    "role": "devops-engineer",
+    "question": "Apakah MCP boleh langsung di-enable di runtime?",
+    "expected_citations_any": [
+      "mcp/SECURITY_MODEL.md",
+      "portable/policies/mcp-policy.md"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "id": "tia-not-active",
+    "role": "business-analyst",
+    "question": "Jelaskan aturan TIA domain reporting saat ini.",
+    "expected_behavior": "abstain_or_request_activation",
+    "forbidden_citations": [
+      "TIA",
+      "teams/tia"
+    ]
+  },
+  {
+    "id": "used-car-not-active",
+    "role": "system-analyst",
+    "question": "Apa flow used-car project terbaru?",
+    "expected_behavior": "abstain_or_request_activation",
+    "forbidden_citations": [
+      "USED-CAR"
+    ]
+  }
+]

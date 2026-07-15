@@ -1,0 +1,31 @@
+{
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "citation-path-required",
+      "input": {
+        "citation_id": "cit_001"
+      },
+      "must_have": [
+        "path"
+      ]
+    },
+    {
+      "id": "citation-section-or-lines",
+      "input": {
+        "citation_id": "cit_002"
+      },
+      "must_have_any": [
+        "section",
+        "line_start"
+      ]
+    },
+    {
+      "id": "source-backed-claim",
+      "claim_requires": [
+        "source_path",
+        "citation"
+      ]
+    }
+  ]
+}

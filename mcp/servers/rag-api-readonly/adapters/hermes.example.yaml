@@ -1,0 +1,10 @@
+# Example only. Do not commit live URLs/tokens.
+mcp_servers:
+  rag_api_readonly:
+    url: "${RAG_API_MCP_URL}"
+    headers:
+      Authorization: "Bearer ${RAG_API_MCP_TOKEN}"
+    timeout: 180
+    connect_timeout: 60
+    sampling:
+      enabled: false
