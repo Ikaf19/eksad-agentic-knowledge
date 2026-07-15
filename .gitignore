@@ -36,6 +36,15 @@ chroma/
 *.faiss
 *.ann
 
+# LLM gateway runtime artifacts
+.llm-gateway-runtime/
+.litellm-runtime/
+litellm-logs/
+gateway-logs/
+litellm*.db
+litellm*.sqlite
+litellm*.sqlite3
+
 # Python/build/editor noise
 __pycache__/
 *.py[cod]

@@ -1,0 +1,27 @@
+# Example only. Do not commit live ~/.hermes/config.yaml.
+model:
+  provider: custom:eksad-litellm
+  model: eksad.default
+  base_url: ${EKSAD_LITELLM_BASE_URL}/v1
+  api_key: ${EKSAD_LITELLM_API_KEY}
+
+delegation:
+  provider: custom:eksad-litellm
+  model: eksad.default
+
+# Role profiles may override only the alias/model name, not provider secrets.
+profiles:
+  business-analyst:
+    model: eksad.default
+  system-analyst:
+    model: eksad.reasoning
+  technical-leader:
+    model: eksad.reasoning
+  developer-backend:
+    model: eksad.default
+  developer-frontend:
+    model: eksad.default
+  qa-engineer:
+    model: eksad.default
+  devops-engineer:
+    model: eksad.default

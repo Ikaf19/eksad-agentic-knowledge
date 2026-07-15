@@ -26,7 +26,7 @@ for path in ROOT.rglob('*'):
         if not stripped or stripped.startswith('#'):
             continue
         lowered = stripped.lower()
-        if any(marker in lowered for marker in ['example', 'placeholder', '[redacted]', '${', '__env.', '***', 'mypassword', 'eksad_dev_password']):
+        if any(marker in lowered for marker in ['example', 'placeholder', '[redacted]', '${', '__env.', 'os.environ/', '***', 'mypassword', 'eksad_dev_password']):
             continue
         if re.search(r"(?i)(token|password|secret|api[_-]?key|private[_-]?key)\s*[:=][ \t]*['\"]?[A-Za-z0-9_./:+-]{32,}", stripped):
             errors.append(f'possible live credential {path}:{i}: {line[:80]}')

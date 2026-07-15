@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "tests": [
+    {
+      "id": "architecture-review-routes-to-reasoning",
+      "role": "system-analyst",
+      "task_class": "architecture design",
+      "expected_alias": "eksad.reasoning"
+    },
+    {
+      "id": "intake-routes-to-fast",
+      "role": "general-coordinator",
+      "task_class": "intake",
+      "expected_alias": "eksad.fast"
+    },
+    {
+      "id": "rag-embedding-is-service-only",
+      "role": "business-analyst",
+      "task_class": "embedding",
+      "expected_behavior": "deny_direct_role_agent_use"
+    }
+  ]
+}

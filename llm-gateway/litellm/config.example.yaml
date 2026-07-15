@@ -1,0 +1,58 @@
+# Example only. Do not store real keys or live endpoints in Git.
+# Runtime operators bind these environment variables outside the repository.
+model_list:
+  - model_name: eksad.fast
+    litellm_params:
+      model: openai/${EKSAD_FAST_MODEL}
+      api_key: os.environ/EKSAD_PRIMARY_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_PRIMARY_PROVIDER_BASE_URL
+  - model_name: eksad.default
+    litellm_params:
+      model: openai/${EKSAD_DEFAULT_MODEL}
+      api_key: os.environ/EKSAD_PRIMARY_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_PRIMARY_PROVIDER_BASE_URL
+  - model_name: eksad.reasoning
+    litellm_params:
+      model: openai/${EKSAD_REASONING_MODEL}
+      api_key: os.environ/EKSAD_REASONING_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_REASONING_PROVIDER_BASE_URL
+  - model_name: eksad.long_context
+    litellm_params:
+      model: openai/${EKSAD_LONG_CONTEXT_MODEL}
+      api_key: os.environ/EKSAD_LONG_CONTEXT_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_LONG_CONTEXT_PROVIDER_BASE_URL
+  - model_name: eksad.embedding
+    litellm_params:
+      model: openai/${EKSAD_EMBEDDING_MODEL}
+      api_key: os.environ/EKSAD_EMBEDDING_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_EMBEDDING_PROVIDER_BASE_URL
+  - model_name: eksad.reranker
+    litellm_params:
+      model: openai/${EKSAD_RERANKER_MODEL}
+      api_key: os.environ/EKSAD_RERANKER_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_RERANKER_PROVIDER_BASE_URL
+  - model_name: eksad.vision
+    litellm_params:
+      model: openai/${EKSAD_VISION_MODEL}
+      api_key: os.environ/EKSAD_VISION_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_VISION_PROVIDER_BASE_URL
+  - model_name: eksad.guardrail
+    litellm_params:
+      model: openai/${EKSAD_GUARDRAIL_MODEL}
+      api_key: os.environ/EKSAD_GUARDRAIL_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_GUARDRAIL_PROVIDER_BASE_URL
+
+router_settings:
+  routing_strategy: least-busy
+  num_retries: 1
+  timeout: 60
+
+litellm_settings:
+  drop_params: true
+  set_verbose: false
+  success_callback: []
+  failure_callback: []
+
+general_settings:
+  master_key: os.environ/EKSAD_LITELLM_MASTER_KEY
+  database_url: os.environ/EKSAD_LITELLM_DATABASE_URL

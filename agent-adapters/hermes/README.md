@@ -11,6 +11,7 @@ This directory contains Hermes-specific runtime adapter files derived from the p
 | `scripts/` | Hermes resync/runtime helper scripts. |
 | `per-role-knowledge-index.md` | Hermes-oriented role/knowledge index. |
 | `mcp/` | Hermes MCP config examples, templates, doctor scripts. |
+| `../../llm-gateway/adapters/hermes/` | Hermes LLM Gateway alias/provider snippet examples. |
 
 ## Boundary
 

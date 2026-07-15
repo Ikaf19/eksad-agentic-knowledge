@@ -27,7 +27,9 @@ portable/workflows/<workflow>.md
 portable/policies/
 portable/mcp/role-mcp-matrix.md       # governance reference only; no MCP runtime assumed
 portable/rag/corpus-matrix.md         # retrieval guidance only; platform search is native
+portable/llm-gateway/alias-policy.md  # model alias governance only; platform model is selected outside repo
 rag/adapters/chatbot-projects/upload-bundle-guidance.md
+llm-gateway/adapters/chatbot-projects/README.md
 ```
 
 Use existing GPT/Claude setup files as before:
@@ -56,6 +58,12 @@ RAG in chatbot mode:
 - Cite uploaded file names/paths when answering from project knowledge.
 - Do not claim live `rag-api-readonly` MCP/API tools exist in chatbot-only mode.
 
+LLM Gateway in chatbot mode:
+
+- Treat `llm-gateway/` docs as model routing governance, not as a live LiteLLM endpoint.
+- Do not claim `eksad.*` aliases are selectable unless the chatbot platform/runtime actually exposes them.
+- Preserve alias names in deliverables so the work can migrate to Hermes/future runtime later.
+
 ## Mode B — Fully Agentic Runtime Mode
 
 Use this when running Hermes, Claude Code, Codex, Cursor, OpenCode, or another tool-using agent.
@@ -75,6 +83,7 @@ git clone eksad-agentic-knowledge
 → select runtime adapter
 → run adapter doctor/validator
 → configure local secrets/runtime separately
+→ bind LLM Gateway aliases through approved OpenAI-compatible/LiteLLM endpoint if allowed
 → enable MCP only if allowed by role and approved
 → bind RAG through approved RAG API/MCP tools only after approval
 → build RAG indexes only from active corpus manifests and only after approval
@@ -110,4 +119,14 @@ Preferred agentic RAG path:
 
 ```text
 role skill → MCP rag-api-readonly tool → RAG API → Milvus/Ollama/MinIO runtime
+```
+
+## LLM Gateway foundation
+
+Top-level LLM Gateway desired-state catalog, aliases, LiteLLM examples, OpenAI-compatible adapter guidance, budget/routing/guardrail policy, and validators: `llm-gateway/README.md`.
+
+Preferred agentic model path:
+
+```text
+role profile → eksad.* capability alias → OpenAI-compatible gateway → LiteLLM/provider runtime
 ```

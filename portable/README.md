@@ -18,9 +18,10 @@ Portable docs may reference EKSAD standards and templates, but must avoid Hermes
 | `roles/` | Canonical role cards and ownership boundaries. |
 | `workflows/` | Runtime-neutral workflow contracts. |
 | `deliverables/` | Deliverable contracts and matrix. |
-| `policies/` | Role, approval, security, MCP, and RAG policies. |
+| `policies/` | Role, approval, security, MCP, RAG, and LLM gateway policies. |
 | `mcp/` | MCP capability catalog, server catalog, role matrix, environment/migration contracts. |
 | `rag/` | Runtime-neutral corpus matrix, retrieval workflow, and RAG API/MCP policy. |
+| `llm-gateway/` | Runtime-neutral model alias, role matrix, and routing policy. |
 
 ## Rule
 

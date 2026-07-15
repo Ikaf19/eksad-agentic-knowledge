@@ -1,0 +1,20 @@
+{
+  "version": "0.1.0",
+  "tests": [
+    {
+      "id": "long-context-is-high-cost",
+      "alias": "eksad.long_context",
+      "expected_cost_tier": "high"
+    },
+    {
+      "id": "vision-disabled-by-default",
+      "alias": "eksad.vision",
+      "expected_default_enabled": false
+    },
+    {
+      "id": "guardrail-enabled",
+      "alias": "eksad.guardrail",
+      "expected_default_enabled": true
+    }
+  ]
+}
