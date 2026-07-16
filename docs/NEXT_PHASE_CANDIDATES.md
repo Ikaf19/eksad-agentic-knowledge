@@ -16,6 +16,8 @@ If goal is doc/status cleanup -> NEXT-03
 If goal is retrieval quality -> NEXT-04
 If goal is tool access pilot -> NEXT-05
 If goal is portal/control plane -> NEXT-06 / WPC-01
+If goal is orchestrated role workflows -> NEXT-07 / ORC-01
+If goal is approved JIRA card -> orchestrated delivery -> NEXT-08 / JFD-01
 ```
 
 ---
@@ -155,3 +157,62 @@ If goal is portal/control plane -> NEXT-06 / WPC-01
 **Exit criteria:**
 
 - Web Portal is first-class in Git source-of-truth and still runtime-safe.
+
+
+---
+
+## NEXT-07 — Orchestrator Layer Source-of-Truth
+
+**Purpose:** Define the missing orchestration layer that can coordinate role-agent workflows, HITL gates, handoff manifests, and evidence registry before delivery modes such as JIRA-first can become active.
+
+**Scope:**
+
+- Orchestrator source-of-truth entrypoint and runtime boundary.
+- Role workflow graph model.
+- Gate state model and approval evidence schema.
+- Handoff/evidence registry model.
+- Portal -> Orchestrator contract.
+- Disabled/unavailable-state behavior for Web Portal delivery profiles.
+
+**Non-goals:**
+
+- No live orchestrator deployment.
+- No automatic role-agent execution from JIRA.
+- No JIRA write integration.
+- No production runtime mutation.
+
+**Exit criteria:**
+
+- A future orchestrator can be reviewed as desired state before runtime activation.
+- JIRA-first delivery has a clear dependency target instead of being implied by Portal alone.
+
+---
+
+## NEXT-08 — JIRA-First Orchestrated Delivery Mode
+
+**Purpose:** Start JFD-01 from the parked JIRA-first future plan after the orchestrator layer is defined.
+
+**Canonical future plan:**
+
+- `docs/future/FUTURE_ALIGN_JIRA_FIRST_ORCHESTRATED_DELIVERY.md`
+
+**Scope:**
+
+- JIRA card field/status contract.
+- Approved-card gate mapping.
+- DeliveryProfile binding for `jira-first-orchestrated`.
+- ExternalWorkItemLink usage in Portal/orchestrator handoffs.
+- Read-only pilot design for approved-card intake.
+
+**Non-goals:**
+
+- No JIRA card creation.
+- No JIRA status transition.
+- No JIRA comments/writeback.
+- No JIRA API token storage in Git.
+- No automatic Dev execution from a linked card without gates.
+
+**Exit criteria:**
+
+- JIRA-first remains future/orchestrator-dependent until prerequisites are satisfied.
+- Current baseline stays link-only/manual for JIRA usage.

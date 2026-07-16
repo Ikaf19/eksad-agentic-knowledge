@@ -16,6 +16,7 @@ required_files = [
     "docs/PHASE_HISTORY.md",
     "docs/NEXT_PHASE_CANDIDATES.md",
     "docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md",
+    "docs/future/FUTURE_ALIGN_JIRA_FIRST_ORCHESTRATED_DELIVERY.md",
 ]
 
 errors = []
@@ -51,7 +52,11 @@ checks = {
         "NEXT-04",
         "NEXT-05",
         "NEXT-06",
+        "NEXT-07",
+        "NEXT-08",
         "FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md",
+        "FUTURE_ALIGN_JIRA_FIRST_ORCHESTRATED_DELIVERY.md",
+        "JIRA-First Orchestrated Delivery",
     ],
     "docs/PHASE_HISTORY.md": [
         "0a66076",
@@ -65,6 +70,8 @@ checks = {
         "NEXT-04",
         "NEXT-05",
         "NEXT-06",
+        "NEXT-07",
+        "NEXT-08",
         "not auto-approved",
     ],
     "docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md": [
@@ -73,6 +80,13 @@ checks = {
         "WPC-03",
         "WPC-04",
         "not the next numbered phase",
+        "ExternalWorkItemLink",
+        "DeliveryProfile",
+    ],
+    "docs/future/FUTURE_ALIGN_JIRA_FIRST_ORCHESTRATED_DELIVERY.md": [
+        "JFD-01",
+        "orchestrator",
+        "Do not create/update JIRA cards",
     ],
 }
 

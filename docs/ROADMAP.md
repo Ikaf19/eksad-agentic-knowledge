@@ -91,6 +91,8 @@ The next active phase is selected explicitly by the user. The roadmap does not i
 | NEXT-04 | RAG Ingestion and Evaluation Pilot Plan | Define corpus ingestion order, citation evals, role-boundary retrieval tests, and non-prod RAG blueprint. | After roadmap normalization or runtime readiness. |
 | NEXT-05 | MCP Runtime Pilot Plan | Pick a small read-only MCP pilot set with access, approval, and observability rules. | After runtime readiness. |
 | NEXT-06 | Web Portal Control Plane Source-of-Truth | Start WPC-01 from the parked Web Portal future plan. | After harness baseline is stable, unless user prioritizes portal earlier. |
+| NEXT-07 | Orchestrator Layer Source-of-Truth | Define role workflow graph, HITL gates, handoff/evidence registry, and Portal -> Orchestrator contract. | Before JIRA-first can become active. |
+| NEXT-08 | JIRA-First Orchestrated Delivery Mode | Start JFD-01 from the parked JIRA-first plan after orchestrator foundations exist. | After NEXT-07 / ORC foundation. |
 
 See `docs/NEXT_PHASE_CANDIDATES.md` for detailed scope and exit criteria.
 
@@ -101,6 +103,7 @@ See `docs/NEXT_PHASE_CANDIDATES.md` for detailed scope and exit criteria.
 | Workstream | Status | Canonical plan |
 |---|---|---|
 | Web Portal Control Plane | Parked future alignment plan | `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md` |
+| JIRA-First Orchestrated Delivery | Parked future alignment plan; depends on future orchestrator | `docs/future/FUTURE_ALIGN_JIRA_FIRST_ORCHESTRATED_DELIVERY.md` |
 | Future runtime adapters | Future | Add only after portable contracts remain stable. |
 | Project-specific domain activation | Future/explicit | TIA/USED-CAR or customer-specific material must be activated per project, not merged into the portable base by default. |
 
@@ -119,6 +122,7 @@ python3 rag/scripts/validate-rag-api-contract.py
 python3 eval/rag/scripts/validate-rag-eval.py
 python3 llm-gateway/scripts/validate-llm-gateway-config.py
 python3 scripts/validate-roadmap-consistency.py
+python3 scripts/validate-portal-delivery-mode.py
 ```
 
 Validation is read-only and must not mutate runtime state.

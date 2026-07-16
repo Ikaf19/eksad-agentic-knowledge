@@ -109,6 +109,9 @@ Confirmed UR decisions:
 | No Portal -> LiteLLM admin contract | Define how Portal Control Service calls LiteLLM admin endpoints safely. |
 | No Keycloak claim contract | Define roles, groups, skills, tenant/project claims, and OIDC client expectations. |
 | No project/agent runtime model | Define Project, ProjectMember, ProjectAgent, AgentRun, BudgetPolicy, AuditEvent. |
+| No delivery profile model | Add `DeliveryProfile` so projects can choose formal spec-driven, manual agent-assisted, or future orchestrated modes without changing role definitions. |
+| No external work item link model | Add `ExternalWorkItemLink` so Portal can reference JIRA/GitLab/Linear/manual work items without duplicating live card state. |
+| JIRA-first delivery depends on missing orchestrator | Keep JIRA-first as future/orchestrator-dependent; Phase 1 supports link-only/manual JIRA context only. |
 | No approval policy for high-risk config changes | Require approval for provider-key, route, fallback, budget increase, production-impacting changes. |
 | No portal observability contract | Define spend/token/latency/fallback/agent-run/audit metrics and data sources. |
 | No portal validator | Add secret scanner/contract validator for portal docs and examples. |
@@ -198,11 +201,18 @@ portal/
   AUDIT_TRAIL_MODEL.md
   OBSERVABILITY_CONTRACT.md
   PROJECT_AGENT_MODEL.md
+  DELIVERY_PROFILE_MODEL.md
+  EXTERNAL_WORK_ITEM_LINK_MODEL.md
+  WORK_MANAGEMENT_INTEGRATION_CONTRACT.md
   APPROVAL_GATE_POLICY.md
   API_CONTRACT.md
   validators/validate-portal-contract.py
 
 portable/portal/
+  README.md
+  external-work-item-link-model.md
+  delivery-profile-model.md
+  jira-first-orchestrator-dependency.md
   web-portal-policy.md
   role-access-matrix.md
   portal-to-agent-runtime-contract.md
@@ -279,6 +289,8 @@ flowchart TD
 **Blueprint must cover:**
 
 - Keycloak client, roles, groups, and claims.
+- DeliveryProfile and ExternalWorkItemLink support for project-scoped delivery context.
+- Explicit disabled-state behavior for JIRA-first delivery until an orchestrator exists.
 - LiteLLM virtual key creation/update/delete/info flows.
 - Team/user/project/agent budget model.
 - Model allowlist and fallback routing update flow.
@@ -357,6 +369,7 @@ This future plan must not be used as implicit approval to:
 - mutate Keycloak realm/client/roles;
 - write live Hermes config;
 - connect to production data;
+- create/update JIRA cards, write JIRA comments, transition JIRA workflow state, or store JIRA API tokens;
 - commit secrets, runtime `.env`, DB dumps, vector indexes, billing exports, prompt logs, or raw user conversations.
 
 All runtime activation remains a separate approval gate.
