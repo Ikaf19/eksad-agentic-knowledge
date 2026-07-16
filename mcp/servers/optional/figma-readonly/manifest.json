@@ -12,17 +12,21 @@
     "allowed": [
       "business-analyst",
       "system-analyst",
-      "developer-frontend"
+      "developer-frontend",
+      "ui-ux-designer"
     ],
     "optional": [
       "technical-leader",
-      "qa-engineer"
+      "qa-engineer",
+      "content-creator"
     ],
     "forbidden": [
+      "general-coordinator",
       "developer-backend",
       "project-manager",
       "devops-engineer",
-      "general-coordinator"
+      "data-analyst",
+      "data-scientist"
     ]
   },
   "runtime": {

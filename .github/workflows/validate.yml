@@ -24,6 +24,9 @@ jobs:
       - name: Validate portable layer
         run: python3 scripts/validate-portable.py
 
+      - name: Validate role coverage
+        run: python3 scripts/validate-role-coverage.py
+
       - name: Validate Hermes MCP adapter
         run: python3 agent-adapters/hermes/mcp/scripts/eksad-mcp-validate.py
 

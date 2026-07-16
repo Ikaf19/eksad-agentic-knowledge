@@ -20,12 +20,15 @@
       "devops-engineer"
     ],
     "optional": [
+      "general-coordinator",
+      "business-analyst",
       "system-analyst",
-      "general-coordinator"
+      "data-analyst",
+      "data-scientist",
+      "ui-ux-designer",
+      "content-creator"
     ],
-    "forbidden": [
-      "business-analyst"
-    ]
+    "forbidden": []
   },
   "runtime": {
     "transport": "stdio",

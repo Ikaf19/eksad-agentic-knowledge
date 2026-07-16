@@ -19,12 +19,16 @@
     ],
     "optional": [
       "qa-engineer",
-      "devops-engineer"
+      "devops-engineer",
+      "data-scientist"
     ],
     "forbidden": [
+      "general-coordinator",
       "business-analyst",
       "project-manager",
-      "general-coordinator"
+      "data-analyst",
+      "ui-ux-designer",
+      "content-creator"
     ]
   },
   "runtime": {

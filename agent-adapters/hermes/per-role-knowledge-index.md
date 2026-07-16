@@ -237,7 +237,7 @@
 
 **Does NOT load by default:** the full knowledge pack, specialist authoring templates, coding standards, implementation patterns, or test-automation source guidance. Defer role-specific deep dives and production to the accountable specialist profile.
 
-**Routing:** BA→`eksad-ba-workflow`; SA→`eksad-tsd-design`/`eksad-adr-workflow`; TL→`eksad-code-review`; Backend→`eksad-be-impl`; Frontend→`eksad-fe-impl`; QA→`eksad-qa-delivery`; PM→its profile-local `eksad-pm-delivery`; DevOps→its profile-local `eksad-devops-delivery`. General Coordinator coordinates and never owns specialist outputs. **Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile.
+**Routing:** BA→`eksad-ba-workflow`; SA→`eksad-tsd-design`/`eksad-adr-workflow`; TL→`eksad-code-review`; Backend→`eksad-be-impl`; Frontend→`eksad-fe-impl`; QA→`eksad-qa-delivery`; PM→its profile-local `eksad-pm-delivery`; DevOps→its profile-local `eksad-devops-delivery`; Data Analyst→`eksad-data-analysis`; Data Scientist→`eksad-data-science`; UI/UX→`eksad-ui-ux-delivery`; Content Creator→`eksad-content-creation`. General Coordinator coordinates and never owns specialist outputs. **Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile.
 
 ---
 
@@ -309,6 +309,116 @@
 
 ---
 
+
+---
+
+## 📊 Data Analyst (`data-analyst`)
+
+**Profile SOUL.md:** `~/.hermes/profiles/data-analyst/SOUL.md`
+**Custom skill:** `~/.hermes/skills/data-analysis/eksad-data-analysis/`
+**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/data-analyst.md`
+
+**Primary job:** KPI/metric definitions, read-only data profiling, data analysis reports, data quality findings, and dashboard specifications.
+
+### Knowledge files to consult
+
+**Always read first:**
+- `portable/roles/data-analyst.md` — canonical role boundary
+- `portable/workflows/data-analysis-workflow.md` — analysis workflow
+- `portable/deliverables/data-analysis-report.md` — report contract
+- `portable/deliverables/dashboard-spec.md` — dashboard contract
+- `portable/policies/role-boundaries.md` — authority boundaries
+- `portable/rag/corpus-matrix.md` — retrieval scope
+- `portable/llm-gateway/role-model-matrix.md` — model alias defaults
+
+**When analyzing EKSAD artifacts:**
+- `_base/EKSAD_DOMAIN_GLOSSARY.md` — metric/business term consistency
+- Activated project BRD/FSD/TSD/data dictionary only after project-specific activation
+
+**Does NOT own:** business approval, DB writes, ETL/ELT implementation, ML experiments, production reporting publication, QA/release verdict, or credential handling.
+
+---
+
+## 🧪 Data Scientist (`data-scientist`)
+
+**Profile SOUL.md:** `~/.hermes/profiles/data-scientist/SOUL.md`
+**Custom skill:** `~/.hermes/skills/data-science/eksad-data-science/`
+**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/data-scientist.md`
+
+**Primary job:** ML/statistical problem framing, data readiness assessment, experiment design, model evaluation, reproducibility notes, and model-risk handoff.
+
+### Knowledge files to consult
+
+**Always read first:**
+- `portable/roles/data-scientist.md` — canonical role boundary
+- `portable/workflows/data-science-workflow.md` — experiment workflow
+- `portable/deliverables/ml-experiment-report.md` — experiment report contract
+- `portable/policies/role-boundaries.md` — authority boundaries
+- `portable/rag/corpus-matrix.md` — retrieval scope
+- `portable/llm-gateway/role-model-matrix.md` — model alias defaults
+
+**When experimenting:**
+- `_base/EKSAD_DOMAIN_GLOSSARY.md` — business/domain term alignment
+- Data Analyst outputs and activated project data dictionary only after project-specific activation
+
+**Does NOT own:** production deployment, MLOps platform design, production model promotion, business acceptance, QA verdict, AppSec verdict, or credential handling.
+
+---
+
+## 🎨 UI/UX Designer (`ui-ux-designer`)
+
+**Profile SOUL.md:** `~/.hermes/profiles/ui-ux-designer/SOUL.md`
+**Custom skill:** `~/.hermes/skills/design/eksad-ui-ux-delivery/`
+**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/ui-ux-designer.md`
+
+**Primary job:** UX research, journey/task flows, information architecture, wireframe specifications, usability findings, accessibility notes, and frontend handoff.
+
+### Knowledge files to consult
+
+**Always read first:**
+- `portable/roles/ui-ux-designer.md` — canonical role boundary
+- `portable/workflows/ui-ux-workflow.md` — UX workflow
+- `portable/deliverables/ux-research-report.md` — UX research contract
+- `portable/deliverables/wireframe-handoff.md` — FE handoff contract
+- `portable/policies/role-boundaries.md` — authority boundaries
+- `portable/llm-gateway/role-model-matrix.md` — model alias defaults
+
+**When designing EKSAD UI:**
+- `_base/EKSAD_FRONTEND_COMPONENT_LIBRARY.md` — component vocabulary
+- `_base/EKSAD_FRONTEND_PATTERNS.md` — UI/interaction patterns
+- Activated BRD/FSD/FE-TSD/design assets only after project-specific activation
+
+**Does NOT own:** frontend code, API contracts, DB/backend design, final business/legal approval, or release sign-off.
+
+---
+
+## ✍️ Content Creator (`content-creator`)
+
+**Profile SOUL.md:** `~/.hermes/profiles/content-creator/SOUL.md`
+**Custom skill:** `~/.hermes/skills/content/eksad-content-creation/`
+**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/content-creator.md`
+
+**Primary job:** content briefs, source-backed drafts, release notes, help/training material, FAQs, copy variants, and content calendar planning.
+
+### Knowledge files to consult
+
+**Always read first:**
+- `portable/roles/content-creator.md` — canonical role boundary
+- `portable/workflows/content-creation-workflow.md` — content workflow
+- `portable/deliverables/content-brief.md` — brief contract
+- `portable/deliverables/content-calendar.md` — calendar contract
+- `portable/policies/role-boundaries.md` — authority boundaries
+- `portable/rag/corpus-matrix.md` — retrieval scope
+- `portable/llm-gateway/role-model-matrix.md` — model alias defaults
+
+**When drafting EKSAD content:**
+- `_base/EKSAD_DOMAIN_GLOSSARY.md` — product/domain term consistency
+- Activated BRD/FSD/release evidence/product briefs only after project-specific activation
+
+**Does NOT own:** legal/regulatory approval, pricing/product policy, technical decisions, publication approval, QA/release verdict, or external publishing by default.
+
+---
+
 ## 🔧 Custom EKSAD Skills Summary
 
 | Skill | Path | When to load |
@@ -326,6 +436,10 @@
 | `stage-gated-orchestrator` | `~/.hermes/skills/productivity/stage-gated-orchestrator/` | General Coordinator pipeline: HITL by default; optional no-gates mode; not installed in PM profile |
 | `eksad-pm-delivery` | `~/.hermes/profiles/project-manager/skills/project-management/eksad-pm-delivery/` | Charter, Plan, PM-owned WBS baseline, RAID, status, changes, and delivery gates |
 | `eksad-devops-delivery` | `~/.hermes/profiles/devops-engineer/skills/devops/eksad-devops-delivery/` (also mirrored globally) | GitLab/Jenkins delivery, quality/security evidence, deployment, rollback, and release readiness |
+| `eksad-data-analysis` | `~/.hermes/skills/data-analysis/eksad-data-analysis/` | KPI definitions, read-only data analysis, data quality findings, and dashboard specs |
+| `eksad-data-science` | `~/.hermes/skills/data-science/eksad-data-science/` | ML/statistical experiment design, evaluation, reproducibility, and model-risk handoff |
+| `eksad-ui-ux-delivery` | `~/.hermes/skills/design/eksad-ui-ux-delivery/` | UX research, wireframes, usability findings, and frontend handoff |
+| `eksad-content-creation` | `~/.hermes/skills/content/eksad-content-creation/` | Source-backed content drafts, release notes, help/training material, and content calendars |
 
 ---
 
@@ -355,8 +469,20 @@
 | GitLab CE / Jenkins CI/CD | — | Design input | Review | Source handoff | Source handoff | Test evidence | Gate tracking | ✅ | Route only |
 | SonarQube / Trivy via Jenkins | — | Policy/design input | Technical review | Remediation input | Remediation input | Evidence consumer | Gate tracking | ✅ | Route only |
 
+
+### Phase E role extension coverage
+
+| Pattern / Standard | Data Analyst | Data Scientist | UI/UX | Content Creator |
+|---|---|---|---|---|
+| Role boundary | ✅ | ✅ | ✅ | ✅ |
+| Workflow contract | `data-analysis-workflow.md` | `data-science-workflow.md` | `ui-ux-workflow.md` | `content-creation-workflow.md` |
+| Deliverables | Analysis report, dashboard spec | ML experiment report | UX research, wireframe handoff | Content brief, content calendar |
+| RAG usage | Cited specs/data docs | Cited specs/data docs | Cited specs/design refs | Cited specs/release/product refs |
+| MCP stance | Read-only data/BI | Sandbox/read-only data | Browser/design read-only | Draft-only content/read-only refs |
+| Approval boundary | No business decision | No production promotion | No frontend implementation | No publication/legal approval |
+
 ---
 
-**Last updated:** 2026-07-11
-**Pack version:** v31 (full curated skills/templates and canonical wiring)
+**Last updated:** 2026-07-16
+**Pack version:** v31 + Phase E Role Expansion Pack
 **Source branch:** `feature/eksad-knowledge-v3`

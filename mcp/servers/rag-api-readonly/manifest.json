@@ -19,11 +19,15 @@
       "developer-backend",
       "developer-frontend",
       "qa-engineer",
-      "devops-engineer"
+      "devops-engineer",
+      "data-analyst",
+      "data-scientist",
+      "ui-ux-designer",
+      "content-creator"
     ],
     "optional": [
-      "project-manager",
-      "general-coordinator"
+      "general-coordinator",
+      "project-manager"
     ],
     "forbidden": []
   },

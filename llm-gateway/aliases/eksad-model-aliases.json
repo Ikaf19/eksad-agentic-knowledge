@@ -33,7 +33,11 @@
         "developer-backend",
         "developer-frontend",
         "qa-engineer",
-        "devops-engineer"
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "routing",
@@ -65,7 +69,12 @@
         "developer-backend",
         "developer-frontend",
         "qa-engineer",
-        "devops-engineer"
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "drafting",
@@ -90,13 +99,19 @@
         "eksad.default"
       ],
       "allowed_roles": [
+        "general-coordinator",
         "business-analyst",
         "system-analyst",
         "technical-leader",
         "developer-backend",
         "developer-frontend",
         "qa-engineer",
-        "devops-engineer"
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "BRD/FSD readiness",
@@ -128,7 +143,12 @@
         "technical-leader",
         "developer-backend",
         "developer-frontend",
-        "qa-engineer"
+        "qa-engineer",
+        "project-manager",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "large document review",
@@ -198,7 +218,11 @@
         "business-analyst",
         "system-analyst",
         "technical-leader",
-        "qa-engineer"
+        "developer-frontend",
+        "qa-engineer",
+        "data-analyst",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "screenshot interpretation",
@@ -224,7 +248,12 @@
       "allowed_roles": [
         "general-coordinator",
         "technical-leader",
-        "devops-engineer"
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "tool-risk classification",
@@ -285,6 +314,34 @@
     "rag-service": {
       "embedding": "eksad.embedding",
       "reranker": "eksad.reranker"
+    },
+    "data-analyst": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context"
+    },
+    "data-scientist": {
+      "primary": "eksad.reasoning",
+      "fallback": "eksad.default",
+      "large_artifact": "eksad.long_context"
+    },
+    "ui-ux-designer": {
+      "primary": "eksad.vision",
+      "fallback": "eksad.default",
+      "large_artifact": "eksad.long_context"
+    },
+    "content-creator": {
+      "primary": "eksad.fast",
+      "fallback": "eksad.default",
+      "large_artifact": "eksad.long_context",
+      "guardrail": "eksad.guardrail"
+    },
+    "project-manager": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "large_artifact": "eksad.long_context",
+      "guardrail": "eksad.guardrail"
     }
   },
   "environment_policy": {

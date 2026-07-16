@@ -41,6 +41,7 @@ Level 3 — Local runtime state, never committed
 
 - Canonical EKSAD knowledge source for agentic delivery.
 - Agent-agnostic role, workflow, deliverable, policy, MCP, RAG, and LLM gateway governance layer.
+- Phase E canonical role expansion to 13 role profiles, including Data Analyst, Data Scientist, UI/UX Designer, and Content Creator.
 - RAG API/MCP desired-state contracts for future Milvus/Ollama/MinIO-backed retrieval.
 - LLM Gateway desired-state contracts for LiteLLM/OpenAI-compatible model routing.
 - Runtime adapter source for Hermes.
@@ -71,6 +72,8 @@ See:
 - `llm-gateway/aliases/eksad-model-aliases.json`
 - `portable/llm-gateway/role-model-matrix.md`
 - `portable/rag/corpus-matrix.md`
+- `scripts/validate-role-coverage.py`
+- `eval/roles/role-expansion-tests.json`
 - `agent-adapters/hermes/README.md`
 - `agent-adapters/chatbot-projects/README.md`
 
@@ -98,3 +101,17 @@ Top-level RAG desired-state catalog, corpus manifests, retrieval/citation policy
 ## LLM Gateway foundation
 
 Top-level LLM Gateway desired-state catalog, stable EKSAD model aliases, LiteLLM reference examples, OpenAI-compatible adapter guidance, budget/routing/guardrail policy, and validators: `llm-gateway/README.md`.
+
+
+## Phase E role expansion
+
+Canonical role coverage now includes 13 role profiles:
+
+```text
+general-coordinator, business-analyst, system-analyst, technical-leader,
+developer-backend, developer-frontend, qa-engineer, project-manager,
+devops-engineer, data-analyst, data-scientist, ui-ux-designer,
+content-creator
+```
+
+Phase E adds portable role cards, workflows, deliverables, Hermes role system instructions, Hermes SKILL.md templates, and MCP/RAG/LLM matrix coverage for Data Analyst, Data Scientist, UI/UX Designer, and Content Creator.

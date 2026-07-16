@@ -14,16 +14,20 @@
       "system-analyst",
       "developer-backend",
       "qa-engineer",
-      "devops-engineer"
+      "devops-engineer",
+      "data-analyst"
     ],
     "optional": [
-      "technical-leader"
+      "technical-leader",
+      "data-scientist"
     ],
     "forbidden": [
+      "general-coordinator",
       "business-analyst",
       "developer-frontend",
       "project-manager",
-      "general-coordinator"
+      "ui-ux-designer",
+      "content-creator"
     ]
   },
   "runtime": {

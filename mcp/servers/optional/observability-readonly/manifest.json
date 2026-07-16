@@ -10,19 +10,23 @@
   "risk": "high",
   "roles": {
     "allowed": [
-      "devops-engineer",
-      "technical-leader"
+      "technical-leader",
+      "devops-engineer"
     ],
     "optional": [
       "qa-engineer",
-      "project-manager"
+      "project-manager",
+      "data-analyst",
+      "data-scientist"
     ],
     "forbidden": [
+      "general-coordinator",
       "business-analyst",
       "system-analyst",
       "developer-backend",
       "developer-frontend",
-      "general-coordinator"
+      "ui-ux-designer",
+      "content-creator"
     ]
   },
   "runtime": {

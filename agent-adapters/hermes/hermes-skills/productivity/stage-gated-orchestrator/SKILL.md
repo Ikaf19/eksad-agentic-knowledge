@@ -77,9 +77,9 @@ Do not put runtime state in the skill directory or knowledge pack.
 
 Adjust artifact names in the generated project config when an existing project uses another convention. Never silently rename existing artifacts.
 
-### Nine-profile routing plus shared AppSec workflow
+### Thirteen-profile routing plus shared AppSec workflow
 
-Route work across the nine canonical profiles (General Coordinator plus eight specialists) by accountable output. The General Coordinator role coordinates and never absorbs specialist ownership. AppSec is a shared workflow, not a tenth profile.
+Route work across the thirteen canonical profiles (General Coordinator plus twelve specialists) by accountable output. The General Coordinator role coordinates and never absorbs specialist ownership. AppSec is a shared workflow, not a tenth profile.
 
 | Role/profile | Route when the required output is | Handoff evidence |
 |---|---|---|
@@ -92,6 +92,10 @@ Route work across the nine canonical profiles (General Coordinator plus eight sp
 | Frontend Developer / `developer-frontend` | Frontend implementation and developer-owned tests | UI/API contract references and test evidence |
 | QA Engineer / `qa-engineer` | Test design, RTM, execution evidence, or QA verdict | Requirement/build identity and test evidence |
 | DevOps Engineer / `devops-engineer` | CI/CD, environment, release, deployment, rollback, or operational evidence | Immutable source/artifact identity and authorization references |
+| Data Analyst / `data-analyst` | KPI definitions, read-only analysis, data quality findings, or dashboard specifications | Approved question, source inventory, data cut-off, metric definitions, and caveats |
+| Data Scientist / `data-scientist` | ML/statistical problem framing, experiment design, model evaluation, or model-risk notes | Data readiness, target/baseline, experiment setup, metrics, and sandbox evidence |
+| UI/UX Designer / `ui-ux-designer` | UX research, journey maps, wireframes, usability findings, or frontend handoff | Approved requirements, user context, design states, accessibility notes, and open gaps |
+| Content Creator / `content-creator` | Content briefs, sourced drafts, release notes, training/help material, or content calendar | Source artifacts, claim inventory, audience/channel, approval owner, and draft status |
 
 #### Shared AppSec workflow routing
 
