@@ -1,0 +1,12 @@
+# Example only. Do not run blindly in production.
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env.local
+    volumes:
+      - ./config.local.yaml:/app/config.yaml:ro
+    restart: unless-stopped

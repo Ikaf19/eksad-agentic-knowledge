@@ -383,3 +383,20 @@ Scope:
 - Read-only validator/renderer: `rag/scripts/validate-rag-api-contract.py` and `rag/scripts/render-rag-mcp-manifest.py`.
 
 Runtime apply remains a separate explicit approval gate. No RAG API service, Milvus collection, Ollama model, MinIO bucket credential, Hermes live config, vector index, embedding cache, or secret is committed.
+
+## LLM Gateway Foundation Implementation Update
+
+Phase D adds top-level `llm-gateway/` as a reusable model gateway desired-state template for Hermes, chatbot projects, and future agentic harnesses.
+
+Scope:
+
+- `llm-gateway/README.md` as canonical LLM Gateway entrypoint.
+- Gateway architecture, model alias schema/policy, provider matrix, routing, per-task routing, budget/rate-limit, guardrail, observability, failure/fallback, and security contracts.
+- Machine-readable EKSAD alias manifest under `llm-gateway/aliases/eksad-model-aliases.json` with `eksad.fast`, `eksad.default`, `eksad.reasoning`, `eksad.long_context`, `eksad.embedding`, `eksad.reranker`, `eksad.vision`, and `eksad.guardrail`.
+- LiteLLM reference examples under `llm-gateway/litellm/` using environment variable placeholders only.
+- Hermes, generic OpenAI-compatible, and chatbot-project adapter guidance under `llm-gateway/adapters/`.
+- Portable LLM gateway governance under `portable/llm-gateway/` and `portable/policies/llm-gateway-policy.md`.
+- Eval fixtures under `eval/llm-gateway/` for alias, routing, and budget policy behavior.
+- Read-only validator/renderer: `llm-gateway/scripts/validate-llm-gateway-config.py` and `llm-gateway/scripts/render-litellm-config.py`.
+
+Runtime apply remains a separate explicit approval gate. No provider API key, LiteLLM master key, live gateway config, billing export, raw prompt/response log, or runtime database is committed.

@@ -1,0 +1,27 @@
+{
+  "version": "0.1.0",
+  "tests": [
+    {
+      "id": "required-aliases-exist",
+      "type": "alias_contract",
+      "expected_aliases": [
+        "eksad.fast",
+        "eksad.default",
+        "eksad.reasoning",
+        "eksad.long_context",
+        "eksad.embedding",
+        "eksad.reranker",
+        "eksad.vision",
+        "eksad.guardrail"
+      ]
+    },
+    {
+      "id": "fallbacks-reference-known-aliases",
+      "type": "alias_contract"
+    },
+    {
+      "id": "role-defaults-reference-known-aliases",
+      "type": "alias_contract"
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+  "version": "0.1.0",
+  "schema": "llm-gateway/MODEL_ALIAS_SCHEMA.md",
+  "purpose": "Stable capability aliases for EKSAD role agents. Runtime providers are bound by LiteLLM or another OpenAI-compatible gateway outside Git.",
+  "required_aliases": [
+    "eksad.fast",
+    "eksad.default",
+    "eksad.reasoning",
+    "eksad.long_context",
+    "eksad.embedding",
+    "eksad.reranker",
+    "eksad.vision",
+    "eksad.guardrail"
+  ],
+  "aliases": [
+    {
+      "alias": "eksad.fast",
+      "capability": "low-latency chat and classification",
+      "default_enabled": true,
+      "cost_tier": "low",
+      "context_class": "standard",
+      "litellm_model_env": "EKSAD_FAST_MODEL",
+      "api_key_env": "EKSAD_PRIMARY_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_PRIMARY_PROVIDER_BASE_URL",
+      "fallback_aliases": [
+        "eksad.default"
+      ],
+      "allowed_roles": [
+        "general-coordinator",
+        "business-analyst",
+        "system-analyst",
+        "technical-leader",
+        "developer-backend",
+        "developer-frontend",
+        "qa-engineer",
+        "devops-engineer"
+      ],
+      "typical_tasks": [
+        "routing",
+        "summarization",
+        "status updates",
+        "light extraction"
+      ],
+      "security_notes": [
+        "Do not use for high-risk architectural decisions without role gate."
+      ]
+    },
+    {
+      "alias": "eksad.default",
+      "capability": "balanced general delivery work",
+      "default_enabled": true,
+      "cost_tier": "medium",
+      "context_class": "standard",
+      "litellm_model_env": "EKSAD_DEFAULT_MODEL",
+      "api_key_env": "EKSAD_PRIMARY_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_PRIMARY_PROVIDER_BASE_URL",
+      "fallback_aliases": [
+        "eksad.fast"
+      ],
+      "allowed_roles": [
+        "general-coordinator",
+        "business-analyst",
+        "system-analyst",
+        "technical-leader",
+        "developer-backend",
+        "developer-frontend",
+        "qa-engineer",
+        "devops-engineer"
+      ],
+      "typical_tasks": [
+        "drafting",
+        "analysis",
+        "routine review",
+        "structured output"
+      ],
+      "security_notes": [
+        "Use cited RAG evidence when repository policy requires citations."
+      ]
+    },
+    {
+      "alias": "eksad.reasoning",
+      "capability": "deep reasoning and design review",
+      "default_enabled": true,
+      "cost_tier": "high",
+      "context_class": "standard",
+      "litellm_model_env": "EKSAD_REASONING_MODEL",
+      "api_key_env": "EKSAD_REASONING_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_REASONING_PROVIDER_BASE_URL",
+      "fallback_aliases": [
+        "eksad.default"
+      ],
+      "allowed_roles": [
+        "business-analyst",
+        "system-analyst",
+        "technical-leader",
+        "developer-backend",
+        "developer-frontend",
+        "qa-engineer",
+        "devops-engineer"
+      ],
+      "typical_tasks": [
+        "BRD/FSD readiness",
+        "TSD design",
+        "code review",
+        "root-cause analysis",
+        "risk analysis"
+      ],
+      "security_notes": [
+        "Use for approval-gated or high-impact decisions; log routing metadata only by default."
+      ]
+    },
+    {
+      "alias": "eksad.long_context",
+      "capability": "large-context synthesis over long specs and evidence",
+      "default_enabled": true,
+      "cost_tier": "high",
+      "context_class": "long",
+      "litellm_model_env": "EKSAD_LONG_CONTEXT_MODEL",
+      "api_key_env": "EKSAD_LONG_CONTEXT_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_LONG_CONTEXT_PROVIDER_BASE_URL",
+      "fallback_aliases": [
+        "eksad.reasoning",
+        "eksad.default"
+      ],
+      "allowed_roles": [
+        "business-analyst",
+        "system-analyst",
+        "technical-leader",
+        "developer-backend",
+        "developer-frontend",
+        "qa-engineer"
+      ],
+      "typical_tasks": [
+        "large document review",
+        "multi-artifact comparison",
+        "requirements traceability",
+        "architecture synthesis"
+      ],
+      "security_notes": [
+        "Prefer retrieval/citations over stuffing sensitive full corpora into prompts."
+      ]
+    },
+    {
+      "alias": "eksad.embedding",
+      "capability": "embedding generation for RAG service",
+      "default_enabled": false,
+      "cost_tier": "low",
+      "context_class": "embedding",
+      "litellm_model_env": "EKSAD_EMBEDDING_MODEL",
+      "api_key_env": "EKSAD_EMBEDDING_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_EMBEDDING_PROVIDER_BASE_URL",
+      "fallback_aliases": [],
+      "allowed_roles": [
+        "rag-service"
+      ],
+      "typical_tasks": [
+        "indexing",
+        "query embedding"
+      ],
+      "security_notes": [
+        "Role agents should not call embeddings directly; RAG API owns this alias."
+      ]
+    },
+    {
+      "alias": "eksad.reranker",
+      "capability": "retrieval reranking for RAG service",
+      "default_enabled": false,
+      "cost_tier": "medium",
+      "context_class": "reranker",
+      "litellm_model_env": "EKSAD_RERANKER_MODEL",
+      "api_key_env": "EKSAD_RERANKER_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_RERANKER_PROVIDER_BASE_URL",
+      "fallback_aliases": [],
+      "allowed_roles": [
+        "rag-service"
+      ],
+      "typical_tasks": [
+        "reranking candidate chunks",
+        "retrieval quality improvement"
+      ],
+      "security_notes": [
+        "RAG API owns reranking; role agents receive cited results only."
+      ]
+    },
+    {
+      "alias": "eksad.vision",
+      "capability": "vision/document image understanding",
+      "default_enabled": false,
+      "cost_tier": "medium",
+      "context_class": "multimodal",
+      "litellm_model_env": "EKSAD_VISION_MODEL",
+      "api_key_env": "EKSAD_VISION_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_VISION_PROVIDER_BASE_URL",
+      "fallback_aliases": [
+        "eksad.default"
+      ],
+      "allowed_roles": [
+        "business-analyst",
+        "system-analyst",
+        "technical-leader",
+        "qa-engineer"
+      ],
+      "typical_tasks": [
+        "screenshot interpretation",
+        "diagram reading",
+        "scanned artifact triage"
+      ],
+      "security_notes": [
+        "Do not send confidential screenshots unless data classification allows the provider."
+      ]
+    },
+    {
+      "alias": "eksad.guardrail",
+      "capability": "policy classification and safety gating",
+      "default_enabled": true,
+      "cost_tier": "low",
+      "context_class": "classifier",
+      "litellm_model_env": "EKSAD_GUARDRAIL_MODEL",
+      "api_key_env": "EKSAD_GUARDRAIL_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_GUARDRAIL_PROVIDER_BASE_URL",
+      "fallback_aliases": [
+        "eksad.default"
+      ],
+      "allowed_roles": [
+        "general-coordinator",
+        "technical-leader",
+        "devops-engineer"
+      ],
+      "typical_tasks": [
+        "tool-risk classification",
+        "data sensitivity classification",
+        "approval requirement detection"
+      ],
+      "security_notes": [
+        "Guardrail result is advisory; final approval gate remains human-governed where required."
+      ]
+    }
+  ],
+  "role_defaults": {
+    "general-coordinator": {
+      "primary": "eksad.fast",
+      "fallback": "eksad.default",
+      "escalate": "eksad.reasoning"
+    },
+    "business-analyst": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context"
+    },
+    "system-analyst": {
+      "primary": "eksad.reasoning",
+      "fallback": "eksad.default",
+      "large_artifact": "eksad.long_context"
+    },
+    "technical-leader": {
+      "primary": "eksad.reasoning",
+      "fallback": "eksad.default",
+      "guardrail": "eksad.guardrail"
+    },
+    "developer-backend": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context"
+    },
+    "developer-frontend": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context"
+    },
+    "qa-engineer": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context"
+    },
+    "devops-engineer": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "guardrail": "eksad.guardrail"
+    },
+    "rag-service": {
+      "embedding": "eksad.embedding",
+      "reranker": "eksad.reranker"
+    }
+  },
+  "environment_policy": {
+    "local": {
+      "allow_paid_models": false,
+      "notes": "Prefer local/mock endpoints for dry-run validation."
+    },
+    "dev": {
+      "allow_paid_models": true,
+      "max_cost_tier": "medium",
+      "notes": "High-cost aliases require task justification."
+    },
+    "staging": {
+      "allow_paid_models": true,
+      "max_cost_tier": "high",
+      "notes": "Use observability and budget caps."
+    },
+    "prod": {
+      "allow_paid_models": true,
+      "max_cost_tier": "high",
+      "notes": "Production automation remains approval-gated; raw prompt logging disabled by default."
+    }
+  }
+}

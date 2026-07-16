@@ -1,0 +1,11 @@
+{
+  "base_url_env": "EKSAD_LITELLM_BASE_URL",
+  "api_key_env": "EKSAD_LITELLM_API_KEY",
+  "default_model_alias": "eksad.default",
+  "reasoning_model_alias": "eksad.reasoning",
+  "long_context_model_alias": "eksad.long_context",
+  "notes": [
+    "Example only; runtime env provides real endpoint and key.",
+    "Client code should request aliases, not provider model names."
+  ]
+}

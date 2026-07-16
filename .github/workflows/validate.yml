@@ -44,3 +44,9 @@ jobs:
 
       - name: Render RAG MCP manifest summary
         run: python3 rag/scripts/render-rag-mcp-manifest.py
+
+      - name: Validate LLM gateway desired state
+        run: python3 llm-gateway/scripts/validate-llm-gateway-config.py
+
+      - name: Render LiteLLM config example
+        run: python3 llm-gateway/scripts/render-litellm-config.py
