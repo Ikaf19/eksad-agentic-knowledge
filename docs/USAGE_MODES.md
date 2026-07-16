@@ -32,6 +32,22 @@ rag/adapters/chatbot-projects/upload-bundle-guidance.md
 llm-gateway/adapters/chatbot-projects/README.md
 ```
 
+
+### Phase E role expansion in chatbot mode
+
+For Data Analyst, Data Scientist, UI/UX Designer, or Content Creator chatbot projects, upload the matching files from:
+
+```text
+portable/roles/<role>.md
+portable/workflows/<role-workflow>.md
+portable/deliverables/<role-deliverable>.md
+portable/mcp/role-mcp-matrix.md
+portable/rag/corpus-matrix.md
+portable/llm-gateway/role-model-matrix.md
+```
+
+Treat these roles as draft/analysis/design/content owners only. Business, legal, technical, QA, release, and publication approvals remain attributable gates.
+
 Use existing GPT/Claude setup files as before:
 
 ```text

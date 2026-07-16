@@ -157,3 +157,11 @@ WBS content approval or PM baseline approval alone does not authorize either com
 8. Use **roles not names** for owners
 9. **Never** assign concrete people to tasks (that happens in sprint planning, not WBS)
 10. Never invent estimates, velocity, capacity, dates, thresholds, or implementation choices
+
+## Phase F Enrichment — File-Based Planning Pattern
+
+Adapted benchmark patterns: planning-with-files and product-capability.
+
+- Decompose work by artifact and accountable role, not only by implementation component.
+- Each task should identify source requirement, owner, dependency, expected evidence, and approval gate.
+- Keep PM WBS ownership separate from specialist estimate/technical validation ownership.

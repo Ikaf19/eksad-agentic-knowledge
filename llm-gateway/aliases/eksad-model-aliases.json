@@ -9,6 +9,7 @@
     "eksad.long_context",
     "eksad.embedding",
     "eksad.reranker",
+    "eksad.visual_input",
     "eksad.vision",
     "eksad.guardrail"
   ],
@@ -33,7 +34,12 @@
         "developer-backend",
         "developer-frontend",
         "qa-engineer",
-        "devops-engineer"
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "ui-ux-designer",
+        "content-creator",
+        "data-scientist"
       ],
       "typical_tasks": [
         "routing",
@@ -65,7 +71,12 @@
         "developer-backend",
         "developer-frontend",
         "qa-engineer",
-        "devops-engineer"
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "drafting",
@@ -90,13 +101,19 @@
         "eksad.default"
       ],
       "allowed_roles": [
+        "general-coordinator",
         "business-analyst",
         "system-analyst",
         "technical-leader",
         "developer-backend",
         "developer-frontend",
         "qa-engineer",
-        "devops-engineer"
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "BRD/FSD readiness",
@@ -123,12 +140,19 @@
         "eksad.default"
       ],
       "allowed_roles": [
+        "general-coordinator",
         "business-analyst",
         "system-analyst",
         "technical-leader",
         "developer-backend",
         "developer-frontend",
-        "qa-engineer"
+        "qa-engineer",
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "large document review",
@@ -183,14 +207,14 @@
       ]
     },
     {
-      "alias": "eksad.vision",
-      "capability": "vision/document image understanding",
+      "alias": "eksad.visual_input",
+      "capability": "visual input understanding for screenshots, diagrams, charts, wireframes, and scanned artifacts",
       "default_enabled": false,
       "cost_tier": "medium",
       "context_class": "multimodal",
-      "litellm_model_env": "EKSAD_VISION_MODEL",
-      "api_key_env": "EKSAD_VISION_PROVIDER_API_KEY",
-      "api_base_env": "EKSAD_VISION_PROVIDER_BASE_URL",
+      "litellm_model_env": "EKSAD_VISUAL_INPUT_MODEL",
+      "api_key_env": "EKSAD_VISUAL_INPUT_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_VISUAL_INPUT_PROVIDER_BASE_URL",
       "fallback_aliases": [
         "eksad.default"
       ],
@@ -198,15 +222,55 @@
         "business-analyst",
         "system-analyst",
         "technical-leader",
-        "qa-engineer"
+        "developer-frontend",
+        "qa-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "screenshot interpretation",
         "diagram reading",
+        "chart/plot interpretation",
+        "wireframe review",
         "scanned artifact triage"
       ],
       "security_notes": [
-        "Do not send confidential screenshots unless data classification allows the provider."
+        "Visual input is a task capability, not a role primary model. Do not send confidential images unless data classification allows the provider."
+      ]
+    },
+    {
+      "alias": "eksad.vision",
+      "capability": "legacy compatibility alias for visual input understanding",
+      "default_enabled": false,
+      "cost_tier": "medium",
+      "context_class": "multimodal",
+      "litellm_model_env": "EKSAD_VISION_MODEL",
+      "api_key_env": "EKSAD_VISION_PROVIDER_API_KEY",
+      "api_base_env": "EKSAD_VISION_PROVIDER_BASE_URL",
+      "fallback_aliases": [
+        "eksad.visual_input",
+        "eksad.default"
+      ],
+      "allowed_roles": [
+        "business-analyst",
+        "system-analyst",
+        "technical-leader",
+        "developer-frontend",
+        "qa-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
+      ],
+      "typical_tasks": [
+        "legacy requests for screenshot interpretation",
+        "legacy requests for diagram reading",
+        "legacy visual artifact triage"
+      ],
+      "security_notes": [
+        "Compatibility alias. Prefer eksad.visual_input in new role defaults and matrices. Do not use as a primary role alias."
       ]
     },
     {
@@ -223,8 +287,18 @@
       ],
       "allowed_roles": [
         "general-coordinator",
+        "business-analyst",
+        "system-analyst",
         "technical-leader",
-        "devops-engineer"
+        "developer-backend",
+        "developer-frontend",
+        "qa-engineer",
+        "project-manager",
+        "devops-engineer",
+        "data-analyst",
+        "data-scientist",
+        "ui-ux-designer",
+        "content-creator"
       ],
       "typical_tasks": [
         "tool-risk classification",
@@ -240,46 +314,101 @@
     "general-coordinator": {
       "primary": "eksad.fast",
       "fallback": "eksad.default",
-      "escalate": "eksad.reasoning"
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "guardrail": "eksad.guardrail"
     },
     "business-analyst": {
       "primary": "eksad.default",
       "fallback": "eksad.fast",
       "escalate": "eksad.reasoning",
-      "large_artifact": "eksad.long_context"
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
+      "guardrail": "eksad.guardrail"
     },
     "system-analyst": {
       "primary": "eksad.reasoning",
       "fallback": "eksad.default",
-      "large_artifact": "eksad.long_context"
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
+      "guardrail": "eksad.guardrail"
     },
     "technical-leader": {
       "primary": "eksad.reasoning",
       "fallback": "eksad.default",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
       "guardrail": "eksad.guardrail"
     },
     "developer-backend": {
       "primary": "eksad.default",
       "fallback": "eksad.fast",
       "escalate": "eksad.reasoning",
-      "large_artifact": "eksad.long_context"
+      "large_artifact": "eksad.long_context",
+      "guardrail": "eksad.guardrail"
     },
     "developer-frontend": {
       "primary": "eksad.default",
       "fallback": "eksad.fast",
       "escalate": "eksad.reasoning",
-      "large_artifact": "eksad.long_context"
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
+      "guardrail": "eksad.guardrail"
     },
     "qa-engineer": {
       "primary": "eksad.default",
       "fallback": "eksad.fast",
       "escalate": "eksad.reasoning",
-      "large_artifact": "eksad.long_context"
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
+      "guardrail": "eksad.guardrail"
+    },
+    "project-manager": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "guardrail": "eksad.guardrail"
     },
     "devops-engineer": {
       "primary": "eksad.default",
       "fallback": "eksad.fast",
       "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "guardrail": "eksad.guardrail"
+    },
+    "data-analyst": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
+      "guardrail": "eksad.guardrail"
+    },
+    "data-scientist": {
+      "primary": "eksad.reasoning",
+      "fallback": "eksad.default",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
+      "guardrail": "eksad.guardrail"
+    },
+    "ui-ux-designer": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
+      "guardrail": "eksad.guardrail"
+    },
+    "content-creator": {
+      "primary": "eksad.default",
+      "fallback": "eksad.fast",
+      "escalate": "eksad.reasoning",
+      "large_artifact": "eksad.long_context",
+      "visual_input": "eksad.visual_input",
       "guardrail": "eksad.guardrail"
     },
     "rag-service": {

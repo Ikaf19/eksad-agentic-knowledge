@@ -1,0 +1,49 @@
+{
+  "id": "project-design-assets-example",
+  "version": "1.0.0",
+  "description": "Project-specific design evidence corpus template for design handoff notes, screenshots, UX findings, and approved Figma/export references. Not indexed by default.",
+  "status": "example",
+  "source_layer": "project-specific",
+  "indexable": false,
+  "sensitivity": "project-confidential",
+  "paths": [
+    "projects/<project-code>/design/**/*.md",
+    "projects/<project-code>/ux/**/*.md",
+    "projects/<project-code>/screenshots/**/*.md"
+  ],
+  "exclude": [
+    "**/.env",
+    "**/.env.*",
+    "**/secrets/**",
+    "**/raw-dumps/**",
+    "**/*.fig",
+    "**/*.sketch",
+    "**/*.psd"
+  ],
+  "default_chunk_profile": "project-design-evidence",
+  "allowed_roles": [
+    "business-analyst",
+    "system-analyst",
+    "technical-leader",
+    "developer-frontend",
+    "qa-engineer",
+    "ui-ux-designer",
+    "content-creator"
+  ],
+  "citation_required": true,
+  "freshness": {
+    "strategy": "project-controlled",
+    "tracked_paths": [
+      "projects/<project-code>/**"
+    ]
+  },
+  "activation": {
+    "default": "disabled",
+    "requires": [
+      "project approval",
+      "design owner approval",
+      "sensitivity review",
+      "approved exports/references only"
+    ]
+  }
+}

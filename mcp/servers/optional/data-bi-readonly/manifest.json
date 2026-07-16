@@ -1,0 +1,74 @@
+{
+  "id": "data-bi-readonly",
+  "display_name": "Data/BI Read-only MCP",
+  "priority": "P2",
+  "status": "optional",
+  "capabilities": [
+    "data-bi-artifact-read-only"
+  ],
+  "default_enabled": false,
+  "risk": "medium-high",
+  "roles": {
+    "allowed": [
+      "data-analyst",
+      "data-scientist"
+    ],
+    "optional": [
+      "system-analyst",
+      "technical-leader",
+      "qa-engineer",
+      "project-manager"
+    ],
+    "forbidden": [
+      "general-coordinator",
+      "business-analyst",
+      "developer-backend",
+      "developer-frontend",
+      "devops-engineer",
+      "ui-ux-designer",
+      "content-creator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved BI/data artifact MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/data-bi-readonly"
+  },
+  "env_contract": [
+    {
+      "name": "DATA_BI_READONLY_ROOT",
+      "required": true,
+      "secret": false,
+      "description": "Approved read-only root for CSV/spreadsheet/BI exports or data dictionaries."
+    },
+    {
+      "name": "DATA_BI_READONLY_TOKEN",
+      "required": false,
+      "secret": true,
+      "description": "Optional read-only token for external BI connector."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "data_bi_readonly",
+    "command": "/opt/eksad-mcp/bin/data-bi-readonly",
+    "args": [],
+    "env": {
+      "DATA_BI_READONLY_ROOT": "${DATA_BI_READONLY_ROOT}",
+      "DATA_BI_READONLY_TOKEN": "${DATA_BI_READONLY_TOKEN}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "data-bi-artifact-read-only"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Use only for approved analytics artifacts, exported datasets, BI metadata, or data dictionaries. No live production data mutation."
+}

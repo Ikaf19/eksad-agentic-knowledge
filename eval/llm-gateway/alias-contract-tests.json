@@ -11,6 +11,7 @@
         "eksad.long_context",
         "eksad.embedding",
         "eksad.reranker",
+        "eksad.visual_input",
         "eksad.vision",
         "eksad.guardrail"
       ]
@@ -22,6 +23,14 @@
     {
       "id": "role-defaults-reference-known-aliases",
       "type": "alias_contract"
+    },
+    {
+      "id": "visual-alias-not-primary",
+      "type": "role_default_contract",
+      "forbidden_primary_aliases": [
+        "eksad.visual_input",
+        "eksad.vision"
+      ]
     }
   ]
 }

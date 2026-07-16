@@ -20,3 +20,15 @@ This adapter may reference Hermes concepts like `SOUL.md`, SKILL.md, profiles, a
 ## Runtime sync warning
 
 Do not run resync scripts or modify live `~/.hermes/` runtime until explicitly approved. Git commit and runtime sync are separate gates.
+
+
+## Phase E roles
+
+The Hermes adapter now includes extracted role system instructions and SKILL.md templates for:
+
+- `data-analyst` → `eksad-data-analysis`
+- `data-scientist` → `eksad-data-science`
+- `ui-ux-designer` → `eksad-ui-ux-delivery`
+- `content-creator` → `eksad-content-creation`
+
+Runtime sync remains a separate approval gate; these files are desired-state adapter sources only.

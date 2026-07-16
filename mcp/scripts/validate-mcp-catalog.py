@@ -20,7 +20,7 @@ if not manifest_paths:
 
 required_fields = ['id','display_name','priority','status','capabilities','default_enabled','risk','roles','runtime','env_contract','hermes_config','generic_harness','notes']
 valid_priorities = {'P0','P1','P2','P2/Pn','Pn'}
-role_names = {'business-analyst','system-analyst','technical-leader','developer-backend','developer-frontend','qa-engineer','project-manager','devops-engineer','general-coordinator'}
+role_names = {'business-analyst','system-analyst','technical-leader','developer-backend','developer-frontend','qa-engineer','project-manager','devops-engineer','general-coordinator','data-analyst','data-scientist','ui-ux-designer','content-creator'}
 
 for path in manifest_paths:
     try:

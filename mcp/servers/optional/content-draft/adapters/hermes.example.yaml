@@ -1,0 +1,13 @@
+# Example only. Do not paste real secrets here.
+tools:
+  mcp_servers:
+    content_draft:
+      command: /opt/eksad-mcp/bin/content-draft
+      args: []
+      env:
+        CONTENT_DRAFT_ROOT: ${CONTENT_DRAFT_ROOT}
+        CONTENT_DRAFT_TOKEN: ${CONTENT_DRAFT_TOKEN}
+      timeout: 120
+      connect_timeout: 60
+      sampling:
+        enabled: false

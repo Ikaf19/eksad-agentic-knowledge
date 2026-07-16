@@ -14,6 +14,27 @@ ROOT = Path(__file__).resolve().parents[2]
 GW = ROOT / "llm-gateway"
 ALIASES = GW / "aliases" / "eksad-model-aliases.json"
 
+CANONICAL_ROLES = {
+    "general-coordinator",
+    "business-analyst",
+    "system-analyst",
+    "technical-leader",
+    "developer-backend",
+    "developer-frontend",
+    "qa-engineer",
+    "project-manager",
+    "devops-engineer",
+    "data-analyst",
+    "data-scientist",
+    "ui-ux-designer",
+    "content-creator",
+}
+SERVICE_ROLES = {"rag-service"}
+ROLE_DEFAULT_KEYS = {"primary", "fallback", "escalate", "large_artifact", "visual_input", "guardrail"}
+SERVICE_DEFAULT_KEYS = {"embedding", "reranker"}
+VISUAL_ALIASES = {"eksad.visual_input", "eksad.vision"}
+SERVICE_ONLY_ALIASES = {"eksad.embedding", "eksad.reranker"}
+
 REQUIRED_ALIASES = {
     "eksad.fast",
     "eksad.default",
@@ -21,6 +42,7 @@ REQUIRED_ALIASES = {
     "eksad.long_context",
     "eksad.embedding",
     "eksad.reranker",
+    "eksad.visual_input",
     "eksad.vision",
     "eksad.guardrail",
 }
@@ -122,6 +144,9 @@ def validate_alias_manifest(data: dict) -> None:
             fail(f"alias {name} fallback_aliases must be a list")
         if not isinstance(item["allowed_roles"], list) or not item["allowed_roles"]:
             fail(f"alias {name} allowed_roles must be non-empty list")
+        unknown_roles = set(item["allowed_roles"]) - CANONICAL_ROLES - SERVICE_ROLES
+        if unknown_roles:
+            fail(f"alias {name} has unknown allowed_roles: {sorted(unknown_roles)}")
 
     if not REQUIRED_ALIASES.issubset(seen):
         fail("missing required aliases: " + ", ".join(sorted(REQUIRED_ALIASES - seen)))
@@ -138,12 +163,37 @@ def validate_alias_manifest(data: dict) -> None:
     role_defaults = data.get("role_defaults", {})
     if not isinstance(role_defaults, dict) or not role_defaults:
         fail("role_defaults must be non-empty object")
+
+    missing_defaults = CANONICAL_ROLES - set(role_defaults)
+    if missing_defaults:
+        fail("role_defaults missing canonical roles: " + ", ".join(sorted(missing_defaults)))
+
     for role, mapping in role_defaults.items():
         if not isinstance(mapping, dict):
             fail(f"role_defaults.{role} must be object")
+        if role in CANONICAL_ROLES:
+            unknown_keys = set(mapping) - ROLE_DEFAULT_KEYS
+            if unknown_keys:
+                fail(f"role_defaults.{role} has unknown keys: {sorted(unknown_keys)}")
+            if mapping.get("primary") in VISUAL_ALIASES:
+                fail(f"role_defaults.{role}.primary must not be a visual alias")
+        elif role in SERVICE_ROLES:
+            unknown_keys = set(mapping) - SERVICE_DEFAULT_KEYS
+            if unknown_keys:
+                fail(f"role_defaults.{role} has unknown service keys: {sorted(unknown_keys)}")
+        else:
+            fail(f"role_defaults contains unknown role/service: {role}")
+
         for key, alias in mapping.items():
             if alias not in alias_map:
                 fail(f"role_defaults.{role}.{key} references unknown alias {alias}")
+            if role in CANONICAL_ROLES:
+                if alias in SERVICE_ONLY_ALIASES:
+                    fail(f"role_defaults.{role}.{key} must not reference service-only alias {alias}")
+                if role not in alias_map[alias].get("allowed_roles", []):
+                    fail(f"role_defaults.{role}.{key}={alias} but role not allowed")
+            elif role == "rag-service" and alias not in SERVICE_ONLY_ALIASES:
+                fail(f"role_defaults.rag-service.{key} must reference service-only alias, got {alias}")
 
     for service_alias in ["eksad.embedding", "eksad.reranker"]:
         item = alias_map[service_alias]
@@ -163,15 +213,36 @@ def validate_litellm_example(data: dict) -> None:
         fail("LiteLLM example must use environment variable references")
 
 
-def validate_eval_fixtures() -> None:
+def validate_markdown_matrices() -> None:
+    matrix = (ROOT / "portable" / "llm-gateway" / "role-model-matrix.md").read_text(encoding="utf-8")
+    if "| Visual input |" not in matrix or "`eksad.visual_input`" not in matrix:
+        fail("role-model-matrix must use normalized Visual input column with eksad.visual_input")
+    if "| UI/UX Designer | `eksad.vision`" in matrix or "| UI/UX Designer | `eksad.visual_input`" in matrix:
+        fail("UI/UX primary must not be a visual alias in role-model-matrix")
+
+
+def validate_eval_fixtures(data: dict) -> None:
+    alias_names = {item["alias"] for item in data["aliases"]}
+    alias_map = {item["alias"]: item for item in data["aliases"]}
     eval_dir = ROOT / "eval" / "llm-gateway"
     for name in ["alias-contract-tests.json", "routing-policy-tests.json", "budget-policy-tests.json"]:
         path = eval_dir / name
         if not path.exists():
             fail(f"missing eval fixture {path.relative_to(ROOT)}")
-        data = json.loads(path.read_text(encoding="utf-8"))
-        if not isinstance(data.get("tests"), list) or not data["tests"]:
+        fixture = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(fixture.get("tests"), list) or not fixture["tests"]:
             fail(f"eval fixture {name} must contain non-empty tests")
+        for test in fixture["tests"]:
+            if "expected_aliases" in test and set(test["expected_aliases"]) != REQUIRED_ALIASES:
+                fail(f"eval fixture {name}:{test.get('id')} expected_aliases mismatch")
+            if "expected_alias" in test and test["expected_alias"] not in alias_names:
+                fail(f"eval fixture {name}:{test.get('id')} references unknown expected_alias")
+            if "alias" in test and test["alias"] not in alias_names:
+                fail(f"eval fixture {name}:{test.get('id')} references unknown alias")
+            if "expected_cost_tier" in test and alias_map[test["alias"]].get("cost_tier") != test["expected_cost_tier"]:
+                fail(f"eval fixture {name}:{test.get('id')} cost_tier mismatch")
+            if "expected_default_enabled" in test and alias_map[test["alias"]].get("default_enabled") is not test["expected_default_enabled"]:
+                fail(f"eval fixture {name}:{test.get('id')} default_enabled mismatch")
 
 
 def scan_for_secrets() -> None:
@@ -193,7 +264,8 @@ def main() -> None:
     data = load_aliases()
     validate_alias_manifest(data)
     validate_litellm_example(data)
-    validate_eval_fixtures()
+    validate_markdown_matrices()
+    validate_eval_fixtures(data)
     scan_for_secrets()
     print("PASS: LLM gateway desired-state validation")
 

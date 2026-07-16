@@ -1,0 +1,12 @@
+{
+  "server": "content-draft",
+  "capabilities": [
+    "content-repository-draft"
+  ],
+  "default_enabled": false,
+  "requires_explicit_runtime_binding": true,
+  "env": [
+    "CONTENT_DRAFT_ROOT",
+    "CONTENT_DRAFT_TOKEN"
+  ]
+}

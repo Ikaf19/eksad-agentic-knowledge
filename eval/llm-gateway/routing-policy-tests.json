@@ -18,6 +18,12 @@
       "role": "business-analyst",
       "task_class": "embedding",
       "expected_behavior": "deny_direct_role_agent_use"
+    },
+    {
+      "id": "uiux-visual-evidence-routes-to-visual-input",
+      "role": "ui-ux-designer",
+      "task_class": "screenshot/wireframe review",
+      "expected_alias": "eksad.visual_input"
     }
   ]
 }

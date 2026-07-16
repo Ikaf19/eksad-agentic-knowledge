@@ -12,18 +12,22 @@
   "roles": {
     "allowed": [
       "developer-frontend",
-      "qa-engineer"
+      "qa-engineer",
+      "ui-ux-designer"
     ],
     "optional": [
-      "technical-leader"
+      "technical-leader",
+      "content-creator"
     ],
     "forbidden": [
+      "general-coordinator",
       "business-analyst",
       "system-analyst",
       "developer-backend",
       "project-manager",
       "devops-engineer",
-      "general-coordinator"
+      "data-analyst",
+      "data-scientist"
     ]
   },
   "runtime": {

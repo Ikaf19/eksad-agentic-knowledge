@@ -1,0 +1,13 @@
+# Example only. Do not paste real secrets here.
+tools:
+  mcp_servers:
+    data_bi_readonly:
+      command: /opt/eksad-mcp/bin/data-bi-readonly
+      args: []
+      env:
+        DATA_BI_READONLY_ROOT: ${DATA_BI_READONLY_ROOT}
+        DATA_BI_READONLY_TOKEN: ${DATA_BI_READONLY_TOKEN}
+      timeout: 120
+      connect_timeout: 60
+      sampling:
+        enabled: false

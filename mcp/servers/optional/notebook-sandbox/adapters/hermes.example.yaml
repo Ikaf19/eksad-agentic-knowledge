@@ -1,0 +1,13 @@
+# Example only. Do not paste real secrets here.
+tools:
+  mcp_servers:
+    notebook_sandbox:
+      command: /opt/eksad-mcp/bin/notebook-sandbox
+      args: []
+      env:
+        NOTEBOOK_SANDBOX_ROOT: ${NOTEBOOK_SANDBOX_ROOT}
+        NOTEBOOK_SANDBOX_KERNEL: ${NOTEBOOK_SANDBOX_KERNEL}
+      timeout: 120
+      connect_timeout: 60
+      sampling:
+        enabled: false

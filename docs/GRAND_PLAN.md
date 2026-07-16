@@ -1,9 +1,9 @@
 # Grand Plan — EKSAD Agentic Knowledge Initial Repository
 
-**Status:** ✅ APPROVED 2026-07-13 — user requested initial commit to `Ikaf19/eksad-agentic-knowledge` on branch `feat/initial-commit`  
-**Workspace:** `/workspace`  
-**Target repository:** `https://github.com/Ikaf19/eksad-agentic-knowledge`  
-**Target branch:** `feat/initial-commit`  
+**Status:** ✅ APPROVED 2026-07-13 — user requested initial commit to `Ikaf19/eksad-agentic-knowledge` on branch `feat/initial-commit`
+**Workspace:** `/workspace`
+**Target repository:** `https://github.com/Ikaf19/eksad-agentic-knowledge`
+**Target branch:** `feat/initial-commit`
 **Runtime mutation policy:** Git-only source commit; do not install/configure runtime MCP, do not modify live Hermes profile/config unless separately approved.
 
 ---
@@ -400,3 +400,21 @@ Scope:
 - Read-only validator/renderer: `llm-gateway/scripts/validate-llm-gateway-config.py` and `llm-gateway/scripts/render-litellm-config.py`.
 
 Runtime apply remains a separate explicit approval gate. No provider API key, LiteLLM master key, live gateway config, billing export, raw prompt/response log, or runtime database is committed.
+
+
+## Role Expansion Pack Implementation Update
+
+Phase E expands canonical EKSAD role coverage from 9 active role profiles to 13 by adding Data Analyst, Data Scientist, UI/UX Designer, and Content Creator.
+
+Scope:
+
+- Portable role cards under `portable/roles/` for `data-analyst`, `data-scientist`, `ui-ux-designer`, and `content-creator`.
+- Runtime-neutral workflow contracts under `portable/workflows/`: data analysis, data science, UI/UX, and content creation.
+- Deliverable contracts under `portable/deliverables/`: data analysis report, dashboard spec, ML experiment report, UX research report, wireframe handoff, content brief, and content calendar.
+- Boundary and approval-gate updates under `portable/policies/`.
+- MCP/RAG/LLM role matrix expansion plus LLM alias manifest role defaults for the new roles.
+- Hermes role system instructions and SKILL.md templates under `agent-adapters/hermes/`.
+- Read-only validator: `scripts/validate-role-coverage.py`.
+- Boundary eval fixtures: `eval/roles/role-expansion-tests.json`.
+
+Runtime apply remains a separate explicit approval gate. No live Hermes profile sync, MCP activation, data connector credential, design-tool credential, notebook runtime, CMS credential, provider key, or production publishing/deployment action is committed.

@@ -12,12 +12,21 @@
 
 ## Role escalation
 
-- `general-coordinator` starts with `eksad.fast`, escalates to `eksad.default` or `eksad.reasoning` when routing is ambiguous.
-- BA/SA/TL use `eksad.reasoning` for readiness/design/review gates.
+- `general-coordinator` starts with `eksad.fast`, uses `eksad.default` for structured planning, and escalates to `eksad.reasoning` when routing or ownership is ambiguous.
+- BA uses `eksad.default` for drafting and `eksad.reasoning` for readiness gates or difficult requirement trade-offs.
+- SA and TL use `eksad.reasoning` for TSD, architecture, API/data/event contracts, and review gates.
 - Developer roles use `eksad.default` for implementation support and `eksad.reasoning` for architecture/debugging review.
 - QA uses `eksad.default` for test authoring and `eksad.long_context` for large evidence/RTM review.
+- Data Analyst uses `eksad.default` for analysis/reporting and escalates to `eksad.reasoning` for metric ambiguity, causality, or data-quality risk.
+- Data Scientist uses `eksad.reasoning` for experiment/model design and `eksad.long_context` for large experiment/evidence packages.
+- UI/UX Designer uses `eksad.default` for design workflow and `eksad.visual_input` only when interpreting screenshots, wireframes, diagrams, or design exports.
+- Content Creator uses `eksad.default` for source-grounded content and `eksad.guardrail` for publication/sensitivity checks.
 - DevOps uses `eksad.guardrail` for risky action classification and must keep production writes approval-gated.
+
+## Visual input rule
+
+`eksad.visual_input` is a task capability, not a role identity. Do not set visual aliases as `primary` for any role. `eksad.vision` remains a compatibility alias for older runtimes and should be migrated to `eksad.visual_input` in new docs/defaults.
 
 ## Non-routing rule
 
-Routing cannot override approval gates. A powerful model cannot approve its own deployment, merge, production change, data export, or security exception.
+Routing cannot override approval gates. A powerful model cannot approve its own deployment, merge, production change, data export, publication, or security exception.

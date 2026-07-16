@@ -1,7 +1,7 @@
 {
   "id": "project-specific-example",
   "version": "1.0.0",
-  "description": "Template for future project/customer-specific RAG corpus activation. Not indexed by default.",
+  "description": "Umbrella template for future project/customer-specific RAG corpus activation. Prefer split templates for specs, data evidence, design assets, and release/content evidence. Not indexed by default.",
   "status": "example",
   "source_layer": "project-specific",
   "indexable": false,
@@ -17,11 +17,19 @@
   ],
   "default_chunk_profile": "project-deliverable",
   "allowed_roles": [
+    "general-coordinator",
     "business-analyst",
     "system-analyst",
     "technical-leader",
+    "developer-backend",
+    "developer-frontend",
     "qa-engineer",
-    "project-manager"
+    "project-manager",
+    "devops-engineer",
+    "data-analyst",
+    "data-scientist",
+    "ui-ux-designer",
+    "content-creator"
   ],
   "citation_required": true,
   "freshness": {
@@ -35,7 +43,8 @@
     "requires": [
       "project approval",
       "scope definition",
-      "sensitivity review"
+      "sensitivity review",
+      "role access matrix approval"
     ]
   }
 }

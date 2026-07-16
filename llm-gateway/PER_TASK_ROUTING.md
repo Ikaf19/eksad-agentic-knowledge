@@ -11,8 +11,12 @@
 | Code explanation/refactor plan | `eksad.default` | `eksad.reasoning` | Code execution/tool usage remains separate. |
 | Root-cause debugging | `eksad.reasoning` | `eksad.default` | Follow systematic debugging skill when applicable. |
 | QA test plan / RTM | `eksad.default` | `eksad.long_context` | Use cited requirements/evidence. |
-| Security/tool-risk classification | `eksad.guardrail` | `eksad.reasoning` | Advisory only; human gate still applies. |
-| Screenshot/diagram reading | `eksad.vision` | ask user for text | Only if data classification allows. |
+| Data quality / dashboard analysis | `eksad.default` | `eksad.reasoning` | Cite data source and limitations. |
+| ML experiment design/evaluation | `eksad.reasoning` | `eksad.long_context` | Include assumptions, metrics, risks, and rollback criteria. |
+| UX/design workflow | `eksad.default` | `eksad.reasoning` | Design ownership remains UI/UX, not model alias identity. |
+| Source-grounded content drafting | `eksad.default` | `eksad.fast` | Use approved sources and cite internal artifacts where required. |
+| Security/tool/data/publication-risk classification | `eksad.guardrail` | `eksad.reasoning` | Advisory only; human gate still applies. |
+| Screenshot/diagram/chart/wireframe reading | `eksad.visual_input` | `eksad.default` or ask user for text | Only if data classification allows. `eksad.vision` is legacy compatibility. |
 | RAG indexing/query embeddings | `eksad.embedding` | runtime operator decision | Service-only alias. |
 | RAG reranking | `eksad.reranker` | no rerank / lexical fallback | Service-only alias. |
 

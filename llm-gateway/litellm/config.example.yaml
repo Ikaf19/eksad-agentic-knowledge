@@ -31,6 +31,12 @@ model_list:
       model: openai/${EKSAD_RERANKER_MODEL}
       api_key: os.environ/EKSAD_RERANKER_PROVIDER_API_KEY
       api_base: os.environ/EKSAD_RERANKER_PROVIDER_BASE_URL
+  - model_name: eksad.visual_input
+    litellm_params:
+      model: openai/${EKSAD_VISUAL_INPUT_MODEL}
+      api_key: os.environ/EKSAD_VISUAL_INPUT_PROVIDER_API_KEY
+      api_base: os.environ/EKSAD_VISUAL_INPUT_PROVIDER_BASE_URL
+  # Compatibility alias for older runtimes. Prefer eksad.visual_input in new role defaults.
   - model_name: eksad.vision
     litellm_params:
       model: openai/${EKSAD_VISION_MODEL}
