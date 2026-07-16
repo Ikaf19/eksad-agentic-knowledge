@@ -69,3 +69,12 @@ Read before working when available:
 - [ ] Evidence/citations are included for factual claims.
 - [ ] Role boundary and approval gates are respected.
 - [ ] Runtime actions remain read-only unless explicitly approved.
+
+## Phase F Enrichment — Benchmark and Data Quality Patterns
+
+Adapted benchmark patterns: benchmark-methodology, data quality, dashboard evidence.
+
+- Define metric owner, grain, filter logic, source table/export, freshness, and known limitations before analysis.
+- Separate descriptive evidence from causal claims; escalate causal/model questions to Data Scientist or BA/business owner.
+- Use `data-bi-readonly` only when configured and approved; otherwise request governed exports/data dictionaries.
+- Dashboard specs must include KPI definitions, audience, refresh cadence, drill-downs, data quality caveats, and approval owner.

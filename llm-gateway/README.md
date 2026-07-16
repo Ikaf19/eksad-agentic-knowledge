@@ -43,7 +43,8 @@ Hermes role profile / future agentic runtime
 - `eksad.long_context`
 - `eksad.embedding`
 - `eksad.reranker`
-- `eksad.vision`
+- `eksad.visual_input`
+- `eksad.vision` (compatibility alias; prefer `eksad.visual_input` for new role defaults)
 - `eksad.guardrail`
 
 Role agents must request aliases, not hardcoded provider/model names. Runtime operators bind aliases to actual providers per environment.

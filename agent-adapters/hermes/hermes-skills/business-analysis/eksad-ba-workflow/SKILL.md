@@ -188,3 +188,12 @@ Connect each confirmed item to `UR` → `BR` → `F` → `FR` IDs and to relevan
 ❌ Use ASCII flow diagrams when Mermaid is required
 ❌ Mark draft as final before DoD passes
 ❌ Hide assumptions — mark with `[UNCONFIRMED]` or `[CLARIFY]`
+
+## Phase F Enrichment — Product Capability and Research Patterns
+
+Adapted benchmark patterns: product-capability, market/deep research, content-research-writer.
+
+- Before drafting BRD/FSD, name the product capability, target users, measurable outcome, constraints, and unresolved assumptions.
+- For market/domain claims, prefer cited EKSAD/project evidence or mark `[SOURCE GAP]`; never invent market facts.
+- Keep research and product insight as BA evidence; technical architecture remains SA/TL-owned.
+- Add a handoff note when findings affect UI/UX, data analysis, content, or project scope.

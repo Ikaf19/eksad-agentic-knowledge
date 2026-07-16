@@ -15,4 +15,7 @@ This catalog lists candidate MCP server implementations. Inclusion here is not a
 | RabbitMQ/Kafka read-only | Event topology | P2 | Off | Add when event topology evidence is needed. |
 | MongoDB read-only | Audit evidence | P2 | Off | Avoid sensitive data dumps. |
 | Figma read-only | Design context | P2 | Off | Add only if Figma is source. |
+| Data/BI read-only | Data/BI artifacts | P2 | Off | Approved exports, dashboards, metadata, and data dictionaries only. |
+| Notebook sandbox | Reproducible analysis sandbox | P2 | Off | Isolated workspace; no production data or secrets by default. |
+| Content draft | Draft-only content repository | P2 | Off | Draft artifacts only; publication remains approval-gated. |
 | Observability read-only | Operational evidence | P2/Pn | Off | Logs/metrics/traces evidence only. |

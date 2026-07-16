@@ -329,3 +329,12 @@ git push
 ❌ TypeScript `enum` for status (use string-literal union)
 ❌ Custom modal markup (use `AppModal` or `AlertDialog`)
 ❌ Manual `<table>` markup (use `<DataTable>`)
+
+## Phase F Enrichment — Frontend/UI Evidence Patterns
+
+Adapted benchmark patterns: frontend-patterns, React best practices, web-design-guidelines.
+
+- Validate React/TS changes against FE-TSD, API contract, accessibility states, error/empty/loading states, and existing component library usage.
+- Use `visual_input`/Figma/browser evidence only as input; UI/UX owns design intent and QA owns test verdicts.
+- Avoid mock-only implementations when the approved contract exists; use real apiClient integration boundaries.
+- Include performance/accessibility risks in handoff notes when they affect UX or QA acceptance.

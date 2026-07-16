@@ -15,6 +15,11 @@
       "id": "guardrail-enabled",
       "alias": "eksad.guardrail",
       "expected_default_enabled": true
+    },
+    {
+      "id": "visual-input-disabled-by-default",
+      "alias": "eksad.visual_input",
+      "expected_default_enabled": false
     }
   ]
 }

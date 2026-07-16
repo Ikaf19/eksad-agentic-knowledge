@@ -551,3 +551,12 @@ git push
 ❌ Use business jargon in service names
 ❌ Rename fixed-name services (`svc-master-data`, etc.)
 ❌ Provide full method body implementations in TSD (signatures only)
+
+## Phase F Enrichment — API/MCP/Contract Design Patterns
+
+Adapted benchmark patterns: API design, MCP server patterns, documentation lookup.
+
+- Validate API resources, status codes, pagination/filtering, error shape, tenancy, reserved fields, and backward compatibility.
+- Treat MCP/RAG/LLM references as desired-state contracts unless runtime activation is explicitly approved.
+- For external/library behavior, prefer current docs/evidence; if unavailable, mark `[DOC GAP]` instead of relying on memory.
+- Escalate to TL/AppSec when a design changes trust boundaries, production data exposure, or approval gates.

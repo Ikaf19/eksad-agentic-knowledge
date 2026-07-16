@@ -219,3 +219,12 @@ When reviewing, **always explain the why**:
 ❌ Treating a waiver, unavailable evidence, or unreviewed scope as pass
 ❌ Personal attacks on developer style
 ❌ Accepting "the system works" as evidence of compliance
+
+## Phase F Enrichment — Verification Loop and Eval Harness Patterns
+
+Adapted benchmark patterns: verification-loop, eval-harness, security-review.
+
+- Review in two passes: spec compliance first, code/security/maintainability second.
+- Require evidence for claims: diff/path, test output, CI/static analysis, or documented gap.
+- Classify findings by severity and confidence; separate blocking issues from recommendations.
+- Add eval/regression suggestions when recurring defects or role-boundary failures are detected.

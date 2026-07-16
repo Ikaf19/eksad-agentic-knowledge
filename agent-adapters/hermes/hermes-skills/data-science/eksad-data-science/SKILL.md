@@ -68,3 +68,12 @@ Read before working when available:
 - [ ] Evidence/citations are included for factual claims.
 - [ ] Role boundary and approval gates are respected.
 - [ ] Runtime actions remain read-only unless explicitly approved.
+
+## Phase F Enrichment — MLE and Evaluation Patterns
+
+Adapted benchmark patterns: MLE workflow, benchmark-methodology, eval-harness.
+
+- Frame problem type, baseline, success metric, validation split, leakage risk, fairness/privacy concerns, and rollback criteria before experiment design.
+- Use notebook sandbox only when explicitly configured and approved; otherwise provide reproducible pseudo-steps and data requirements.
+- Model evaluation evidence is not production approval; hand off productionization to SA/TL/DevOps/business authority.
+- Record assumptions, dataset cut-off, metric confidence, and failure modes in every ML experiment report.

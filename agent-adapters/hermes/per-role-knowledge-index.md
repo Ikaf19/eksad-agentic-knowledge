@@ -10,6 +10,8 @@
 
 **Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile.
 
+**Portable collaboration source:** `portable/roles/role-collaboration-matrix.md` defines consumes/produces/reviews/approves/escalates boundaries. Hermes adapter files must reference it rather than becoming a separate source of truth.
+
 ---
 
 ## 🔵 Business Analyst (`business-analyst`)
@@ -221,7 +223,7 @@
 ## ⚪ General Coordinator (`eksad-general`)
 
 **Profile SOUL.md:** `~/.hermes/profiles/eksad-general/SOUL.md` (141 lines)
-**Custom skills:** `~/.hermes/skills/productivity/stage-gated-orchestrator/` for visible cross-role pipelines and `~/.hermes/skills/productivity/eksad-create-project/` for project bootstrap; route specialist work to the corresponding profile/skill below
+**Custom skills:** `~/.hermes/skills/orchestration/eksad-general-coordination/` for intake/routing/handoff governance, `~/.hermes/skills/productivity/stage-gated-orchestrator/` for visible cross-role pipelines, and `~/.hermes/skills/productivity/eksad-create-project/` for project bootstrap; route specialist work to the corresponding profile/skill below
 **Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/general.md`
 
 **Primary job:** Cross-role intake, routing, dependency sequencing, handoff tracking, management overview, and attributable synthesis. The profile does not author or approve specialist-owned artifacts.

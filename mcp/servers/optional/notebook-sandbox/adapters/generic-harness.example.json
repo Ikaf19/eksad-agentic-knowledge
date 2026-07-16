@@ -1,0 +1,12 @@
+{
+  "server": "notebook-sandbox",
+  "capabilities": [
+    "notebook-sandbox"
+  ],
+  "default_enabled": false,
+  "requires_explicit_runtime_binding": true,
+  "env": [
+    "NOTEBOOK_SANDBOX_ROOT",
+    "NOTEBOOK_SANDBOX_KERNEL"
+  ]
+}

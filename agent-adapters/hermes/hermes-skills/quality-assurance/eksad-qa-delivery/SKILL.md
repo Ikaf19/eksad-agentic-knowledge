@@ -239,3 +239,12 @@ Stop and report a blocker when:
 - [ ] QA verdict is explicitly distinct from DevOps release readiness
 - [ ] No build/runtime/test execution occurred on this VPS
 - [ ] No commit or push unless explicitly authorized
+
+## Phase F Enrichment — E2E and Evidence Verification Patterns
+
+Adapted benchmark patterns: e2e-testing, browser automation, verification-loop.
+
+- Derive test cases from approved FSD/TSD/API/UI evidence and explicitly mark gaps.
+- Separate Mode A test design from Mode B automation handoff; do not write/own implementation code in Mode A.
+- Include happy path, negative path, boundary, role/permission, tenant isolation, audit/soft-delete, and regression coverage.
+- For flaky or tool-derived evidence, record environment, source, timestamp/cut-off, and confidence.

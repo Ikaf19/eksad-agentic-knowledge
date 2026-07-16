@@ -15,7 +15,7 @@ Portable docs may reference EKSAD standards and templates, but must avoid Hermes
 
 | Path | Purpose |
 |---|---|
-| `roles/` | Canonical role cards and ownership boundaries. |
+| `roles/` | Canonical role cards, ownership boundaries, and `role-collaboration-matrix.md`. |
 | `workflows/` | Runtime-neutral workflow contracts. |
 | `deliverables/` | Deliverable contracts and matrix. |
 | `policies/` | Role, approval, security, MCP, RAG, and LLM gateway policies. |

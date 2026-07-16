@@ -69,3 +69,12 @@ Read before working when available:
 - [ ] Evidence/citations are included for factual claims.
 - [ ] Role boundary and approval gates are respected.
 - [ ] Runtime actions remain read-only unless explicitly approved.
+
+## Phase F Enrichment — Brand Voice and Source-Grounded Content Patterns
+
+Adapted benchmark patterns: article-writing, brand-voice, content-engine, SEO/release-note governance.
+
+- Build tone/voice from approved source samples; do not invent brand/legal/product claims.
+- Separate source facts, draft copy, publication assumptions, and approval owner.
+- Use content draft MCP only for draft repositories if configured and approved; never publish externally without approval.
+- For release notes/user guides/training content, cross-check BA/FSD, QA evidence, DevOps release evidence, and PM publication gate.

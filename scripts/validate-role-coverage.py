@@ -9,7 +9,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 CANONICAL_ROLES = {
-    "general-coordinator": {"display": "General Coordinator", "skill": None, "si_file": "general.md"},
+    "general-coordinator": {"display": "General Coordinator", "skill": "eksad-general-coordination", "si_file": "general.md"},
     "business-analyst": {"display": "Business Analyst", "skill": "eksad-ba-workflow"},
     "system-analyst": {"display": "System Analyst", "skill": "eksad-tsd-design"},
     "technical-leader": {"display": "Technical Leader", "skill": "eksad-code-review"},
@@ -33,6 +33,8 @@ MATRIX_FILES = [
     "portable/deliverables/deliverable-matrix.md",
     "portable/policies/role-boundaries.md",
     "agent-adapters/hermes/per-role-knowledge-index.md",
+    "agent-adapters/hermes/rag/role-usage-matrix.md",
+    "portable/roles/role-collaboration-matrix.md",
 ]
 
 
@@ -56,6 +58,9 @@ def main() -> int:
             skill_hits = list((ROOT / "agent-adapters/hermes/hermes-skills").rglob(f"{skill}/SKILL.md"))
             if not skill_hits:
                 errors.append(f"missing Hermes skill for role {slug}: {skill}")
+        mcp_profile = ROOT / "mcp" / "profiles" / f"{slug}.md"
+        if not mcp_profile.is_file():
+            errors.append(f"missing MCP profile for role {slug}: {mcp_profile.relative_to(ROOT)}")
         for rel in MATRIX_FILES:
             body = read(rel)
             if slug not in body and meta["display"] not in body:

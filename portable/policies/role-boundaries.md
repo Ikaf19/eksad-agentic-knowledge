@@ -20,6 +20,9 @@ Each EKSAD role owns specific decisions and deliverables. Tool access, MCP acces
 ## Escalation
 
 When a task crosses role boundaries, produce a handoff note rather than silently taking ownership. A handoff note should include requested output, source artifacts, evidence cut-off, owner, approval/gate state, and unresolved gaps.
+
+Detailed artifact collaboration and handoff rules live in `portable/roles/role-collaboration-matrix.md`.
+
 ## Canonical roles covered
 
 `general-coordinator`, `business-analyst`, `system-analyst`, `technical-leader`, `developer-backend`, `developer-frontend`, `qa-engineer`, `project-manager`, `devops-engineer`, `data-analyst`, `data-scientist`, `ui-ux-designer`, `content-creator`.

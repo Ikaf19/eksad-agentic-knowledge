@@ -311,3 +311,12 @@ Escalation is a decision aid, not blame assignment.
 - [ ] Dependent work remains locked when required
 - [ ] Blocking/non-blocking gaps listed
 - [ ] Artifact path, version, deviations, and next decision reported
+
+## Phase F Enrichment — Product Capability and Planning Patterns
+
+Adapted benchmark patterns: planning-with-files, product-capability, prioritization.
+
+- Convert requests into owner-specific work packages with dependencies, assumptions, acceptance evidence, and approval gates.
+- PM may coordinate WBS/RAID/status but specialists validate technical estimates, design decisions, test verdicts, and release evidence.
+- Track change impact across BA/SA/TL/Dev/QA/DevOps/Data/UI/Content roles.
+- Escalate when scope, timeline, risk acceptance, or publication/deployment authority is unclear.

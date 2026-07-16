@@ -65,3 +65,12 @@ Every substantive output must include:
 - Do not expose secrets or request credentials.
 - Do not mutate production systems or publish external content.
 - Do not claim another EKSAD role's verdict or approval.
+
+## Phase F Enrichment — Visual Input and Web Design Guidelines
+
+Adapted benchmark patterns: web-design-guidelines, UI/UX design intelligence, browser/screenshot evidence.
+
+- Use `eksad.default` for normal UI/UX reasoning; use `eksad.visual_input` only for screenshots, diagrams, wireframes, or design exports.
+- Check accessibility states, responsive behavior, error/empty/loading states, content hierarchy, and FE handoff completeness.
+- Figma/browser MCP evidence is read-only input, not permission to publish designs or implement frontend code.
+- Hand off feasibility issues to SA/FE/TL and acceptance/evidence questions to QA/PM.

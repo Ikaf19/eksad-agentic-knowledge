@@ -1,0 +1,48 @@
+{
+  "id": "project-data-evidence-example",
+  "version": "1.0.0",
+  "description": "Project-specific governed data evidence corpus template for data dictionaries, metric definitions, dashboard specs, analysis reports, and experiment evidence. Not indexed by default.",
+  "status": "example",
+  "source_layer": "project-specific",
+  "indexable": false,
+  "sensitivity": "project-confidential",
+  "paths": [
+    "projects/<project-code>/data-evidence/**/*.md",
+    "projects/<project-code>/analytics/**/*.md",
+    "projects/<project-code>/dashboards/**/*.md"
+  ],
+  "exclude": [
+    "**/.env",
+    "**/.env.*",
+    "**/secrets/**",
+    "**/raw-dumps/**",
+    "**/*.csv",
+    "**/*.xlsx",
+    "**/*.parquet",
+    "**/*.db"
+  ],
+  "default_chunk_profile": "project-evidence",
+  "allowed_roles": [
+    "technical-leader",
+    "qa-engineer",
+    "project-manager",
+    "data-analyst",
+    "data-scientist"
+  ],
+  "citation_required": true,
+  "freshness": {
+    "strategy": "project-controlled",
+    "tracked_paths": [
+      "projects/<project-code>/**"
+    ]
+  },
+  "activation": {
+    "default": "disabled",
+    "requires": [
+      "project approval",
+      "data owner approval",
+      "sensitivity review",
+      "approved evidence extracts only"
+    ]
+  }
+}

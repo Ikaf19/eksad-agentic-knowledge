@@ -245,3 +245,12 @@ No `--no-gates`, auto-approval, self-approval, proxy approval, inferred approval
 - [ ] `deployed_not_verified` used until checks pass
 - [ ] Waivers remain distinct, scoped, authorized, and time-bound
 - [ ] Final report lists blockers, owners, due dates, and next authority
+
+## Phase F Enrichment — Runtime Evidence and MCP Server Patterns
+
+Adapted benchmark patterns: MCP server patterns, security-review, verification-loop.
+
+- Treat CI/CD, observability, security scan, and runtime config as evidence-driven and approval-gated.
+- Desired-state docs in Git are not live runtime activation; applying MCP, LiteLLM, RAG, or deployment config requires explicit approval.
+- Use least-privilege, read-only evidence by default and never store secrets in repo/chat.
+- Include rollback, environment, artifact immutability, and operational readiness checks in release handoffs.

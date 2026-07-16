@@ -1,0 +1,51 @@
+{
+  "id": "project-specs-example",
+  "version": "1.0.0",
+  "description": "Project-specific specification corpus template for BRD/FSD/TSD/FE-TSD/ADR/test planning artifacts. Not indexed by default.",
+  "status": "example",
+  "source_layer": "project-specific",
+  "indexable": false,
+  "sensitivity": "project-confidential",
+  "paths": [
+    "projects/<project-code>/{BRD,FSD,TSD,FE-TSD,ADR,testplans}/**/*.md",
+    "projects/<project-code>/**/*.md"
+  ],
+  "exclude": [
+    "**/.env",
+    "**/.env.*",
+    "**/secrets/**",
+    "**/raw-dumps/**",
+    "**/data/**",
+    "**/design-assets/**"
+  ],
+  "default_chunk_profile": "project-deliverable",
+  "allowed_roles": [
+    "business-analyst",
+    "system-analyst",
+    "technical-leader",
+    "developer-backend",
+    "developer-frontend",
+    "qa-engineer",
+    "project-manager",
+    "devops-engineer",
+    "data-analyst",
+    "data-scientist",
+    "ui-ux-designer",
+    "content-creator"
+  ],
+  "citation_required": true,
+  "freshness": {
+    "strategy": "project-controlled",
+    "tracked_paths": [
+      "projects/<project-code>/**"
+    ]
+  },
+  "activation": {
+    "default": "disabled",
+    "requires": [
+      "project approval",
+      "spec scope definition",
+      "sensitivity review"
+    ]
+  }
+}

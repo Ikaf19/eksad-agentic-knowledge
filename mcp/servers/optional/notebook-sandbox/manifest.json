@@ -1,0 +1,74 @@
+{
+  "id": "notebook-sandbox",
+  "display_name": "Notebook Sandbox MCP",
+  "priority": "P2",
+  "status": "optional",
+  "capabilities": [
+    "notebook-sandbox"
+  ],
+  "default_enabled": false,
+  "risk": "high",
+  "roles": {
+    "allowed": [
+      "data-scientist"
+    ],
+    "optional": [
+      "data-analyst"
+    ],
+    "forbidden": [
+      "general-coordinator",
+      "business-analyst",
+      "system-analyst",
+      "technical-leader",
+      "developer-backend",
+      "developer-frontend",
+      "qa-engineer",
+      "project-manager",
+      "devops-engineer",
+      "ui-ux-designer",
+      "content-creator"
+    ]
+  },
+  "runtime": {
+    "transport": "stdio",
+    "implementation": "external-or-adapter-specific",
+    "source_url": "TBD approved isolated notebook sandbox MCP implementation",
+    "install_location": "/opt/eksad-mcp/bin/notebook-sandbox"
+  },
+  "env_contract": [
+    {
+      "name": "NOTEBOOK_SANDBOX_ROOT",
+      "required": true,
+      "secret": false,
+      "description": "Approved isolated workspace for reproducible notebooks."
+    },
+    {
+      "name": "NOTEBOOK_SANDBOX_KERNEL",
+      "required": false,
+      "secret": false,
+      "description": "Allowed runtime/kernel profile name."
+    }
+  ],
+  "hermes_config": {
+    "server_name": "notebook_sandbox",
+    "command": "/opt/eksad-mcp/bin/notebook-sandbox",
+    "args": [],
+    "env": {
+      "NOTEBOOK_SANDBOX_ROOT": "${NOTEBOOK_SANDBOX_ROOT}",
+      "NOTEBOOK_SANDBOX_KERNEL": "${NOTEBOOK_SANDBOX_KERNEL}"
+    },
+    "timeout": 120,
+    "connect_timeout": 60,
+    "sampling": {
+      "enabled": false
+    }
+  },
+  "generic_harness": {
+    "capability_contract": [
+      "notebook-sandbox"
+    ],
+    "requires_explicit_runtime_binding": true,
+    "fallback_required": true
+  },
+  "notes": "Use only in isolated, non-production workspaces with approved data. No network or secret access by default."
+}

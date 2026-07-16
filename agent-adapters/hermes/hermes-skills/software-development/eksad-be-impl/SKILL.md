@@ -291,3 +291,12 @@ Use `TBD — Owner: <role/person> — Due: <date or explicit TBD>` for unresolve
 - [ ] Maven/Gradle/npm and runtime execution reported `NOT RUN`
 - [ ] External CI handoff and blockers are explicit
 - [ ] No commit or push unless explicitly authorized
+
+## Phase F Enrichment — Backend Patterns and TDD Workflow
+
+Adapted benchmark patterns: backend-patterns, API design, tdd-workflow.
+
+- Start from approved FSD/TSD only; if design is missing, hand off to BA/SA instead of inventing contracts.
+- Preserve EKSAD backend invariants: tenant isolation, soft delete, audit trail, reserved fields, DTO/mapping boundaries, and CrudFlows/BaseRepository conventions.
+- Prefer test-first implementation notes for every behavioral change; when tests cannot run in this workspace, document the exact CI/local command and expected evidence.
+- Use API design guardrails for resource names, status codes, errors, pagination, and versioning.

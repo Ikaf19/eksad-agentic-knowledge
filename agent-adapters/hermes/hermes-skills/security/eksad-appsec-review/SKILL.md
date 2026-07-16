@@ -151,3 +151,11 @@ Do not collapse these into one green/red result. A complete threat model can des
 ## Output
 
 Return scope/evidence, threat-model reference, verdict dimensions, findings grouped by existing EKSAD severity, investigation items, suppressed candidates if material, residual risks/authority state, and retest actions. Never claim safety for unreviewed scope.
+
+## Phase F Enrichment — Security Review Pattern
+
+Adapted benchmark patterns: security-review and verification-loop.
+
+- Trigger on authn/authz, tenant isolation, sensitive data, input validation, secrets, external integrations, file upload, model/data export, and production-change risks.
+- Separate threat, evidence, exploitability, impact, mitigation, residual risk owner, and waiver/approval state.
+- AppSec review provides risk findings and recommendations; only named risk authority accepts residual risk.

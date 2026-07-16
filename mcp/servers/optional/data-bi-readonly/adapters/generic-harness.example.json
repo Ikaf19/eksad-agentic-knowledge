@@ -1,0 +1,12 @@
+{
+  "server": "data-bi-readonly",
+  "capabilities": [
+    "data-bi-artifact-read-only"
+  ],
+  "default_enabled": false,
+  "requires_explicit_runtime_binding": true,
+  "env": [
+    "DATA_BI_READONLY_ROOT",
+    "DATA_BI_READONLY_TOKEN"
+  ]
+}
