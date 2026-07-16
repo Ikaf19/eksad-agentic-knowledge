@@ -418,3 +418,13 @@ Scope:
 - Boundary eval fixtures: `eval/roles/role-expansion-tests.json`.
 
 Runtime apply remains a separate explicit approval gate. No live Hermes profile sync, MCP activation, data connector credential, design-tool credential, notebook runtime, CMS credential, provider key, or production publishing/deployment action is committed.
+
+## Future Alignment Backlog — Web Portal Control Plane
+
+The Web Portal / Admin Control Panel / Landing Page work is parked as a **future alignment plan**, not reserved as the next numbered phase. This keeps the active phase queue flexible for other harness improvements before portal implementation.
+
+Canonical future plan:
+
+- `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md`
+
+The plan covers Web Portal alignment with Keycloak OIDC, Hermes role-agent runtime, RAG, LiteLLM virtual keys, model routing, budget/rate-limit enforcement, approval gates, audit trail, and observability. It is Git desired-state planning only; no Web Portal deployment, Keycloak mutation, LiteLLM key creation, provider-key storage, or live runtime activation is approved by the existence of this plan.
