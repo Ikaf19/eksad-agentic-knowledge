@@ -1,10 +1,25 @@
 # Grand Plan — EKSAD Agentic Knowledge Initial Repository
 
-**Status:** ✅ APPROVED 2026-07-13 — user requested initial commit to `Ikaf19/eksad-agentic-knowledge` on branch `feat/initial-commit`
+**Status:** Historical grand plan / bootstrap execution log. The initial plan has been superseded by the current roadmap and phase history.
+**Current canonical navigation:** `docs/ROADMAP.md`, `docs/PHASE_HISTORY.md`, `docs/NEXT_PHASE_CANDIDATES.md`
 **Workspace:** `/workspace`
 **Target repository:** `https://github.com/Ikaf19/eksad-agentic-knowledge`
-**Target branch:** `feat/initial-commit`
-**Runtime mutation policy:** Git-only source commit; do not install/configure runtime MCP, do not modify live Hermes profile/config unless separately approved.
+**Original target branch:** `feat/initial-commit`
+**Current mainline baseline:** 13-role agentic knowledge source-of-truth with MCP, RAG, LLM Gateway, role expansion, and matrix/skill hardening merged to `origin/main`.
+**Runtime mutation policy:** Git-only source-of-truth updates; do not install/configure runtime MCP, RAG, LiteLLM, Keycloak, Web Portal, or live Hermes profiles unless separately approved.
+
+---
+
+## Current status note
+
+This document preserves the original bootstrap plan and dated execution updates. For active navigation and next-phase planning, use:
+
+- `docs/ROADMAP.md` — current baseline and roadmap.
+- `docs/PHASE_HISTORY.md` — historical phase/merge record.
+- `docs/NEXT_PHASE_CANDIDATES.md` — selectable next active phases.
+- `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md` — parked future Web Portal plan.
+
+Historical mentions of `feat/initial-commit`, early credential blockers, or 9-role MCP assumptions are retained for audit context and are not current operational status.
 
 ---
 

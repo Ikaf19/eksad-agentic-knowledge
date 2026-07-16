@@ -41,7 +41,7 @@ Level 3 — Local runtime state, never committed
 
 - Canonical EKSAD knowledge source for agentic delivery.
 - Agent-agnostic role, workflow, deliverable, policy, MCP, RAG, and LLM gateway governance layer.
-- Phase E canonical role expansion to 13 role profiles, including Data Analyst, Data Scientist, UI/UX Designer, and Content Creator.
+- Canonical role baseline with 13 role profiles, including Data Analyst, Data Scientist, UI/UX Designer, and Content Creator.
 - RAG API/MCP desired-state contracts for future Milvus/Ollama/MinIO-backed retrieval.
 - LLM Gateway desired-state contracts for LiteLLM/OpenAI-compatible model routing.
 - Runtime adapter source for Hermes.
@@ -54,13 +54,17 @@ Level 3 — Local runtime state, never committed
 - Not a build machine or application source repository.
 - Not a project-specific TIA/USED-CAR deliverable repository unless explicitly activated later.
 
-## Initial scope
+## Current navigation
 
-The initial commit imports the EKSAD GPT pack and Hermes adapter artifacts from the prior brainstorming/source repository, while adding a portable layer and MCP grand plan.
+Use the roadmap docs below as the current source-of-truth navigation. Historical bootstrap details remain in `docs/GRAND_PLAN.md`, but the current baseline is summarized in `docs/ROADMAP.md`.
 
 See:
 
-- `docs/GRAND_PLAN.md`
+- `docs/ROADMAP.md` — current canonical roadmap and baseline status
+- `docs/PHASE_HISTORY.md` — historical phase/merge record
+- `docs/NEXT_PHASE_CANDIDATES.md` — candidate next active phases
+- `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md` — parked Web Portal future alignment plan
+- `docs/GRAND_PLAN.md` — historical initial grand plan and execution log
 - `docs/SOURCE_MIGRATION.md`
 - `docs/USAGE_MODES.md`
 - `portable/README.md`
@@ -103,7 +107,7 @@ Top-level RAG desired-state catalog, corpus manifests, retrieval/citation policy
 Top-level LLM Gateway desired-state catalog, stable EKSAD model aliases, LiteLLM reference examples, OpenAI-compatible adapter guidance, budget/routing/guardrail policy, and validators: `llm-gateway/README.md`.
 
 
-## Phase E role expansion
+## Current role baseline
 
 Canonical role coverage now includes 13 role profiles:
 
@@ -114,4 +118,12 @@ devops-engineer, data-analyst, data-scientist, ui-ux-designer,
 content-creator
 ```
 
-Phase E adds portable role cards, workflows, deliverables, Hermes role system instructions, Hermes SKILL.md templates, and MCP/RAG/LLM matrix coverage for Data Analyst, Data Scientist, UI/UX Designer, and Content Creator.
+The role expansion adds portable role cards, workflows, deliverables, Hermes role system instructions, Hermes SKILL.md templates, and MCP/RAG/LLM matrix coverage for Data Analyst, Data Scientist, UI/UX Designer, and Content Creator. Phase F further hardens routing, skill enrichment, collaboration, RAG/MCP/LLM matrices, and validators.
+
+## Future Alignment
+
+Web Portal / Admin Control Panel / Landing Page work is parked as a future alignment plan, not as the next reserved phase:
+
+- `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md`
+
+Start it only after explicit selection of `NEXT-06` / `WPC-01`; the plan itself does not approve runtime deployment, Keycloak mutation, LiteLLM key creation, provider-key storage, or live runtime activation.
