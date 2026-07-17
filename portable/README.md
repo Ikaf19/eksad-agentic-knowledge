@@ -22,6 +22,7 @@ Portable docs may reference EKSAD standards and templates, but must avoid Hermes
 | `mcp/` | MCP capability catalog, server catalog, role matrix, environment/migration contracts. |
 | `rag/` | Runtime-neutral corpus matrix, retrieval workflow, and RAG API/MCP policy. |
 | `llm-gateway/` | Runtime-neutral model alias, role matrix, and routing policy. |
+| `portal/` | Runtime-neutral Web Portal delivery profile and external work item link contracts. |
 
 ## Rule
 

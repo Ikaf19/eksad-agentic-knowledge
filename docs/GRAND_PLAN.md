@@ -1,10 +1,25 @@
 # Grand Plan — EKSAD Agentic Knowledge Initial Repository
 
-**Status:** ✅ APPROVED 2026-07-13 — user requested initial commit to `Ikaf19/eksad-agentic-knowledge` on branch `feat/initial-commit`
+**Status:** Historical grand plan / bootstrap execution log. The initial plan has been superseded by the current roadmap and phase history.
+**Current canonical navigation:** `docs/ROADMAP.md`, `docs/PHASE_HISTORY.md`, `docs/NEXT_PHASE_CANDIDATES.md`
 **Workspace:** `/workspace`
 **Target repository:** `https://github.com/Ikaf19/eksad-agentic-knowledge`
-**Target branch:** `feat/initial-commit`
-**Runtime mutation policy:** Git-only source commit; do not install/configure runtime MCP, do not modify live Hermes profile/config unless separately approved.
+**Original target branch:** `feat/initial-commit`
+**Current mainline baseline:** 13-role agentic knowledge source-of-truth with MCP, RAG, LLM Gateway, role expansion, and matrix/skill hardening merged to `origin/main`.
+**Runtime mutation policy:** Git-only source-of-truth updates; do not install/configure runtime MCP, RAG, LiteLLM, Keycloak, Web Portal, or live Hermes profiles unless separately approved.
+
+---
+
+## Current status note
+
+This document preserves the original bootstrap plan and dated execution updates. For active navigation and next-phase planning, use:
+
+- `docs/ROADMAP.md` — current baseline and roadmap.
+- `docs/PHASE_HISTORY.md` — historical phase/merge record.
+- `docs/NEXT_PHASE_CANDIDATES.md` — selectable next active phases.
+- `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md` — parked future Web Portal plan.
+
+Historical mentions of `feat/initial-commit`, early credential blockers, or 9-role MCP assumptions are retained for audit context and are not current operational status.
 
 ---
 
@@ -418,3 +433,13 @@ Scope:
 - Boundary eval fixtures: `eval/roles/role-expansion-tests.json`.
 
 Runtime apply remains a separate explicit approval gate. No live Hermes profile sync, MCP activation, data connector credential, design-tool credential, notebook runtime, CMS credential, provider key, or production publishing/deployment action is committed.
+
+## Future Alignment Backlog — Web Portal Control Plane
+
+The Web Portal / Admin Control Panel / Landing Page work is parked as a **future alignment plan**, not reserved as the next numbered phase. This keeps the active phase queue flexible for other harness improvements before portal implementation.
+
+Canonical future plan:
+
+- `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md`
+
+The plan covers Web Portal alignment with Keycloak OIDC, Hermes role-agent runtime, RAG, LiteLLM virtual keys, model routing, budget/rate-limit enforcement, approval gates, audit trail, and observability. It is Git desired-state planning only; no Web Portal deployment, Keycloak mutation, LiteLLM key creation, provider-key storage, or live runtime activation is approved by the existence of this plan.
