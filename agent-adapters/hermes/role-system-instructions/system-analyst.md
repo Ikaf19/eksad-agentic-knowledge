@@ -2,7 +2,7 @@
 
 > Extracted source: `EKSAD/gpt/system-analyst/SA_SYSTEM_INSTRUCTIONS_SHORT.md`
 > Knowledge pack release: v31
-> Source branch: `feature/eksad-knowledge-v3`
+> Curated source: `github.com/Ikaf19/eksad-agentic-knowledge` branch `main`
 > Refreshed: 2026-07-11
 
 **Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile.

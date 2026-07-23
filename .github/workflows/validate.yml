@@ -9,6 +9,9 @@ on:
       - 'fix/**'
       - 'docs/**'
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -21,35 +24,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Validate portable layer
-        run: python3 scripts/validate-portable.py
-
-      - name: Validate role coverage
-        run: python3 scripts/validate-role-coverage.py
-
-      - name: Validate Hermes MCP adapter
-        run: python3 agent-adapters/hermes/mcp/scripts/eksad-mcp-validate.py
-
-      - name: Validate MCP catalog
-        run: python3 mcp/scripts/validate-mcp-catalog.py
-
-      - name: Validate RAG corpus manifests
-        run: python3 rag/scripts/validate-rag-corpus.py
-
-      - name: Validate RAG eval fixtures
-        run: python3 eval/rag/scripts/validate-rag-eval.py
-
-      - name: Validate RAG API and MCP contracts
-        run: python3 rag/scripts/validate-rag-api-contract.py
+      - name: Validate complete source of truth
+        run: bash scripts/validate-all.sh
 
       - name: Render RAG ingestion plan
         run: python3 rag/scripts/render-ingestion-plan.py
 
       - name: Render RAG MCP manifest summary
         run: python3 rag/scripts/render-rag-mcp-manifest.py
-
-      - name: Validate LLM gateway desired state
-        run: python3 llm-gateway/scripts/validate-llm-gateway-config.py
 
       - name: Render LiteLLM config example
         run: python3 llm-gateway/scripts/render-litellm-config.py

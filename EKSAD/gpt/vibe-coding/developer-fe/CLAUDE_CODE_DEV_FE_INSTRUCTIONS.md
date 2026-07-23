@@ -35,7 +35,7 @@ else:
 ```
 
 > If `docs/eksad/_base/` does not exist, inform the user:
-> *"EKSAD context files not found at `docs/eksad/_base/`. Please copy them from the brainstorming repo first. See `gpt/vibe-coding/VIBE_CODING_SETUP_GUIDE.md` for instructions."*
+> *"EKSAD context files not found at `docs/eksad/_base/`. Please copy them from the curated `eksad-agentic-knowledge` repository first. See `gpt/vibe-coding/VIBE_CODING_SETUP_GUIDE.md` for instructions."*
 > Do not proceed with code generation until context files are in place.
 
 ### `PLAN_<MODULE>.md` — Required Sections (FE Variant)

@@ -36,7 +36,7 @@ checks = {
         "docs/ROADMAP.md",
         "docs/PHASE_HISTORY.md",
         "docs/NEXT_PHASE_CANDIDATES.md",
-        "13 role profiles",
+        "13 role definitions",
         "Future Alignment",
     ],
     "docs/GRAND_PLAN.md": [
@@ -46,7 +46,7 @@ checks = {
     ],
     "docs/ROADMAP.md": [
         "Current baseline",
-        "13 canonical role profiles",
+        "13 canonical role definitions",
         "NEXT-02",
         "NEXT-03",
         "NEXT-04",
@@ -60,6 +60,7 @@ checks = {
     ],
     "docs/PHASE_HISTORY.md": [
         "0a66076",
+        "7955ae3",
         "0834354",
         "13 roles",
         "Historical documents vs current roadmap",
@@ -103,6 +104,21 @@ for rel in current_docs:
     for stale in ["Blocked until credential", "feat/initial-commit` on GitHub", "All 9 roles mapped"]:
         if stale in text:
             errors.append(f"{rel} contains stale bootstrap wording: {stale}")
+
+# The parked Portal plan must not maintain a stale parallel candidate table.
+portal_future = texts["docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md"]
+for completed in ("NEXT-01", "NEXT-03"):
+    if f"| {completed} |" in portal_future:
+        errors.append(
+            "docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md "
+            f"must not list completed {completed} as a candidate row"
+        )
+for marker in (
+    "does not maintain an independent candidate queue",
+    "NEXT-01 and NEXT-03 are completed historical work",
+):
+    if marker not in portal_future:
+        errors.append(f"Portal future plan missing candidate-queue guard: {marker}")
 
 if errors:
     for err in errors:

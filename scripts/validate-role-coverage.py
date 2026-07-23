@@ -9,19 +9,19 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 CANONICAL_ROLES = {
-    "general-coordinator": {"display": "General Coordinator", "skill": "eksad-general-coordination", "si_file": "general.md"},
-    "business-analyst": {"display": "Business Analyst", "skill": "eksad-ba-workflow"},
-    "system-analyst": {"display": "System Analyst", "skill": "eksad-tsd-design"},
-    "technical-leader": {"display": "Technical Leader", "skill": "eksad-code-review"},
-    "developer-backend": {"display": "Developer Backend", "skill": "eksad-be-impl"},
-    "developer-frontend": {"display": "Developer Frontend", "skill": "eksad-fe-impl"},
-    "qa-engineer": {"display": "QA Engineer", "skill": "eksad-qa-delivery"},
-    "project-manager": {"display": "Project Manager", "skill": "eksad-pm-delivery"},
-    "devops-engineer": {"display": "DevOps Engineer", "skill": "eksad-devops-delivery"},
-    "data-analyst": {"display": "Data Analyst", "skill": "eksad-data-analysis"},
-    "data-scientist": {"display": "Data Scientist", "skill": "eksad-data-science"},
-    "ui-ux-designer": {"display": "UI/UX Designer", "skill": "eksad-ui-ux-delivery"},
-    "content-creator": {"display": "Content Creator", "skill": "eksad-content-creation"},
+    "general-coordinator": {"display": "General Coordinator", "skill": "eksad-general-coordination", "si_file": "general.md", "profile": "eksad-general"},
+    "business-analyst": {"display": "Business Analyst", "skill": "eksad-ba-workflow", "profile": "business-analyst"},
+    "system-analyst": {"display": "System Analyst", "skill": "eksad-tsd-design", "profile": "system-analyst"},
+    "technical-leader": {"display": "Technical Leader", "skill": "eksad-code-review", "profile": "technical-leader"},
+    "developer-backend": {"display": "Developer Backend", "skill": "eksad-be-impl", "profile": "developer-backend"},
+    "developer-frontend": {"display": "Developer Frontend", "skill": "eksad-fe-impl", "profile": "developer-frontend"},
+    "qa-engineer": {"display": "QA Engineer", "skill": "eksad-qa-delivery", "profile": "qa-engineer"},
+    "project-manager": {"display": "Project Manager", "skill": "eksad-pm-delivery", "profile": "project-manager"},
+    "devops-engineer": {"display": "DevOps Engineer", "skill": "eksad-devops-delivery", "profile": "devops-engineer"},
+    "data-analyst": {"display": "Data Analyst", "skill": "eksad-data-analysis", "profile": "data-analyst"},
+    "data-scientist": {"display": "Data Scientist", "skill": "eksad-data-science", "profile": "data-scientist"},
+    "ui-ux-designer": {"display": "UI/UX Designer", "skill": "eksad-ui-ux-delivery", "profile": "ui-ux-designer"},
+    "content-creator": {"display": "Content Creator", "skill": "eksad-content-creation", "profile": "content-creator"},
 }
 
 ROLE_EVAL_FIXTURE = "eval/roles/role-expansion-tests.json"
@@ -45,6 +45,13 @@ def read(rel: str) -> str:
 def main() -> int:
     errors: list[str] = []
 
+    resync_path = ROOT / "agent-adapters/hermes/scripts/eksad-pack-resync.sh"
+    if not resync_path.is_file():
+        errors.append("missing Hermes resync script: agent-adapters/hermes/scripts/eksad-pack-resync.sh")
+        resync_body = ""
+    else:
+        resync_body = resync_path.read_text(encoding="utf-8")
+
     for slug, meta in CANONICAL_ROLES.items():
         role_path = ROOT / "portable/roles" / f"{slug}.md"
         if not role_path.is_file():
@@ -53,6 +60,13 @@ def main() -> int:
         si_path = ROOT / "agent-adapters/hermes/role-system-instructions" / si_name
         if not si_path.is_file():
             errors.append(f"missing Hermes role SI: {si_path.relative_to(ROOT)}")
+        profile = meta["profile"]
+        mapping_snippet = f'["{si_name}"]="{profile}"'
+        if mapping_snippet not in resync_body:
+            errors.append(f"Hermes resync mapping missing for {slug}: {mapping_snippet}")
+        description_snippet = f'["{profile}"]='
+        if description_snippet not in resync_body:
+            errors.append(f"Hermes profile description missing for {slug}: {profile}")
         skill = meta["skill"]
         if skill:
             skill_hits = list((ROOT / "agent-adapters/hermes/hermes-skills").rglob(f"{skill}/SKILL.md"))

@@ -125,8 +125,8 @@ Before deploying any config file, do this **once per project repo**:
 # From your project repo root:
 mkdir -p docs/eksad
 
-# Copy the entire _base/ folder from this brainstorming repo:
-cp -r /path/to/brainstorming/EKSAD/gpt/_base  docs/eksad/_base
+# Copy the entire _base/ folder from the curated knowledge repository:
+cp -r /path/to/eksad-agentic-knowledge/EKSAD/gpt/_base  docs/eksad/_base
 ```
 
 This gives you the knowledge files at a consistent path:
@@ -176,7 +176,7 @@ Pick your tool from the table above and follow the tool-specific steps below.
 ```bash
 # From project repo root:
 mkdir -p .github
-cp /path/to/brainstorming/EKSAD/gpt/vibe-coding/developer/COPILOT_DEV_INSTRUCTIONS.md \
+cp /path/to/eksad-agentic-knowledge/EKSAD/gpt/vibe-coding/developer/COPILOT_DEV_INSTRUCTIONS.md \
    .github/copilot-instructions.md
 ```
 
@@ -203,7 +203,7 @@ cp /path/to/brainstorming/EKSAD/gpt/vibe-coding/developer/COPILOT_DEV_INSTRUCTIO
 ```bash
 # From project repo root:
 mkdir -p .cursor/rules
-cp /path/to/brainstorming/EKSAD/gpt/vibe-coding/developer/CURSOR_DEV_RULES.md \
+cp /path/to/eksad-agentic-knowledge/EKSAD/gpt/vibe-coding/developer/CURSOR_DEV_RULES.md \
    .cursor/rules/eksad-dev.mdc
 ```
 
@@ -229,7 +229,7 @@ cp /path/to/brainstorming/EKSAD/gpt/vibe-coding/developer/CURSOR_DEV_RULES.md \
 
 ```bash
 # From project repo root:
-cp /path/to/brainstorming/EKSAD/gpt/vibe-coding/developer/CLAUDE_CODE_DEV_INSTRUCTIONS.md \
+cp /path/to/eksad-agentic-knowledge/EKSAD/gpt/vibe-coding/developer/CLAUDE_CODE_DEV_INSTRUCTIONS.md \
    CLAUDE.md
 ```
 

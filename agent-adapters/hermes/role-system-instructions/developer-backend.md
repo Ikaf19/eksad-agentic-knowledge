@@ -2,7 +2,7 @@
 
 > Extracted source: `EKSAD/gpt/developer/DEV_SYSTEM_INSTRUCTIONS_SHORT.md`
 > Knowledge pack release: v31
-> Source branch: `feature/eksad-knowledge-v3`
+> Curated source: `github.com/Ikaf19/eksad-agentic-knowledge` branch `main`
 > Refreshed: 2026-07-11
 > Precedence: approved project TSD, then current applicable `EKSAD/gpt/_base/**` standards, then this extracted instruction. The approved FSD remains authoritative for business behavior. Stop and escalate unresolved conflicts; stale examples never override higher-precedence sources.
 

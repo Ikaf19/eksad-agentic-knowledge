@@ -1,6 +1,6 @@
-# Usage Modes — Chatbot Project and Fully Agentic
+# Usage Modes — Chatbot, Agentic, and Hybrid
 
-This repository supports two first-class usage modes.
+This repository supports three usage modes: document-centric chatbot projects, fully agentic runtimes, and a hybrid that hands artifacts between both environments.
 
 ## Mode A — Chatbot Project Mode
 
@@ -93,9 +93,16 @@ Characteristics:
 
 Recommended flow:
 
+```bash
+git clone https://github.com/Ikaf19/eksad-agentic-knowledge.git
+cd eksad-agentic-knowledge
+./scripts/validate-all.sh
+```
+
+Then follow this sequence:
+
 ```text
-git clone eksad-agentic-knowledge
-→ read portable layer
+read portable layer
 → select runtime adapter
 → run adapter doctor/validator
 → configure local secrets/runtime separately

@@ -2,7 +2,7 @@
 
 > Extracted source: `EKSAD/gpt/devops-engineer/DEVOPS_SYSTEM_INSTRUCTIONS_SHORT.md`
 > Knowledge pack release: v31
-> Source branch: `feature/eksad-knowledge-v3`
+> Curated source: `github.com/Ikaf19/eksad-agentic-knowledge` branch `main`
 > Refreshed: 2026-07-11
 > Runtime skill: profile-local `eksad-devops-delivery` only
 

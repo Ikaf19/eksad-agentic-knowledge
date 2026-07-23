@@ -2,6 +2,11 @@
 
 This directory contains Hermes-specific runtime adapter files derived from the portable EKSAD source.
 
+**Knowledge pack release:** v31
+**Curated source:** `github.com/Ikaf19/eksad-agentic-knowledge` branch `main`
+
+**Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile.
+
 ## Contents
 
 | Path | Purpose |

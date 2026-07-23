@@ -1,7 +1,7 @@
 # Next Phase Candidates
 
 **Status:** Candidate queue / not auto-approved  
-**Last normalized:** 2026-07-16  
+**Last normalized:** 2026-07-23
 **Rule:** A candidate becomes active only after explicit user selection. Runtime apply/deploy remains a separate approval gate.
 
 ---
@@ -12,7 +12,6 @@ Pick the next phase by deciding whether the priority is **runtime readiness**, *
 
 ```text
 If goal is safer runtime adoption -> NEXT-02
-If goal is doc/status cleanup -> NEXT-03
 If goal is retrieval quality -> NEXT-04
 If goal is tool access pilot -> NEXT-05
 If goal is portal/control plane -> NEXT-06 / WPC-01
@@ -50,7 +49,9 @@ If goal is approved JIRA card -> orchestrated delivery -> NEXT-08 / JFD-01
 
 ---
 
-## NEXT-03 — Source-of-Truth Roadmap Normalization
+## Completed reference — NEXT-03 Source-of-Truth Roadmap Normalization
+
+**Status:** Completed and merged through PR #5; retained here for traceability, not selectable as a new active phase.
 
 **Purpose:** Keep navigation, phase history, and candidate roadmap aligned with the current 13-role/MCP/RAG/LLM baseline.
 
@@ -183,8 +184,11 @@ If goal is approved JIRA card -> orchestrated delivery -> NEXT-08 / JFD-01
 
 **Exit criteria:**
 
-- A future orchestrator can be reviewed as desired state before runtime activation.
-- JIRA-first delivery has a clear dependency target instead of being implied by Portal alone.
+- A canonical Orchestrator entrypoint, role-graph contract, gate/approval schema, handoff/evidence registry, and Portal API contract exist at named Git paths.
+- Disabled/unavailable behavior is defined for every delivery profile that requires orchestration.
+- A read-only validator checks graph references, role ownership, gate invariants, evidence requirements, and prohibition of JIRA/production mutation.
+- The complete source-of-truth suite passes, security/TL reviewers approve the contracts, and no live Orchestrator is deployed by the source PR.
+- JIRA-first delivery references these reviewed contracts as an explicit dependency instead of implying that Portal alone performs orchestration.
 
 ---
 
@@ -214,5 +218,8 @@ If goal is approved JIRA card -> orchestrated delivery -> NEXT-08 / JFD-01
 
 **Exit criteria:**
 
-- JIRA-first remains future/orchestrator-dependent until prerequisites are satisfied.
-- Current baseline stays link-only/manual for JIRA usage.
+- A provider-neutral card-field contract, status/approval mapping, `DeliveryProfile` binding, and `ExternalWorkItemLink` handoff mapping exist at named Git paths.
+- The read-only connector security contract defines token custody, tenant/project scoping, rate limits, audit metadata, timeout/retry behavior, and fail-closed handling.
+- Negative tests prove that create, update, transition, comment, assignment, attachment, and automatic Dev dispatch remain unavailable.
+- A non-production read-only pilot plan names prerequisites, evidence, rollback/disable behavior, owners, and explicit approval gates.
+- A dedicated validator and the complete source-of-truth suite pass; current JIRA usage remains link-only/manual until NEXT-07, Portal prerequisites, and pilot approval are all satisfied.

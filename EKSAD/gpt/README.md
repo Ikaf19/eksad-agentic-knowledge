@@ -3,7 +3,8 @@
 **Created:** 2026-04-23
 **Owner:** EKSAD Platform Team
 **Last Updated:** 2026-07-11 (v31 — full curated skill suite; UR, Test Plan/RTM, ADR, WBS, Project Closure, and Threat Model templates; FE real-API-first alignment; BA greenfield decomposition; canonical wiring and validation.)
-**Active source branch:** `feature/eksad-knowledge-v3`
+**Curated source:** `github.com/Ikaf19/eksad-agentic-knowledge` branch `main`
+**Legacy pack lineage:** v31 source material was migrated from the former `brainstorming` repository; use this curated repository for all new setup.
 
 **Previous:** 2026-07-11 (v30 — DevOps role, GitLab CE/Jenkins/SonarQube/Trivy delivery contract, AI Software Factory architecture, five operational templates, Hermes profile, and fail-closed delivery skill.)
 
@@ -52,10 +53,12 @@
 
 ---
 
-## 🧭 GPT Architecture Overview
+## 🧭 Legacy Custom GPT Architecture Overview
 
 ```
-EKSAD has exactly 9 Custom GPTs: one General Coordinator plus eight specialists.
+This legacy ChatGPT setup pack currently documents 9 Custom GPT configurations:
+one General Coordinator plus eight specialists. The canonical agentic
+architecture has 13 role definitions; see the repository root onboarding guide.
 
 ┌───────────────────────────────────────────────────────────────────────┐
 │                    EKSAD General Coordinator GPT                      │
@@ -248,13 +251,13 @@ gpt/
 
 ---
 
-## 🧰 Hermes Skill Suite (v31)
+## 🧰 Hermes Skill Suite (v31 lineage + curated extensions)
 
-The source-controlled catalog contains 13 skills under `hermes-skills/`: `eksad-ba-workflow`, `eksad-tsd-design`, `eksad-adr-workflow`, `eksad-code-review`, `eksad-be-impl`, `eksad-fe-impl`, `eksad-qa-delivery`, `eksad-appsec-review`, `eksad-pm-delivery`, `eksad-devops-delivery`, `stage-gated-orchestrator`, `eksad-create-project`, and `eksad-task-breakdown`.
+The curated Hermes adapter contains 18 source-controlled skills under `agent-adapters/hermes/hermes-skills/`, including the v31 lineage plus General Coordination, Data Analysis, Data Science, UI/UX, and Content delivery skills. Use the repository root onboarding guide and `agent-adapters/hermes/per-role-knowledge-index.md` as current navigation.
 
-There are exactly nine role profiles: General Coordinator (`eksad-general`), BA, SA, TL, Backend, Frontend, QA, PM, and DevOps. **Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile. PM and DevOps use only their profile-local delivery skill at runtime.
+The canonical architecture defines and maps 13 Hermes role profiles: General Coordinator (`eksad-general`), BA, SA, TL, Backend, Frontend, QA, PM, DevOps, Data Analyst, Data Scientist, UI/UX Designer, and Content Creator. Source mapping does not mean a live profile has been activated. This legacy README still provides detailed Custom GPT setup sections for nine configurations. **Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile. PM and DevOps use only their profile-local delivery skill at runtime.
 
-See the repository root `README.md`, `per-role-knowledge-index.md`, and `hermes-skills/PROVENANCE.md` for canonical paths, role wiring, and provenance.
+See the repository root `README.md`, `agent-adapters/hermes/per-role-knowledge-index.md`, and `agent-adapters/hermes/hermes-skills/PROVENANCE.md` for canonical paths, role wiring, and provenance.
 
 ---
 
@@ -455,7 +458,7 @@ See the repository root `README.md`, `per-role-knowledge-index.md`, and `hermes-
 
 ---
 
-## 🚀 Setup Guide — All 9 GPTs
+## 🚀 Legacy Custom GPT Setup Guide — 9 Maintained Configurations
 
 > Follow these steps **once per GPT**. Each GPT takes about 5 minutes to configure.
 

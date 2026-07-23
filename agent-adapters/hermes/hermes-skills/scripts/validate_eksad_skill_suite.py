@@ -12,9 +12,10 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-DEFAULT_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_ROOT = Path(__file__).resolve().parents[4]
 ROOT = Path(os.environ.get("EKSAD_VALIDATION_ROOT", DEFAULT_ROOT)).resolve()
-SKILLS_ROOT = ROOT / "hermes-skills"
+ADAPTER_ROOT = ROOT / "agent-adapters/hermes" if (ROOT / "agent-adapters/hermes").is_dir() else ROOT
+SKILLS_ROOT = ADAPTER_ROOT / "hermes-skills"
 
 REQUIRED_FIELDS = ("name", "description", "version", "author", "license", "metadata")
 REQUIRED_V31_SKILLS = {
@@ -53,6 +54,10 @@ PROFILE_ROWS = {
     "Frontend Developer": "developer-frontend",
     "QA Engineer": "qa-engineer",
     "DevOps Engineer": "devops-engineer",
+    "Data Analyst": "data-analyst",
+    "Data Scientist": "data-scientist",
+    "UI/UX Designer": "ui-ux-designer",
+    "Content Creator": "content-creator",
 }
 PROFILE_FILES = {f"{slug}.md" for slug in PROFILE_ROWS.values() if slug != "eksad-general"} | {"general.md"}
 NAVIGATION_FILES = (
@@ -66,7 +71,7 @@ CANONICAL_APPSEC = (
     "coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority "
     "accepts residual risk or grants a waiver. AppSec is not a profile."
 )
-ACTIVE_BRANCH = "feature/eksad-knowledge-v3"
+ACTIVE_BRANCH = "main"
 
 
 def rel(path: Path) -> str:
@@ -75,6 +80,25 @@ def rel(path: Path) -> str:
 
 def text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
+
+
+def source_path(item: str) -> Path:
+    """Resolve source metadata while confining it to the selected validation root."""
+    raw = Path(item)
+    if raw.is_absolute():
+        raise ValueError(f"absolute source path is forbidden: {item}")
+    if item == "README.md" or item == "per-role-knowledge-index.md":
+        candidate = ADAPTER_ROOT / item
+    elif item.startswith(("hermes-skills/", "role-system-instructions/")):
+        candidate = ADAPTER_ROOT / item
+    else:
+        candidate = ROOT / item
+    resolved = candidate.resolve(strict=False)
+    try:
+        resolved.relative_to(ROOT)
+    except ValueError as exc:
+        raise ValueError(f"source path escapes validation root: {item}") from exc
+    return resolved
 
 
 def require_phrases(path: Path, phrases: tuple[str, ...], errors: list[str], label: str) -> None:
@@ -106,9 +130,9 @@ def parse_frontmatter(path: Path) -> tuple[dict[str, str], str | None]:
 def canonical_target(token: str, source: Path) -> Path | None:
     cleaned = token.strip("`*.,;:()[]{}")
     if cleaned.startswith("~/.hermes/knowledge/eksad/"):
-        return ROOT / cleaned.removeprefix("~/.hermes/knowledge/eksad/")
+        return source_path(cleaned.removeprefix("~/.hermes/knowledge/eksad/"))
     if cleaned.startswith(("EKSAD/gpt/", "hermes-skills/", "role-system-instructions/")):
-        return ROOT / cleaned
+        return source_path(cleaned)
     if cleaned.startswith(("_base/", "_template/", "vibe-coding/")):
         return ROOT / "EKSAD/gpt" / cleaned
     if cleaned.startswith(("references/", "templates/")):
@@ -126,45 +150,45 @@ def check_referenced_paths(path: Path, errors: list[str]) -> None:
 
 
 def check_profiles_and_routing(errors: list[str]) -> None:
-    role_dir = ROOT / "role-system-instructions"
+    role_dir = ADAPTER_ROOT / "role-system-instructions"
     actual = {path.name for path in role_dir.glob("*.md")}
     if actual != PROFILE_FILES:
         errors.append(
-            f"nine-profile file invariant failed; missing={sorted(PROFILE_FILES-actual)}, "
+            f"thirteen-profile file invariant failed; missing={sorted(PROFILE_FILES-actual)}, "
             f"extra={sorted(actual-PROFILE_FILES)}"
         )
 
-    orchestrator = ROOT / "hermes-skills/productivity/stage-gated-orchestrator/SKILL.md"
+    orchestrator = ADAPTER_ROOT / "hermes-skills/productivity/stage-gated-orchestrator/SKILL.md"
     body = text(orchestrator) if orchestrator.is_file() else ""
     section_match = re.search(
-        r"### Nine-profile routing plus shared AppSec workflow\s*(.*?)(?=\n#### Shared AppSec)",
+        r"### Thirteen-profile routing plus shared AppSec workflow\s*(.*?)(?=\n#### Shared AppSec)",
         body,
         flags=re.DOTALL,
     )
     if not section_match:
-        errors.append(f"{rel(orchestrator)}: nine-profile routing table not found")
+        errors.append(f"{rel(orchestrator)}: thirteen-profile routing table not found")
         return
     rows: list[tuple[str, str]] = []
     for line in section_match.group(1).splitlines():
-        match = re.match(r"^\|\s*([^|/]+?)(?:\s*/\s*)?`([^`]+)`\s*\|", line)
+        match = re.match(r"^\|\s*(.*?)\s*/\s*`([^`]+)`\s*\|", line)
         if match:
             rows.append((match.group(1).strip(), match.group(2)))
-    if len(rows) != 9 or dict(rows) != PROFILE_ROWS:
+    if len(rows) != 13 or dict(rows) != PROFILE_ROWS:
         errors.append(f"{rel(orchestrator)}: routing rows must be exactly {list(PROFILE_ROWS.items())}; found={rows}")
     if any("appsec" in (name + slug).lower() for name, slug in rows):
         errors.append(f"{rel(orchestrator)}: AppSec must not be a profile routing row")
 
 
 def check_appsec(errors: list[str]) -> None:
-    required = [ROOT / "README.md", ROOT / "EKSAD/gpt/README.md", ROOT / "per-role-knowledge-index.md"]
-    required += sorted((ROOT / "role-system-instructions").glob("*.md"), key=rel)
+    required = [ADAPTER_ROOT / "README.md", ROOT / "EKSAD/gpt/README.md", ADAPTER_ROOT / "per-role-knowledge-index.md"]
+    required += sorted((ADAPTER_ROOT / "role-system-instructions").glob("*.md"), key=rel)
     for path in required:
         if CANONICAL_APPSEC not in text(path):
             errors.append(f"{rel(path)}: canonical shared AppSec routing rule missing or altered")
 
 
 def check_metadata(errors: list[str]) -> None:
-    metadata_docs = [ROOT / "README.md", ROOT / "EKSAD/gpt/README.md", ROOT / "per-role-knowledge-index.md"]
+    metadata_docs = [ADAPTER_ROOT / "README.md", ROOT / "EKSAD/gpt/README.md", ADAPTER_ROOT / "per-role-knowledge-index.md"]
     for path in metadata_docs:
         body = text(path)
         if "v31" not in body or ACTIVE_BRANCH not in body:
@@ -172,26 +196,35 @@ def check_metadata(errors: list[str]) -> None:
         if "feature/eksad-knowledge-v2" in body:
             errors.append(f"{rel(path)}: stale active source branch feature/eksad-knowledge-v2")
 
-    for path in sorted((ROOT / "role-system-instructions").glob("*.md"), key=rel):
+    portable_roles = {"data-analyst.md", "data-scientist.md", "ui-ux-designer.md", "content-creator.md"}
+    for path in sorted((ADAPTER_ROOT / "role-system-instructions").glob("*.md"), key=rel):
         body = text(path)
-        if "> Knowledge pack release: v31" not in body or f"> Source branch: `{ACTIVE_BRANCH}`" not in body:
-            errors.append(f"{rel(path)}: role metadata must identify v31 and {ACTIVE_BRANCH}")
+        if path.name in portable_roles:
+            for required in ("> Source: Phase E portable role expansion", "> Portable role card:", "> Workflow:"):
+                if required not in body:
+                    errors.append(f"{rel(path)}: portable role metadata missing: {required}")
+        elif "> Knowledge pack release: v31" not in body or "branch `main`" not in body:
+            errors.append(f"{rel(path)}: legacy role metadata must identify v31 and curated branch main")
         if "feature/eksad-knowledge-v2" in body:
             errors.append(f"{rel(path)}: stale active source branch feature/eksad-knowledge-v2")
         match = re.search(r"^> Extracted source: `([^`]+)`", body, flags=re.MULTILINE)
-        if not match:
+        if not match and path.name not in portable_roles:
             errors.append(f"{rel(path)}: missing extracted source path metadata")
-        else:
-            source = ROOT / match.group(1)
-            if not source.is_file():
-                errors.append(f"{rel(path)}: extracted source path does not exist: {match.group(1)}")
+        elif match:
+            try:
+                source = source_path(match.group(1))
+            except ValueError as exc:
+                errors.append(f"{rel(path)}: invalid extracted source path: {exc}")
+            else:
+                if not source.is_file():
+                    errors.append(f"{rel(path)}: extracted source path does not exist: {match.group(1)}")
 
 
 def check_template_conventions(errors: list[str]) -> None:
     catalog_path = ROOT / "EKSAD/gpt/_template/README.md"
     catalog = text(catalog_path)
     for path_string, (kind, convention, example) in TEMPLATE_CONVENTIONS.items():
-        path = ROOT / path_string
+        path = source_path(path_string)
         if not path.is_file():
             errors.append(f"required v31 template missing: {path_string}")
             continue
@@ -211,7 +244,7 @@ def check_template_conventions(errors: list[str]) -> None:
         "hermes-skills/project-management/eksad-pm-delivery/SKILL.md": "{PROJECT_CODE}_PROJECT_CLOSURE_v{VERSION}.md",
     }
     for path_string, convention in skill_conventions.items():
-        if convention not in text(ROOT / path_string):
+        if convention not in text(source_path(path_string)):
             errors.append(f"{path_string}: missing exact output filename convention: {convention}")
 
     forbidden = (
@@ -224,8 +257,8 @@ def check_template_conventions(errors: list[str]) -> None:
         "TESTPLAN_<MODULE>",
         "PLAN_<MODULE>",
     )
-    active = [ROOT / "README.md", ROOT / "per-role-knowledge-index.md", catalog_path]
-    active += sorted((ROOT / "role-system-instructions").glob("*.md"), key=rel)
+    active = [ADAPTER_ROOT / "README.md", ADAPTER_ROOT / "per-role-knowledge-index.md", catalog_path]
+    active += sorted((ADAPTER_ROOT / "role-system-instructions").glob("*.md"), key=rel)
     active += sorted(SKILLS_ROOT.rglob("SKILL.md"), key=rel)
     active += [ROOT / item for item in TEMPLATE_CONVENTIONS]
     for path in active:
@@ -236,9 +269,9 @@ def check_template_conventions(errors: list[str]) -> None:
 
 
 def check_forbidden_assumptions(errors: list[str], skill_files: list[Path]) -> None:
-    provenance = ROOT / "hermes-skills/PROVENANCE.md"
-    active = [ROOT / "README.md", ROOT / "EKSAD/gpt/README.md", ROOT / "per-role-knowledge-index.md"]
-    active += sorted((ROOT / "role-system-instructions").glob("*.md"), key=rel) + skill_files
+    provenance = ADAPTER_ROOT / "hermes-skills/PROVENANCE.md"
+    active = [ADAPTER_ROOT / "README.md", ROOT / "EKSAD/gpt/README.md", ADAPTER_ROOT / "per-role-knowledge-index.md"]
+    active += sorted((ADAPTER_ROOT / "role-system-instructions").glob("*.md"), key=rel) + skill_files
     active += [provenance]
     for path in active:
         body = text(path)
@@ -253,7 +286,7 @@ def check_forbidden_assumptions(errors: list[str], skill_files: list[Path]) -> N
 
 
 def check_no_gates_and_ownership(errors: list[str]) -> None:
-    orchestrator = ROOT / "hermes-skills/productivity/stage-gated-orchestrator/SKILL.md"
+    orchestrator = ADAPTER_ROOT / "hermes-skills/productivity/stage-gated-orchestrator/SKILL.md"
     require_phrases(
         orchestrator,
         (
@@ -270,13 +303,13 @@ def check_no_gates_and_ownership(errors: list[str]) -> None:
         "role-system-instructions/devops-engineer.md",
         "hermes-skills/devops/eksad-devops-delivery/SKILL.md",
     ):
-        body = text(ROOT / item).lower()
+        body = text(source_path(item)).lower()
         if "no-gates" not in body or not re.search(r"(?:prohibit|never|no `--no-gates`|cannot|do not use)", body):
             errors.append(f"{item}: must explicitly prohibit no-gates execution")
 
     require_phrases(
-        ROOT / "role-system-instructions/general.md",
-        ("never absorb BA, SA, TL, developer, QA, PM, or DevOps ownership",),
+        ADAPTER_ROOT / "role-system-instructions/general.md",
+        ("never absorb BA, SA, TL, developer, QA, PM, DevOps, Data Analyst, Data Scientist, UI/UX, or Content Creator ownership",),
         errors,
         "General non-ownership",
     )
@@ -287,7 +320,7 @@ def check_no_gates_and_ownership(errors: list[str]) -> None:
         "General non-ownership",
     )
     require_phrases(
-        ROOT / "per-role-knowledge-index.md",
+        ADAPTER_ROOT / "per-role-knowledge-index.md",
         ("General Coordinator coordinates and never owns specialist outputs",),
         errors,
         "General non-ownership",
@@ -296,7 +329,7 @@ def check_no_gates_and_ownership(errors: list[str]) -> None:
 
 def check_qa_and_cache(errors: list[str]) -> None:
     require_phrases(
-        ROOT / "role-system-instructions/qa-engineer.md",
+        ADAPTER_ROOT / "role-system-instructions/qa-engineer.md",
         (
             "This assistant = Mode A (Design)",
             "This Hermes profile produces no test code",
@@ -306,13 +339,13 @@ def check_qa_and_cache(errors: list[str]) -> None:
         "QA Mode-A-only",
     )
     require_phrases(
-        ROOT / "hermes-skills/quality-assurance/eksad-qa-delivery/SKILL.md",
+        ADAPTER_ROOT / "hermes-skills/quality-assurance/eksad-qa-delivery/SKILL.md",
         ("Produces no test code", "Mode A — Design / Docs", "no code writes"),
         errors,
         "QA Mode-A-only",
     )
     require_phrases(
-        ROOT / "per-role-knowledge-index.md",
+        ADAPTER_ROOT / "per-role-knowledge-index.md",
         ("this Hermes profile produces no test code", "Mode B automation remains with the in-IDE QA agent"),
         errors,
         "QA Mode-A-only catalog",
@@ -327,13 +360,13 @@ def check_qa_and_cache(errors: list[str]) -> None:
         "tenant-scoped",
     )
     require_phrases(
-        ROOT / "hermes-skills/software-development/eksad-be-impl/SKILL.md",
+        ADAPTER_ROOT / "hermes-skills/software-development/eksad-be-impl/SKILL.md",
         cache_phrases,
         errors,
         "cache exception",
     )
     require_phrases(
-        ROOT / "role-system-instructions/developer-backend.md",
+        ADAPTER_ROOT / "role-system-instructions/developer-backend.md",
         cache_phrases,
         errors,
         "cache exception",
@@ -347,7 +380,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
         "role-system-instructions/general.md",
     )
     for item in general_paths:
-        body = text(ROOT / item)
+        body = text(source_path(item))
         if "Route specialist production" not in body:
             errors.append(f"{item}: missing General coordinator boundary: Route specialist production")
         if not re.search(r"(?:must not author|Author or revise) BRD, FSD, TSD", body, flags=re.IGNORECASE):
@@ -367,7 +400,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
         "role-system-instructions/qa-engineer.md",
     )
     for item in qa_paths:
-        body = text(ROOT / item)
+        body = text(source_path(item))
         for required in (
             "baselined `TESTPLAN_{MODULE_CODE}_v{VERSION}.md`",
             "generated test source",
@@ -389,7 +422,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
         "role-system-instructions/system-analyst.md",
     )
     for item in sa_paths:
-        body = text(ROOT / item)
+        body = text(source_path(item))
         for required in ("developer-backend", "developer-frontend", "Technical Leader reviews"):
             if required not in body:
                 errors.append(f"{item}: missing Developer implementation routing and TL review boundary: {required}")
@@ -403,7 +436,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
         "role-system-instructions/project-manager.md",
     )
     for item in pm_paths:
-        body = text(ROOT / item)
+        body = text(source_path(item))
         for required in (
             "EKSAD_GENERIC_WBS_TEMPLATE.md",
             "{PROJECT_CODE}_WBS_{SCOPE}_v{VERSION}.md",
@@ -419,10 +452,10 @@ def check_role_contract_regressions(errors: list[str]) -> None:
         "EKSAD/gpt/project-manager/GPT_PM_SETUP_GUIDE.md",
     )
     for item in pm_setup_paths:
-        body = text(ROOT / item)
+        body = text(source_path(item))
         if "EKSAD_GENERIC_WBS_TEMPLATE.md" not in body:
             errors.append(f"{item}: PM setup/upload guidance must include EKSAD_GENERIC_WBS_TEMPLATE.md")
-    index_body = text(ROOT / "per-role-knowledge-index.md")
+    index_body = text(ADAPTER_ROOT / "per-role-knowledge-index.md")
     if "~/.hermes/profiles/project-manager/skills/project-management/eksad-pm-delivery/" not in index_body:
         errors.append("per-role-knowledge-index.md: PM skill path must be profile-local")
     if "~/.hermes/skills/project-management/eksad-pm-delivery/" in index_body:
@@ -433,7 +466,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
         "EKSAD/gpt/developer/DEV_SYSTEM_INSTRUCTIONS.md",
     )
     for item in backend_source_paths:
-        body = text(ROOT / item)
+        body = text(source_path(item))
         for required in ("5 contract methods", "ActionLabels", "source DELETE event"):
             if required not in body:
                 errors.append(f"{item}: missing current Backend CrudFlows/cache invariant: {required}")
@@ -442,7 +475,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
                 errors.append(f"{item}: stale Backend repository contract found: {forbidden}")
 
     for item in qa_paths:
-        body = text(ROOT / item)
+        body = text(source_path(item))
         for required in ("remains `NOT_RUN` permanently", "separate attributable evidence/assessment artifacts"):
             if required not in body:
                 errors.append(f"{item}: missing immutable Mode-A test-plan invariant: {required}")
@@ -462,7 +495,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
         "EKSAD/gpt/vibe-coding/developer-fe/CURSOR_DEV_FE_RULES.md",
     )
     for item in fe_paths:
-        body = text(ROOT / item)
+        body = text(source_path(item))
         for required in ("apiClient", "withCredentials", "HttpOnly"):
             if required not in body:
                 errors.append(f"{item}: missing FE real-API/session invariant: {required}")
@@ -485,7 +518,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
         "EKSAD/gpt/qa/GPT_QA_CHAT_STARTERS.md": ("Mode B", "handoff"),
     }
     for item, required_phrases in navigation_contracts.items():
-        body = text(ROOT / item)
+        body = text(source_path(item))
         for required in required_phrases:
             if required not in body:
                 errors.append(f"{item}: missing navigation/role contract: {required}")
@@ -500,7 +533,7 @@ def check_role_contract_regressions(errors: list[str]) -> None:
 
 
 def check_provenance(errors: list[str]) -> None:
-    path = ROOT / "hermes-skills/PROVENANCE.md"
+    path = ADAPTER_ROOT / "hermes-skills/PROVENANCE.md"
     body = text(path)
     if "Verified:" in body or "**Verified" in body:
         errors.append(f"{rel(path)}: external license claim is asserted verified without repository evidence")
@@ -538,20 +571,22 @@ def validate() -> list[str]:
         if len(paths) > 1:
             errors.append(f"duplicate skill name '{name}': {', '.join(paths)}")
     for name, expected in sorted(REQUIRED_V31_SKILLS.items()):
-        if not (ROOT / expected).is_file():
+        if not (source_path(expected)).is_file():
             errors.append(f"required v31 skill missing: {expected}")
         elif name not in names:
             errors.append(f"required v31 skill name not discovered: {name}")
 
     for nav in NAVIGATION_FILES:
-        path = ROOT / nav
+        path = source_path(nav)
         if not path.is_file():
             errors.append(f"canonical navigation file missing: {nav}")
             continue
         check_referenced_paths(path, errors)
         body = text(path)
-        required_mentions = [Path(item).name for item in TEMPLATE_CONVENTIONS]
-        if nav != "EKSAD/gpt/_template/README.md":
+        required_mentions = []
+        if nav in ("EKSAD/gpt/README.md", "per-role-knowledge-index.md"):
+            required_mentions += [Path(item).name for item in TEMPLATE_CONVENTIONS]
+        if nav == "per-role-knowledge-index.md":
             required_mentions += list(REQUIRED_V31_SKILLS)
         for item in required_mentions:
             if item not in body:
@@ -580,7 +615,7 @@ def main() -> int:
     print(
         "PASS: EKSAD v31 skill suite validated "
         f"({skill_count} skills, {len(TEMPLATE_CONVENTIONS)} required v31 templates, "
-        "exactly 9 profile routes, AppSec shared)."
+        "exactly 13 profile routes, AppSec shared)."
     )
     return 0
 

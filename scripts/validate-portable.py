@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import re, sys
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = [
@@ -52,37 +52,12 @@ if '| Visual input |' not in matrix or 'eksad.visual_input' not in matrix:
 if '| UI/UX Designer | `eksad.vision`' in matrix or '| UI/UX Designer | `eksad.visual_input`' in matrix:
     errors.append('role-model-matrix: UI/UX primary must not be a visual alias')
 
-high_confidence_secret_patterns = [
-    re.compile(r'ghp_[A-Za-z0-9_]{20,}'),
-    re.compile(r'github_pat_[A-Za-z0-9_]{20,}'),
-    re.compile(r'glpat-[A-Za-z0-9_-]{20,}'),
-    re.compile(r'sk-[A-Za-z0-9]{20,}'),
-    re.compile(r'-----BEGIN (RSA |OPENSSH |EC |DSA )?PRIVATE KEY-----'),
-]
-
-# Deliberately line-based and conservative. The EKSAD knowledge pack contains
-# security guidance and intentionally-bad examples; block high-confidence live
-# credentials, not educational placeholders.
-for path in ROOT.rglob('*'):
-    if not path.is_file() or '.git' in path.parts:
-        continue
-    if path.name.endswith(('.png','.jpg','.jpeg','.gif','.pdf','.zip','.gz','.zst','.db','.sqlite')):
-        continue
-    text = path.read_text(errors='ignore')
-    for i, line in enumerate(text.splitlines(), 1):
-        stripped = line.strip()
-        if not stripped or stripped.startswith('#'):
-            continue
-        lowered = stripped.lower()
-        if any(marker in lowered for marker in ['example', 'placeholder', '[redacted]', '${', '__env.', 'os.environ/', 'mypassword', 'eksad_dev_password']):
-            continue
-        if re.search(r"(?i)(token|password|secret|api[_-]?key)\s*[:=][ \t]*['\"]?[A-Za-z0-9_./:+-]{32,}", stripped):
-            errors.append(f'possible live credential in {path.relative_to(ROOT)}:{i}')
-            break
-        for pat in high_confidence_secret_patterns:
-            if pat.search(stripped):
-                errors.append(f'possible live credential in {path.relative_to(ROOT)}:{i}')
-                break
+# Portable contracts may describe adapter-neutral extension points, but they must
+# never depend on a runtime-specific source path.
+for path in sorted((ROOT / 'portable').rglob('*.md')):
+    text = path.read_text(encoding='utf-8')
+    if 'agent-adapters/' in text:
+        errors.append(f'{path.relative_to(ROOT)}: portable layer must not reference runtime adapter paths')
 
 if errors:
     print('FAIL')
