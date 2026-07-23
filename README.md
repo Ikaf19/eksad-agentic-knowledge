@@ -4,6 +4,23 @@ Curated, Git-backed source of truth for EKSAD AI-assisted delivery.
 
 This repository separates **portable agent-agnostic knowledge** from **runtime-specific adapters** so the same EKSAD roles, workflows, templates, MCP/RAG governance, and model gateway policies can be used by Hermes today and by other agentic runtimes later.
 
+## Start here
+
+New team members should begin with:
+
+1. `docs/ONBOARDING.md` — choose a usage mode and one of the 13 owning roles.
+2. `docs/USAGE_MODES.md` — understand document-only, chatbot project, and agentic modes.
+3. `portable/policies/role-boundaries.md` — understand ownership and approval limits.
+4. `CONTRIBUTING.md` — make source-of-truth changes without creating cross-layer drift.
+
+Validate a checkout with one read-only command:
+
+```bash
+./scripts/validate-all.sh
+```
+
+The repository defines desired state; cloning, validating, or merging it does **not** activate Hermes profiles, MCP tools, RAG ingestion, LiteLLM, the Web Portal, the future orchestrator, or JIRA integration.
+
 ## Repository layers
 
 ```text
@@ -16,6 +33,7 @@ Level 1 — Portable / agent-agnostic source of truth
   portable/mcp/               # MCP capability catalog and role matrix
   portable/rag/               # RAG corpus matrix and retrieval policy
   portable/llm-gateway/       # runtime-neutral model alias and routing policy
+  portable/portal/            # current Portal-neutral delivery/link contracts; no live Portal runtime
 
 Level 1.5 — Desired-state capability catalogs
   mcp/                         # MCP desired-state catalog and setup flow
@@ -41,7 +59,7 @@ Level 3 — Local runtime state, never committed
 
 - Canonical EKSAD knowledge source for agentic delivery.
 - Agent-agnostic role, workflow, deliverable, policy, MCP, RAG, and LLM gateway governance layer.
-- Canonical role baseline with 13 role profiles, including Data Analyst, Data Scientist, UI/UX Designer, and Content Creator.
+- Canonical role baseline with 13 role definitions, including Data Analyst, Data Scientist, UI/UX Designer, and Content Creator.
 - RAG API/MCP desired-state contracts for future Milvus/Ollama/MinIO-backed retrieval.
 - LLM Gateway desired-state contracts for LiteLLM/OpenAI-compatible model routing.
 - Runtime adapter source for Hermes.
@@ -60,6 +78,7 @@ Use the roadmap docs below as the current source-of-truth navigation. Historical
 
 See:
 
+- `docs/ONBOARDING.md` — canonical team onboarding and persona/role navigation
 - `docs/ROADMAP.md` — current canonical roadmap and baseline status
 - `docs/PHASE_HISTORY.md` — historical phase/merge record
 - `docs/NEXT_PHASE_CANDIDATES.md` — candidate next active phases
@@ -67,7 +86,9 @@ See:
 - `docs/GRAND_PLAN.md` — historical initial grand plan and execution log
 - `docs/SOURCE_MIGRATION.md`
 - `docs/USAGE_MODES.md`
+- `CONTRIBUTING.md` — branch, review, validation, and runtime-safety rules
 - `portable/README.md`
+- `portable/portal/README.md` — current DeliveryProfile, ExternalWorkItemLink, and JIRA boundary
 - `portable/mcp/role-mcp-matrix.md`
 - `rag/README.md`
 - `rag/RAG_API_CONTRACT.md`
@@ -76,6 +97,7 @@ See:
 - `llm-gateway/aliases/eksad-model-aliases.json`
 - `portable/llm-gateway/role-model-matrix.md`
 - `portable/rag/corpus-matrix.md`
+- `scripts/validate-all.sh` — complete read-only validation suite
 - `scripts/validate-role-coverage.py`
 - `eval/roles/role-expansion-tests.json`
 - `agent-adapters/hermes/README.md`
@@ -109,7 +131,7 @@ Top-level LLM Gateway desired-state catalog, stable EKSAD model aliases, LiteLLM
 
 ## Current role baseline
 
-Canonical role coverage now includes 13 role profiles:
+Canonical role coverage now includes 13 role definitions. Source coverage and activation mapping do not imply that live runtime profiles have already been applied:
 
 ```text
 general-coordinator, business-analyst, system-analyst, technical-leader,
@@ -122,8 +144,9 @@ The role expansion adds portable role cards, workflows, deliverables, Hermes rol
 
 ## Future Alignment
 
-Web Portal / Admin Control Panel / Landing Page work is parked as a future alignment plan, not as the next reserved phase:
+Web Portal / Admin Control Panel / Landing Page work and JIRA-first orchestrated delivery are parked future plans, not active runtime capabilities:
 
 - `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md`
+- `docs/future/FUTURE_ALIGN_JIRA_FIRST_ORCHESTRATED_DELIVERY.md`
 
-Start it only after explicit selection of `NEXT-06` / `WPC-01`; the plan itself does not approve runtime deployment, Keycloak mutation, LiteLLM key creation, provider-key storage, or live runtime activation.
+Start Portal work only after explicit selection of `NEXT-06` / `WPC-01`. JIRA-first additionally depends on the future `NEXT-07` orchestrator foundation before `NEXT-08` can be considered. These plans do not approve runtime deployment, Keycloak mutation, LiteLLM key creation, provider-key storage, JIRA writes, or live runtime activation.

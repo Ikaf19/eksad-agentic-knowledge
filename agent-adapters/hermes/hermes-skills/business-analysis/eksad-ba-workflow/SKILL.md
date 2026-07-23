@@ -30,7 +30,7 @@ Stage-gated workflow for EKSAD Business Analyst work. Produces UR → BRD → FS
 ## Knowledge References (read before starting)
 
 Primary:
-- `~/.hermes/knowledge/eksad/role-system-instructions/business-analyst.md` — full operating rules
+- `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/business-analyst.md` — full operating rules
 - `~/.hermes/knowledge/eksad/EKSAD/gpt/_base/EKSAD_BA_DOMAIN_GLOSSARY.md` — BA pipeline terms
 - `~/.hermes/knowledge/eksad/EKSAD/gpt/_base/EKSAD_BASE_PRINCIPLES.md` — context for platform BRs
 

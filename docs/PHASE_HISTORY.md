@@ -1,7 +1,7 @@
 # Phase History — EKSAD Agentic Knowledge
 
 **Status:** Historical record  
-**Last normalized:** 2026-07-16  
+**Last normalized:** 2026-07-23
 **Scope:** Git source-of-truth evolution only. Runtime activation remains separate.
 
 ---
@@ -17,6 +17,7 @@ Current `origin/main` first-parent history at normalization time:
 | `dbaa6d7` | Merge PR #2 from `feat/rag-foundation` | RAG desired-state foundation merged. |
 | `38c7bd2` | Merge PR #3 from `feat/llm-gateway-foundation` | LLM Gateway/LiteLLM desired-state foundation merged. |
 | `0a66076` | Merge PR #4 from `feat/role-expansion-pack` | Role expansion and Phase F matrix/skill hardening merged. |
+| `7955ae3` | Merge PR #5 from `docs/portal-delivery-mode-foundation` | Roadmap normalization plus portable `DeliveryProfile`, `ExternalWorkItemLink`, and JIRA-first orchestrator dependency contracts merged. |
 
 ---
 
@@ -34,6 +35,7 @@ Current `origin/main` first-parent history at normalization time:
 | Role matrix and skill hardening | `0834354 feat: harden role matrix and skills` included in PR #4 | Normalized role-model routing, collaboration matrix, skill enrichment, optional MCP manifests, RAG split manifests, validators. |
 | Web Portal future alignment | `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md` | Parked portal/control-plane architecture as future plan without reserving next phase labels. |
 | Roadmap normalization | `docs/ROADMAP.md`, `docs/PHASE_HISTORY.md`, `docs/NEXT_PHASE_CANDIDATES.md` | Canonicalized current status and next-candidate queue. |
+| Portal delivery-mode foundation | `portable/portal/`, `scripts/validate-portal-delivery-mode.py`, PR #5 | Added link-only external work item contracts, delivery profiles, and explicit future/orchestrator dependency for JIRA-first delivery without approving JIRA writes. |
 
 ---
 
@@ -71,5 +73,6 @@ python3 scripts/validate-role-coverage.py
 - `docs/PHASE_HISTORY.md` — historical phase/merge record.
 - `docs/NEXT_PHASE_CANDIDATES.md` — candidate next phases.
 - `docs/future/FUTURE_ALIGN_WEB_PORTAL_CONTROL_PLANE.md` — parked Web Portal future alignment plan.
+- `docs/future/FUTURE_ALIGN_JIRA_FIRST_ORCHESTRATED_DELIVERY.md` — parked JIRA-first plan that depends on the future orchestrator layer.
 
 Historical references to early branches, pending blockers, or initial “9 role” assumptions should be read in their original dated context, not as current operational status.

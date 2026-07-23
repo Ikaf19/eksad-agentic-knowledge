@@ -16,6 +16,8 @@ metadata:
 
 Coordinate EKSAD work across specialist roles while keeping progress visible and every handoff reviewable. The default document pipeline is:
 
+**Architecture classification:** this is an optional, session-local conductor/tracker skill. It runs only when the user explicitly requests a visible multi-role pipeline. It is not the future durable Portal/central Orchestrator, does not consume or mutate JIRA, and does not replace the baseline in which a human selects independent Hermes role profiles and carries handoffs manually.
+
 ```text
 UR (Business Analyst) → BRD (Business Analyst) → FSD (Business Analyst) → TSD (System Analyst)
 ```
@@ -26,7 +28,7 @@ Default behavior is strict HITL: after a stage artifact passes verification, mar
 
 ## When to Use
 
-- User asks multiple EKSAD roles to collaborate on one assignment.
+- User explicitly asks multiple EKSAD roles to collaborate through a visible, session-local pipeline.
 - User requests live tracking, a conductor view, stage progress, or agent visibility.
 - Work has dependent stages such as BRD → FSD → TSD.
 - User wants to review or approve each phase before the next role starts.
@@ -35,6 +37,7 @@ Default behavior is strict HITL: after a stage artifact passes verification, mar
 ## When NOT to Use
 
 - A single specialist can complete the task in one stage.
+- The user has not explicitly requested session-local multi-role coordination; keep the manual independent-profile baseline.
 - Independent subtasks can safely run in parallel with no shared artifacts.
 - User only wants a static status report after completion.
 - The task is not EKSAD-related; use a generic orchestration skill instead.
@@ -79,7 +82,7 @@ Adjust artifact names in the generated project config when an existing project u
 
 ### Thirteen-profile routing plus shared AppSec workflow
 
-Route work across the thirteen canonical profiles (General Coordinator plus twelve specialists) by accountable output. The General Coordinator role coordinates and never absorbs specialist ownership. AppSec is a shared workflow, not a tenth profile.
+Route work across the thirteen canonical profiles (General Coordinator plus twelve specialists) by accountable output. The General Coordinator role coordinates and never absorbs specialist ownership. AppSec is a shared workflow, not a separate profile.
 
 | Role/profile | Route when the required output is | Handoff evidence |
 |---|---|---|

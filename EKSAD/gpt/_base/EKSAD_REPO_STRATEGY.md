@@ -63,7 +63,7 @@ EKSAD has **8 repo categories**:
 | 5 | **Domain Services** | `svc-pipeline`, `svc-orders`, `svc-payment` | Docker Image | ❌ Docker registry only |
 | 6 | **Frontend** | `eksad-frontend` | Static build / Docker | ❌ Docker registry only |
 | 7 | **Infrastructure** | `eksad-infra` | Configs (K8s manifests, Jenkins templates) | ❌ Git only |
-| 8 | **Knowledge & Docs** | `brainstorming` | Markdown files | ❌ Git only |
+| 8 | **Knowledge & Docs** | `eksad-agentic-knowledge` | Markdown files | ❌ Git only |
 
 ### Naming Rules
 
@@ -335,7 +335,7 @@ Follow these 12 steps in order:
 | 7 | Create `V1__init.sql` | Flyway migration at `src/main/resources/db/migration/`. Include `tenant_id`, `deleted_at`, `version`. |
 | 8 | Create `Dockerfile` | Copy JVM multi-stage template from `EKSAD_CICD_CONTAINER_PATTERNS.md §2.2`. |
 | 9 | Setup CI/CD | Copy Jenkinsfile / GitHub Actions workflow from `eksad-infra/templates/`. |
-| 10 | Copy knowledge files | Copy `docs/eksad/_base/` from `brainstorming` repo. Copy `CLAUDE.md` and `.github/copilot-instructions.md`. |
+| 10 | Copy knowledge files | Copy `docs/eksad/_base/` from the curated `eksad-agentic-knowledge` repository. Copy `CLAUDE.md` and `.github/copilot-instructions.md`. |
 | 11 | Add to infra compose | Add service block to `eksad-infra` docker-compose for local full-stack testing. |
 | 12 | Register in domain registry | Add entry to `EKSAD_DOMAIN_REGISTRY.md` (port, service name, module type prefix). |
 

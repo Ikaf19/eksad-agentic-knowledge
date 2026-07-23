@@ -259,5 +259,5 @@ Confirm you understand before I begin.
 
 If implementation was interrupted, open a new chat and say:
 
-> *"Read `<path-to-workspace>/brainstorming/EKSAD/gpt/PLAN_INSTRUCTIONS_IMPROVEMENT.md`
+> *"Read `<path-to-workspace>/eksad-agentic-knowledge/EKSAD/gpt/PLAN_INSTRUCTIONS_IMPROVEMENT.md`
 > and continue from the first 🔲 To Do step in the Progress Tracker."*

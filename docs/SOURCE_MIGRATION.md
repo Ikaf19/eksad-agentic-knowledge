@@ -33,10 +33,14 @@ This repository introduces:
 - `portable/mcp/` for MCP capability governance.
 - `agent-adapters/hermes/mcp/` for Hermes MCP examples/templates/scripts.
 
-## Next migration work
+## Migration status
 
-1. Normalize portable role cards against `EKSAD/gpt/*` source files.
-2. Make Hermes skills reference portable workflows instead of duplicating policy.
-3. Update Hermes resync scripts for this new repo layout.
-4. Add validators for portable/adapters consistency.
-5. Add future adapters only after portable layer stabilizes.
+| Migration item | Current status |
+|---|---|
+| Normalize portable role cards against `EKSAD/gpt/*` | Completed for the 13-role baseline; validators enforce coverage. |
+| Make Hermes skills reference portable workflows | Partial: portable workflows exist for all current specialist domains and Phase E role skills link explicitly. Legacy role skills still require reference normalization; adapters must not override portable policy meanwhile. |
+| Update Hermes resync for curated layout | Completed; the source script accepts the curated repository root and maps all 13 roles. Runtime apply remains a separate approval. |
+| Add portable/adapter consistency validators | Completed for current role, source, roadmap, Portal, MCP, RAG, and LLM scopes. |
+| Add future adapters | Still future work; add only after portable contracts remain stable and a runtime has been explicitly selected. |
+
+Historical references to the former source remain valid only as provenance. All new operational setup must use `github.com/Ikaf19/eksad-agentic-knowledge` branch `main`.

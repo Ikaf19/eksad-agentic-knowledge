@@ -53,7 +53,7 @@ Before writing any Java code, read the following project files:
 - @docs/eksad/_base/EKSAD_SPRING_BOOT_MAPPINGS.md
 - @docs/eksad/_base/EKSAD_DOMAIN_GLOSSARY.md
 
-> If `docs/eksad/_base/` does not exist: run `cp -r /path/to/brainstorming/EKSAD/gpt/_base docs/eksad/_base` first.
+> If `docs/eksad/_base/` does not exist: run `cp -r /path/to/eksad-agentic-knowledge/EKSAD/gpt/_base docs/eksad/_base` first.
 > See `docs/eksad/_base/` setup instructions in `gpt/vibe-coding/VIBE_CODING_SETUP_GUIDE.md`.
 
 ---

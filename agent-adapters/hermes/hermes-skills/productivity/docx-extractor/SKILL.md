@@ -476,8 +476,8 @@ Extracted: <date>
 
 ### Step 4 — Offer to save
 
-Ask: "Simpan ke `EKSAD/gpt/_template/EKSAD_GENERIC_DOCX_STYLE_GUIDE.md`?"
-Save only after user confirms.
+Ask: "Simpan sebagai project artifact `{PROJECT_CODE}_DOCX_STYLE_GUIDE_v{VERSION}.md` di lokasi dokumen proyek yang sudah disetujui?"
+Save only after user confirms. Never create or overwrite a canonical file under `EKSAD/gpt/_template/` from an extracted project document.
 
 ---
 
@@ -487,7 +487,7 @@ Save only after user confirms.
 |---|---|---|
 | Full text extraction | Plain text / Markdown | Default |
 | Style metadata | JSON or Markdown table | When `--styles` or user asks |
-| Style guide doc | `.md` file in `_template/` | After user confirmation |
+| Style guide doc | Project-owned `.md` artifact | After user confirmation; never auto-write canonical `_template/` source |
 | Error message | Plain text | File not found / wrong format / protected |
 
 ---

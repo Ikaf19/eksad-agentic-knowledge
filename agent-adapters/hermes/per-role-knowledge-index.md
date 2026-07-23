@@ -6,7 +6,7 @@
 
 **Pack location:** `~/.hermes/knowledge/eksad/EKSAD/gpt/`
 **Pack version:** v31
-**Source of truth:** Git clone from `github.com/Ikaf19/brainstorming` branch `feature/eksad-knowledge-v3`
+**Source of truth:** Git clone from `github.com/Ikaf19/eksad-agentic-knowledge` branch `main`
 
 **Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile.
 
@@ -16,9 +16,9 @@
 
 ## 🔵 Business Analyst (`business-analyst`)
 
-**Profile SOUL.md:** `~/.hermes/profiles/business-analyst/SOUL.md` (751 lines, 21 sections)
+**Profile SOUL.md:** `~/.hermes/profiles/business-analyst/SOUL.md`
 **Custom skill:** `~/.hermes/skills/business-analysis/eksad-ba-workflow/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/business-analyst.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/business-analyst.md`
 
 **Primary job:** BRD, FSD, UR, User Stories, Acceptance Criteria, Business Rules, Approval Workflow (business level).
 
@@ -45,9 +45,9 @@
 
 ## 🟢 System Analyst (`system-analyst`)
 
-**Profile SOUL.md:** `~/.hermes/profiles/system-analyst/SOUL.md` (208 lines)
+**Profile SOUL.md:** `~/.hermes/profiles/system-analyst/SOUL.md`
 **Custom skills:** `~/.hermes/skills/technical-design/eksad-tsd-design/`, `~/.hermes/skills/technical-design/eksad-adr-workflow/`; use shared `~/.hermes/skills/security/eksad-appsec-review/` when security triggers apply
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/system-analyst.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/system-analyst.md`
 
 **Primary job:** TSD, system architecture, data model, Flyway DDL, API contracts, RabbitMQ event schemas, ERD (within TSD), API contract tables.
 
@@ -90,9 +90,9 @@
 
 ## 🟣 Technical Leader (`technical-leader`)
 
-**Profile SOUL.md:** `~/.hermes/profiles/technical-leader/SOUL.md` (197 lines)
+**Profile SOUL.md:** `~/.hermes/profiles/technical-leader/SOUL.md`
 **Custom skills:** `~/.hermes/skills/code-review/eksad-code-review/`, `~/.hermes/skills/technical-design/eksad-adr-workflow/`; use shared `~/.hermes/skills/security/eksad-appsec-review/` for triggered AppSec review
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/technical-leader.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/technical-leader.md`
 
 **Primary job:** Code review, mentoring, ADR writing, BaseRepository guidance, PR checklist enforcement.
 
@@ -130,9 +130,9 @@
 
 ## 🟠 Backend Developer (`developer-backend`)
 
-**Profile SOUL.md:** `~/.hermes/profiles/developer-backend/SOUL.md` (253 lines)
+**Profile SOUL.md:** `~/.hermes/profiles/developer-backend/SOUL.md`
 **Custom skill:** `~/.hermes/skills/software-development/eksad-be-impl/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/developer-backend.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/developer-backend.md`
 
 **Primary job:** Write Java/Quarkus/Spring Boot code: entities, repositories, services, REST resources, Flyway DDL, tests.
 
@@ -163,9 +163,9 @@
 
 ## 🟡 Frontend Developer (`developer-frontend`)
 
-**Profile SOUL.md:** `~/.hermes/profiles/developer-frontend/SOUL.md` (263 lines)
+**Profile SOUL.md:** `~/.hermes/profiles/developer-frontend/SOUL.md`
 **Custom skill:** `~/.hermes/skills/frontend/eksad-fe-impl/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/developer-frontend.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/developer-frontend.md`
 
 **Primary job:** React 18 + TS + Vite + TailwindCSS + RQ + RR + Axios + Day.js code. Monorepo packages.
 
@@ -189,9 +189,9 @@
 
 ## 🔴 QA Engineer (`qa-engineer`)
 
-**Profile SOUL.md:** `~/.hermes/profiles/qa-engineer/SOUL.md` (231 lines)
+**Profile SOUL.md:** `~/.hermes/profiles/qa-engineer/SOUL.md`
 **Custom skill:** `~/.hermes/skills/quality-assurance/eksad-qa-delivery/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/qa-engineer.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/qa-engineer.md`
 
 **Primary job:** Mode A black-box Test Plan, RTM, Test Case Matrix, and State Machine Matrix design; this Hermes profile produces no test code. Mode B automation remains with the in-IDE QA agent.
 
@@ -222,9 +222,9 @@
 
 ## ⚪ General Coordinator (`eksad-general`)
 
-**Profile SOUL.md:** `~/.hermes/profiles/eksad-general/SOUL.md` (141 lines)
-**Custom skills:** `~/.hermes/skills/orchestration/eksad-general-coordination/` for intake/routing/handoff governance, `~/.hermes/skills/productivity/stage-gated-orchestrator/` for visible cross-role pipelines, and `~/.hermes/skills/productivity/eksad-create-project/` for project bootstrap; route specialist work to the corresponding profile/skill below
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/general.md`
+**Profile SOUL.md:** `~/.hermes/profiles/eksad-general/SOUL.md`
+**Custom skills:** `~/.hermes/skills/orchestration/eksad-general-coordination/` for intake/routing/handoff governance; optional `~/.hermes/skills/productivity/stage-gated-orchestrator/` only when the user explicitly requests a session-local visible pipeline; and `~/.hermes/skills/productivity/eksad-create-project/` for explicitly approved project bootstrap. The session-local skill is not the future durable Portal/central Orchestrator and has no JIRA write authority; otherwise use manual profile handoffs.
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/general.md`
 
 **Primary job:** Cross-role intake, routing, dependency sequencing, handoff tracking, management overview, and attributable synthesis. The profile does not author or approve specialist-owned artifacts.
 
@@ -247,7 +247,7 @@
 
 **Profile SOUL.md:** `~/.hermes/profiles/project-manager/SOUL.md`
 **Custom skill:** `~/.hermes/profiles/project-manager/skills/project-management/eksad-pm-delivery/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/project-manager.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/project-manager.md`
 
 **Primary job:** Project Charter, Project Plan, PM-owned WBS artifact/approved baseline, RAID, RACI/governance, evidence-based status, Change Requests, decisions/escalations, dependencies, stage-gate coordination, release readiness, and closure. Specialists own and validate their WBS task content, technical estimates, assumptions, and acceptance evidence.
 
@@ -279,7 +279,7 @@
 **Profile SOUL.md:** `~/.hermes/profiles/devops-engineer/SOUL.md`
 **Profile-local runtime skill:** `~/.hermes/profiles/devops-engineer/skills/devops/eksad-devops-delivery/`
 **Global mirrored copy:** `~/.hermes/skills/devops/eksad-devops-delivery/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/devops-engineer.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/devops-engineer.md`
 
 **Primary job:** GitLab CE/Jenkins integration, CI/CD reliability, SonarQube and Trivy evidence through Jenkins, immutable artifact promotion, environment readiness, deployment, rollback, observability, release evidence, and incident handoff.
 
@@ -318,7 +318,7 @@
 
 **Profile SOUL.md:** `~/.hermes/profiles/data-analyst/SOUL.md`
 **Custom skill:** `~/.hermes/skills/data-analysis/eksad-data-analysis/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/data-analyst.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/data-analyst.md`
 
 **Primary job:** KPI/metric definitions, read-only data profiling, data analysis reports, data quality findings, and dashboard specifications.
 
@@ -345,7 +345,7 @@
 
 **Profile SOUL.md:** `~/.hermes/profiles/data-scientist/SOUL.md`
 **Custom skill:** `~/.hermes/skills/data-science/eksad-data-science/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/data-scientist.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/data-scientist.md`
 
 **Primary job:** ML/statistical problem framing, data readiness assessment, experiment design, model evaluation, reproducibility notes, and model-risk handoff.
 
@@ -371,7 +371,7 @@
 
 **Profile SOUL.md:** `~/.hermes/profiles/ui-ux-designer/SOUL.md`
 **Custom skill:** `~/.hermes/skills/design/eksad-ui-ux-delivery/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/ui-ux-designer.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/ui-ux-designer.md`
 
 **Primary job:** UX research, journey/task flows, information architecture, wireframe specifications, usability findings, accessibility notes, and frontend handoff.
 
@@ -398,7 +398,7 @@
 
 **Profile SOUL.md:** `~/.hermes/profiles/content-creator/SOUL.md`
 **Custom skill:** `~/.hermes/skills/content/eksad-content-creation/`
-**Extracted SI:** `~/.hermes/knowledge/eksad/role-system-instructions/content-creator.md`
+**Extracted SI:** `~/.hermes/knowledge/eksad/agent-adapters/hermes/role-system-instructions/content-creator.md`
 
 **Primary job:** content briefs, source-backed drafts, release notes, help/training material, FAQs, copy variants, and content calendar planning.
 
@@ -435,7 +435,7 @@
 | `eksad-appsec-review` | `~/.hermes/skills/security/eksad-appsec-review/` | Shared SA/TL workflow for triggered AppSec review; not a profile |
 | `eksad-create-project` | `~/.hermes/skills/productivity/eksad-create-project/` | Bootstrap new project from template |
 | `eksad-task-breakdown` | `~/.hermes/skills/technical-design/eksad-task-breakdown/` | WBS / sprint planning per role |
-| `stage-gated-orchestrator` | `~/.hermes/skills/productivity/stage-gated-orchestrator/` | General Coordinator pipeline: HITL by default; optional no-gates mode; not installed in PM profile |
+| `stage-gated-orchestrator` | `~/.hermes/skills/productivity/stage-gated-orchestrator/` | Optional user-invoked session-local pipeline: HITL by default; not the future central Orchestrator, no JIRA writes, and not installed in PM profile |
 | `eksad-pm-delivery` | `~/.hermes/profiles/project-manager/skills/project-management/eksad-pm-delivery/` | Charter, Plan, PM-owned WBS baseline, RAID, status, changes, and delivery gates |
 | `eksad-devops-delivery` | `~/.hermes/profiles/devops-engineer/skills/devops/eksad-devops-delivery/` (also mirrored globally) | GitLab/Jenkins delivery, quality/security evidence, deployment, rollback, and release readiness |
 | `eksad-data-analysis` | `~/.hermes/skills/data-analysis/eksad-data-analysis/` | KPI definitions, read-only data analysis, data quality findings, and dashboard specs |
@@ -487,4 +487,4 @@
 
 **Last updated:** 2026-07-16
 **Pack version:** v31 + Phase E Role Expansion Pack
-**Source branch:** `feature/eksad-knowledge-v3`
+**Curated source:** `github.com/Ikaf19/eksad-agentic-knowledge` branch `main`

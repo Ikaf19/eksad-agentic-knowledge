@@ -47,7 +47,7 @@ The Web Portal should **not** replace Hermes, RAG, or LiteLLM:
 |---|---|
 | Web Portal | Cockpit UI, admin control panel, project workspace, approval, monitoring, runtime control-plane requests. |
 | Keycloak | OIDC login, SSO, RBAC claims, account linking. |
-| Hermes | Role-agent runtime/orchestrator and stage-gated agent execution. |
+| Hermes | Independent role-agent runtime; optional user-invoked session-local stage-gated coordination is not the future durable central Orchestrator. |
 | RAG API / Milvus / MinIO | Knowledge retrieval, citations, evidence, artifacts. |
 | LiteLLM | Provider routing, virtual keys, budget/rate limits, fallback, spend tracking. |
 | Git source-of-truth | Desired-state policies, contracts, templates, validation rules; never live secrets or billing data. |
@@ -109,12 +109,12 @@ Confirmed UR decisions:
 | No Portal -> LiteLLM admin contract | Define how Portal Control Service calls LiteLLM admin endpoints safely. |
 | No Keycloak claim contract | Define roles, groups, skills, tenant/project claims, and OIDC client expectations. |
 | No project/agent runtime model | Define Project, ProjectMember, ProjectAgent, AgentRun, BudgetPolicy, AuditEvent. |
-| No delivery profile model | Add `DeliveryProfile` so projects can choose formal spec-driven, manual agent-assisted, or future orchestrated modes without changing role definitions. |
-| No external work item link model | Add `ExternalWorkItemLink` so Portal can reference JIRA/GitLab/Linear/manual work items without duplicating live card state. |
-| JIRA-first delivery depends on missing orchestrator | Keep JIRA-first as future/orchestrator-dependent; Phase 1 supports link-only/manual JIRA context only. |
+| Portable delivery profile foundation completed | `portable/portal/delivery-profile-model.md` now defines formal, manual, JIRA-linked, and future orchestrated profiles; WPC must consume it rather than redefine it. |
+| Portable external work item foundation completed | `portable/portal/external-work-item-link-model.md` now defines generic JIRA/GitLab/Linear/manual links; WPC must add implementation/API persistence without duplicating live card state. |
+| JIRA-first dependency documented but orchestrator still missing | Preserve `portable/portal/jira-first-orchestrator-dependency.md`; Phase 1 supports link-only/manual JIRA context and no writes. |
 | No approval policy for high-risk config changes | Require approval for provider-key, route, fallback, budget increase, production-impacting changes. |
 | No portal observability contract | Define spend/token/latency/fallback/agent-run/audit metrics and data sources. |
-| No portal validator | Add secret scanner/contract validator for portal docs and examples. |
+| Portable Portal guard validator completed; full Portal domain validator still missing | `scripts/validate-portal-delivery-mode.py` protects delivery-mode/JIRA boundaries. WPC still needs a validator for future top-level Portal API/security/control-plane contracts. |
 
 ---
 
@@ -340,22 +340,13 @@ Production hardening should add secret-manager integration, key rotation, RBAC h
 
 ---
 
-## 10. Candidate next active phases if this remains a future plan
+## 10. Relationship to the current candidate queue
 
-If the Web Portal workstream is parked as a future plan, the next active source-of-truth phases can remain focused on stabilizing the agentic harness first.
+This document remains a parked Web Portal plan. It does not maintain an independent candidate queue. Use `docs/ROADMAP.md` and `docs/NEXT_PHASE_CANDIDATES.md` for current selectable workstreams and completion status.
 
-Recommended next-phase candidates:
+At the current baseline, Web Portal source work is represented by NEXT-06/WPC-01, while future Orchestrator and JIRA-first dependencies are represented by NEXT-07 and NEXT-08. NEXT-01 and NEXT-03 are completed historical work and must not be selected again from this plan.
 
-| Candidate | Name | Purpose | Why before Web Portal |
-|---|---|---|---|
-| NEXT-01 | PR #4 Review, Merge, and Mainline Sync | Review/merge `feat/role-expansion-pack`, then sync local branch/main state. | Avoid building portal planning on an unmerged feature branch. |
-| NEXT-02 | Runtime Activation Readiness Blueprint | Define how Hermes profiles, MCP manifests, RAG corpora, and LiteLLM aliases are rendered/applied safely without mutating runtime by default. | Portal later needs a stable runtime contract to call into. |
-| NEXT-03 | Source-of-Truth Roadmap Normalization | Update stale grand-plan sections, phase history, status tables, and validator coverage to match the current 13-role/MCP/RAG/LLM state. | Reduces drift before adding a new portal domain. |
-| NEXT-04 | RAG Ingestion and Evaluation Pilot Plan | Define corpus ingestion order, citation evals, role-boundary retrieval tests, and non-prod RAG runtime blueprint. | Portal monitoring and project evidence depend on reliable RAG/artifact contracts. |
-| NEXT-05 | MCP Runtime Pilot Plan | Choose a small set of read-only MCP tools for non-prod pilot and define access/approval/observability. | Portal should expose tool capability status only after MCP runtime policy is stable. |
-| NEXT-06 | Web Portal Control Plane Source-of-Truth | Start WPC-01 from this future plan. | Begin portal work once harness baseline is merged and stable. |
-
-The exact next phase should be selected explicitly by the user before implementation.
+The exact next workstream must be selected explicitly by the user before implementation.
 
 ---
 

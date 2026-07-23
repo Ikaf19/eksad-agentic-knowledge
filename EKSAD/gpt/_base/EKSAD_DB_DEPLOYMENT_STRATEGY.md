@@ -399,7 +399,7 @@ log_line_prefix            = '%t [%p] %u@%d app=%a corr=%c '
 postgres-exporter:
   image: prometheuscommunity/postgres-exporter:v0.15
   environment:
-    DATA_SOURCE_NAME: "postgresql://eksad_monitor:${MONITOR_PASSWORD}@postgres:5432/postgres?sslmode=require"
+    DATA_SOURCE_NAME: "postgresql://eksad_monitor:${MONITOR_AUTH}@postgres:5432/postgres?sslmode=require"
   ports: ["9187:9187"]
   depends_on: [postgres]
 ```

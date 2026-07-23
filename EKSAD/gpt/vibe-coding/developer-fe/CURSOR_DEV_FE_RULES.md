@@ -51,7 +51,7 @@ Before writing any React/TypeScript code, read the following project files:
 - @docs/eksad/_base/EKSAD_BASE_PRINCIPLES.md
 - @docs/eksad/_base/EKSAD_DOMAIN_GLOSSARY.md
 
-> If `docs/eksad/_base/` does not exist: copy it from the brainstorming repo.
+> If `docs/eksad/_base/` does not exist: copy it from the curated `eksad-agentic-knowledge` repository.
 > See `gpt/vibe-coding/VIBE_CODING_SETUP_GUIDE.md` for setup instructions.
 
 ---

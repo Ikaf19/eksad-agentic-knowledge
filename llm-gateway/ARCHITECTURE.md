@@ -13,7 +13,7 @@ Front door / Hermes / future harness
   → provider/model
 ```
 
-Hermes remains the role-agent runtime/orchestrator. LiteLLM or an equivalent gateway owns provider routing, key isolation, budget caps, rate limits, failover, and provider-specific quirks.
+Hermes remains the role-agent runtime. Optional user-invoked session-local coordination may run inside Hermes, but the future durable Portal/central Orchestrator is a separate planned layer. LiteLLM or an equivalent gateway owns provider routing, key isolation, budget caps, rate limits, failover, and provider-specific quirks.
 
 ## Design principles
 
