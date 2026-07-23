@@ -253,7 +253,7 @@ gpt/
 
 ## 🧰 Hermes Skill Suite (v31 lineage + curated extensions)
 
-The curated Hermes adapter contains 18 source-controlled skills under `agent-adapters/hermes/hermes-skills/`, including the v31 lineage plus General Coordination, Data Analysis, Data Science, UI/UX, and Content delivery skills. Use the repository root onboarding guide and `agent-adapters/hermes/per-role-knowledge-index.md` as current navigation.
+The curated Hermes adapter contains 19 source-controlled skills under `agent-adapters/hermes/hermes-skills/`, including the v31 lineage plus General Coordination, Data Analysis, Data Science, UI/UX, Content delivery, and DOCX extraction/generation skills. Use the repository root onboarding guide and `agent-adapters/hermes/per-role-knowledge-index.md` as current navigation.
 
 The canonical architecture defines and maps 13 Hermes role profiles: General Coordinator (`eksad-general`), BA, SA, TL, Backend, Frontend, QA, PM, DevOps, Data Analyst, Data Scientist, UI/UX Designer, and Content Creator. Source mapping does not mean a live profile has been activated. This legacy README still provides detailed Custom GPT setup sections for nine configurations. **Canonical AppSec routing:** Any role may raise an AppSec trigger and supply evidence; the System Analyst or Technical Leader coordinates and invokes the shared `eksad-appsec-review` workflow; only the named risk authority accepts residual risk or grants a waiver. AppSec is not a profile. PM and DevOps use only their profile-local delivery skill at runtime.
 
