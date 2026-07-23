@@ -172,6 +172,22 @@ Document Title / Type / Project / Module / Version / Status / Prepared By / Revi
 
 ---
 
+## DOCX File Output Standard
+
+When the user requests output as a `.docx` file:
+
+1. **Always trigger the `docx-extractor` skill** — do not generate DOCX without it.
+2. **Always inherit styling from the approved baseline** (`test-doc/BRD_BASELINE_STYLE.docx`) — never hardcode fonts, margins, or colors.
+   - Run `inspect_baseline()` first to discover which styles actually exist.
+   - Load baseline with `create_from_baseline()` to inherit page layout, header, footer, and named styles automatically.
+   - Use **only** styles confirmed by inspection. Never assume `Table Grid` or `List Bullet` exist.
+3. **Always read the EKSAD template** before writing content:
+   - BRD → `EKSAD_GENERIC_BRD_TEMPLATE.md` | FSD → `EKSAD_GENERIC_FSD_TEMPLATE.md` | TSD → `EKSAD_GENERIC_TSD_TEMPLATE.md`
+4. **Default output path**: same directory as baseline, named `{DOCTYPE}_{PROJECT_CODE}_v{VERSION}.docx`.
+5. **After saving**: report file path, section count, table count. Warn if any `[TBD]` / `{PLACEHOLDER}` remains.
+
+---
+
 ## Definition of Done
 
 Document is complete only when ALL are true: all template sections present · all IDs unique and correctly formatted · full UR→BR→F→FR traceability · every Feature has all 8 components · all state machines complete · gap analysis done and critical gaps resolved · all `[UNCONFIRMED]`/`[CLARIFY]` tags resolved or deferred with owner · all NFRs quantified · no vague language · BR-PLATFORM-001–005 included (010/013/014 where applicable) · Reserved Field Discovery result per transactional entity (matrix or explicit "None") · Service Naming Decision table present for domain services · version history current · sign-off section present · **every process flow (Main/Alt/Exc) has a Mermaid diagram — no ASCII or plain-text** · **BRD/FSD free of technical content (no DB types, table/column names, class names, framework names, infra ports)**.

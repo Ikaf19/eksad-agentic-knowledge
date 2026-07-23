@@ -572,6 +572,58 @@ A document is only complete when **all** of the following are true:
 
 ---
 
+### 18. DOCX File Output Standard
+
+When the user requests a document to be produced as a `.docx` file (not Markdown), follow this protocol **without exception**:
+
+#### 18.1 Always Use the `docx-extractor` Skill
+
+Trigger the `docx-extractor` skill for **all** `.docx` generation tasks. Do **not** produce DOCX files without it.
+
+#### 18.2 Always Inherit Styling from the Approved Baseline
+
+Do **not** invent or hardcode fonts, margins, heading colors, or table styles. Always load styling from the approved baseline file:
+
+```
+eksad-agentic-knowledge/test-doc/BRD_BASELINE_STYLE.docx
+```
+
+The workflow is:
+1. Call `inspect_baseline(src_path)` to discover which paragraph styles and table styles are actually present in the baseline.
+2. Load the baseline with `create_from_baseline(src_path, out_path)` — this clears body content but **inherits** page layout, header, footer, and all named styles automatically.
+3. Use **only** styles confirmed in step 1. Never assume `Table Grid`, `List Bullet`, or other default styles exist.
+
+#### 18.3 Always Follow the EKSAD Document Template Structure
+
+Before writing content, **read the relevant template** from `EKSAD/gpt/_template/`:
+
+| Document Type | Template File |
+|---|---|
+| BRD | `EKSAD_GENERIC_BRD_TEMPLATE.md` |
+| FSD | `EKSAD_GENERIC_FSD_TEMPLATE.md` |
+| TSD | `EKSAD_GENERIC_TSD_TEMPLATE.md` |
+| UR | `EKSAD_GENERIC_UR_TEMPLATE.md` |
+
+Use the exact section names, table structures, and column headers from the template. Do not invent section names.
+
+#### 18.4 Output Path
+
+Default output path: same directory as the baseline file, with a descriptive suffix:
+```
+BRD_{PROJECT_CODE}_v{VERSION}.docx
+FSD_{PROJECT_CODE}_v{VERSION}.docx
+```
+
+Ask for confirmation before overwriting an existing file.
+
+#### 18.5 After Saving
+
+- Report: output file path, total sections, total tables.
+- Warn if any placeholder (`[TBD]`, `{PROJECT_NAME}`, etc.) remains unfilled.
+- Offer to open the file in Word.
+
+---
+
 ## PART E — PROHIBITED BEHAVIOURS
 
 ---
